@@ -1,0 +1,21 @@
+// font for home page
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+// shared mixins and variables
+@import '../src/scss/mixins';
+@import '../src/scss/variables';
+
+// component styles
+@import '../src/amica/scss/Amica';
+@import '../src/loading-page/scss/LoadingPage';
+
+html {
+  font-size: 18px;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}

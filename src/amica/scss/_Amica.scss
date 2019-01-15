@@ -1,0 +1,30 @@
+.homepage {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+
+  &__title {
+    animation: title 1s linear infinite;
+    color: blue;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    text-shadow: 2px 2px rgba(0,0,0,0.2);
+  }
+}
+
+@keyframes title {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(6deg);
+  }
+  75% {
+    transform: rotate(-6deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
