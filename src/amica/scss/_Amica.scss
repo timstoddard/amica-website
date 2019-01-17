@@ -5,26 +5,57 @@
   justify-content: center;
   text-align: center;
 
+  &__header {
+    background: rgb(66,133,244);
+    box-shadow: 0 0 8px 2px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: space-between;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+
+    &__title {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 8px 2px rgba(255,255,255,1);
+      color: rgb(255,65,54);
+      cursor: pointer;
+      font-size: 32px;
+      font-weight: bold;
+      margin: 16px;
+      padding: 2px 4px;
+      text-shadow: rgba(255,255,255,0.4) 1px 1px;
+    }
+
+    &__links {
+      align-items: center;
+      display: flex;
+    }
+
+    &__link {
+      @include defaultTransition;
+      background: white;
+      border-radius: 3px;
+      box-shadow: 2px 2px 8px 2px rgba(0,0,0,0.4);
+      color: black;
+      font-size: 18px;
+      margin: 4px 8px;
+      padding: 8px 16px;
+      
+      &:hover {
+        background: black;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
+
   &__title {
-    animation: title 1s linear infinite;
-    color: blue;
+    color: white;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     text-shadow: 2px 2px rgba(0,0,0,0.2);
-  }
-}
-
-@keyframes title {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(6deg);
-  }
-  75% {
-    transform: rotate(-6deg);
-  }
-  100% {
-    transform: rotate(0deg);
   }
 }

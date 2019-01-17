@@ -1,5 +1,5 @@
-@mixin defaultTransition($propertyName) {
-  transition: $propertyName 0.35s ease;
+@mixin defaultTransition($propertyName: all) {
+  transition: $propertyName 0.25s ease;
 }
 
 @mixin forceWidth($width) {
