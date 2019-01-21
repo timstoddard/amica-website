@@ -5,8 +5,8 @@ const autoprefixer = require('autoprefixer')
 module.exports = {
   config: {
     entry: [
-      './src/index.tsx',
-      './src/index.scss',
+      './src/client/index.tsx',
+      './src/client/index.scss',
     ],
     output: {
       filename: 'bundle.js',
@@ -48,7 +48,7 @@ module.exports = {
   },
   sharedPlugins: (mode) => {
     const htmlWebpackPluginOptions = {
-      template: 'src/app.html',
+      template: 'src/client/app.html',
       filename: '../index.html',
     }
     if (mode === 'prod') {
