@@ -1,0 +1,44 @@
+.header {
+  background: $mainContentBlue;
+  box-shadow: 0 0 8px 4px rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+
+  &__title {
+    @include undecoratedLink;
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 8px;
+    padding: 2px 4px;
+  }
+
+  &__links {
+    align-items: center;
+    display: flex;
+    margin-right: 10px;
+  }
+
+  &__link {
+    @include defaultTransition;
+    @include undecoratedLink;
+    border-radius: 5px;
+    color: #fcfcfc;
+    font-size: 18px;
+    margin: 0 2px;
+    padding: 10px 20px;
+    white-space: nowrap;
+
+    &:hover {
+      background: #fcfcfc;
+      color: $mainContentBlue;
+      cursor: pointer;
+    }
+  }
+}

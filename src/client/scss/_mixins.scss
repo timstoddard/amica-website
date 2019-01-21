@@ -6,3 +6,13 @@
   max-width: $width;
   min-width: $width;
 }
+
+@mixin undecoratedLink() {
+  &:link, &:visited, &:hover, &:active {
+    text-decoration: none;
+  }
+}
+
+@mixin playfairDisplayFont() {
+  font-family: 'Playfair Display', serif;
+}

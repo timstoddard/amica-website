@@ -1,0 +1,19 @@
+// shared mixins
+@mixin homepageSection() {
+  margin-bottom: 40px;
+}
+
+@mixin homepageTitle() {
+  @include playfairDisplayFont;
+  font-size: 32px;
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+// imports
+@import './About';
+@import './Amica';
+@import './Footer';
+@import './Games';
+@import './Header';
+@import './Pricing';

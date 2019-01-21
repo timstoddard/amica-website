@@ -1,0 +1,7 @@
+.about {
+  @include homepageSection;
+
+  &__title {
+    @include homepageTitle;
+  }
+}
