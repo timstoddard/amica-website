@@ -7,10 +7,11 @@ Setup instructions
 4. `npm start`
 
 Technologies used:
-* ReactJS
-* React Router
-* Node/NPM
-* Webpack
-* SCSS
-* ESLint
-* Express (for production server)
+* [ReactJS](https://reactjs.org)
+* [React Router](https://reacttraining.com/react-router)
+* [Node.js](https://nodejs.org)
+* [Webpack](https://webpack.js.org)
+* [SCSS](https://sass-lang.com)
+* [CSS Modules](https://github.com/css-modules/css-modules)
+* [TSLint](https://palantir.github.io/tslint)
+* [Express](https://expressjs.com)
