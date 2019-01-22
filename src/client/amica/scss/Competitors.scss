@@ -1,0 +1,27 @@
+@import 'src/client/scss/variables.scss';
+@import './mixins.scss';
+
+.competitors {
+  @include homepageSection;
+
+  &__title {
+    @include homepageTitle;
+  }
+
+  &__table {
+    border-collapse: collapse;
+    color: $darkGray;
+    margin: 0 auto;
+
+    &__cell {
+      border: 1px solid $lightGray;
+      padding: 4px 8px;
+    }
+  }
+
+  &__criteria {
+    &--hasFeature {
+      background: $green;
+    }
+  }
+}

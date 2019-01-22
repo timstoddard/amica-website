@@ -60,7 +60,7 @@
     &__submitButton {
       @include defaultTransition;
       @include formElement;
-      background: rgb(46,204,64);
+      background: $green;
       border: 2px solid transparent;
       padding: 6px 10px;
 
