@@ -1,6 +1,14 @@
 // shared mixins
 @mixin homepageSection() {
   margin-bottom: 40px;
+
+  &:target::before { // TODO this doesnt update after matching first target
+    // background: red;
+    content: ' ';
+    display: block;
+    height: 80px;
+    margin-top: -80px;
+  }
 }
 
 @mixin homepageTitle() {

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link'
 
 interface HeaderLink {
   to: string
@@ -23,12 +24,21 @@ const Header = () => (
     </Link>
     <div className='header__links'>
       {links.map(({ to, text }: HeaderLink) =>
-        <Link
-          key={to}
-          to={to}
-          className='header__link'>
-          {text}
-        </Link>)}
+        to[0] === '#' ? (
+          <HashLink
+            key={to}
+            to={to}
+            className='header__link'>
+            {text}
+          </HashLink>
+        ) : (
+          <Link
+            key={to}
+            to={to}
+            className='header__link'>
+            {text}
+          </Link>
+        ))}
     </div>
   </header>
 )
