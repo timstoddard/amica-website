@@ -1,6 +1,8 @@
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
+const styles = require('./scss/LoadingPage.scss') // tslint:disable-line no-var-requires
+
 interface Props {
   error: boolean
   timedOut: boolean
@@ -19,7 +21,7 @@ const LoadingPage: React.StatelessComponent<Props> = ({ error, timedOut, pastDel
     return null
   }
   return (
-    <div className='loadingPage'>
+    <div className={styles.loadingPage}>
       {loadingText}
     </div>
   )

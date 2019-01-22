@@ -1,4 +1,5 @@
-// shared mixins
+@import 'src/client/scss/mixins.scss';
+
 @mixin homepageSection() {
   margin-bottom: 40px;
 
@@ -17,11 +18,3 @@
   margin: 0;
   margin-bottom: 12px;
 }
-
-// imports
-@import './About';
-@import './Amica';
-@import './Footer';
-@import './Games';
-@import './Header';
-@import './Pricing';

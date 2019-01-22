@@ -1,3 +1,6 @@
+@import 'src/client/scss/mixins.scss';
+@import 'src/client/scss/variables.scss';
+
 .header {
   background: $mainContentBlue;
   box-shadow: 0 0 8px 4px rgba(0,0,0,0.3);
@@ -11,7 +14,7 @@
 
   &__title {
     @include undecoratedLink;
-    color: rgb(255, 0, 0);
+    color: rgb(255,0,0);
     cursor: pointer;
     font-size: 32px;
     font-weight: bold;

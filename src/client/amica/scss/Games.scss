@@ -1,3 +1,6 @@
+@import 'src/client/scss/variables.scss';
+@import './mixins.scss';
+
 .games {
   @include homepageSection;
 

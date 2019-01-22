@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+const styles = require('./scss/Games.scss') // tslint:disable-line no-var-requires
+
 interface GameInfo {
   imageSrc: string
   title: string
@@ -31,24 +33,26 @@ const games: GameInfo[] = [
 
 const Games = () => (
   <div
-    className='games'
+    className={styles.games}
     id='games'>
-    <h2 className='games__title'>Games</h2>
-    <div className='games__text'>
+    <h2 className={styles.games__title}>
+      Games
+    </h2>
+    <div className={styles.games__text}>
       <p>We've worked tirelessly to bring your children games they will enjoy, that teach them all about how to behave online.</p>
-      <ul className='games__list'>
+      <ul className={styles.games__list}>
         {games.map(({ imageSrc, title, description }: GameInfo) =>
           <li
             key={title}
-            className='game'>
+            className={styles.game}>
             <img
               src={imageSrc}
               alt={title}
-              className='game__image'/>
-            <div className='game__title'>
+              className={styles.game__image}/>
+            <div className={styles.game__title}>
               {title}
             </div>
-            <div className='game__description'>
+            <div className={styles.game__description}>
               {description}
             </div>
           </li>)}

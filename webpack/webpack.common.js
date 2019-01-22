@@ -29,7 +29,14 @@ module.exports = {
           test: /\.scss$/,
           use: [
             MiniCssExtractPlugin.loader,
-            'css-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                sourceMap: true,
+                localIdentName: '[hash:base64:5]',
+              },
+            },
             {
               loader: 'postcss-loader',
               options: {
@@ -43,7 +50,7 @@ module.exports = {
       ],
     },
     resolve: {
-      extensions: ['.tsx', '.ts', '.js', '.json'],
+      extensions: ['.tsx', '.ts', '.js', 'scss', '.json'],
     },
   },
   sharedPlugins: (mode) => {

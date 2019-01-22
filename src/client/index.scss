@@ -1,26 +1,15 @@
 // fonts
 @import url(https://fonts.googleapis.com/css?family=Playfair+Display|Roboto);
 
-// shared mixins and variables
-@import './scss/mixins';
-@import './scss/variables';
-
-// component styles
-@import './amica/scss/index';
-@import './loading-page/scss/LoadingPage';
-
 html {
   font-size: 18px;
 }
 
 body {
+  font-family: 'Roboto', sans-serif;
   height: 100vh;
   margin: 0;
   padding: 0;
-  width: 100vw;
-}
-
-#app {
-  font-family: 'Roboto', sans-serif;
   text-align: center;
+  width: 100vw;
 }
