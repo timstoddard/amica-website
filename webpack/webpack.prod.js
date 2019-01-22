@@ -3,9 +3,9 @@ const merge = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const common = require('./webpack.common')
 
-module.exports = merge(common.config, {
+module.exports = merge(common.baseConfig(), {
   plugins: [
-    ...common.sharedPlugins('prod'),
+    ...common.sharedPlugins(),
     new UglifyJsPlugin({
       cache: true,
       parallel: true,

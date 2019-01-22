@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const autoprefixer = require('autoprefixer')
 
 module.exports = {
-  config: {
+  baseConfig: (mode = 'prod') => ({
     entry: [
       './src/client/index.tsx',
       './src/client/index.scss',
@@ -34,7 +34,7 @@ module.exports = {
               options: {
                 modules: true,
                 sourceMap: true,
-                localIdentName: '[hash:base64:5]',
+                localIdentName: mode === 'prod' ? '[hash:base64:5]' : '[local]__[hash:base64:5]',
               },
             },
             {
@@ -52,8 +52,8 @@ module.exports = {
     resolve: {
       extensions: ['.tsx', '.ts', '.js', 'scss', '.json'],
     },
-  },
-  sharedPlugins: (mode) => {
+  }),
+  sharedPlugins: (mode = 'prod') => {
     const htmlWebpackPluginOptions = {
       template: 'src/client/app.html',
       filename: '../index.html',
