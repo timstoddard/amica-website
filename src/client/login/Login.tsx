@@ -1,21 +1,24 @@
 import * as bcrypt from 'bcryptjs'
 import * as React from 'react'
+import { Redirect } from 'react-router-dom'
 import { PASSWORD_SALT_ROUNDS as SALT_ROUNDS } from '../shared/constants'
 
-const styles = require('./scss/login.scss') // tslint:disable-line no-var-requires
+const styles = require('./scss/Login.scss') // tslint:disable-line no-var-requires
 
 interface State {
   email: string
   password: string
+  redirect: boolean
 }
 
-export default class Login extends React.Component<{}, State> {
+class Login extends React.Component<{}, State> {
   constructor(props: {}) {
     super(props)
 
     this.state = {
       email: '',
       password: '',
+      redirect: false,
     }
   }
 
@@ -36,11 +39,17 @@ export default class Login extends React.Component<{}, State> {
         passwordHash,
       }
       console.log('form data:', data)
+      this.setState({ redirect: true })
     })
   }
 
   render(): JSX.Element {
     const { handleChange, submitForm } = this
+    const { redirect } = this.state
+
+    if (redirect === true) {
+      return <Redirect to='/dashboard' />
+    }
 
     return (
       <div className={styles.login}>
@@ -76,3 +85,5 @@ export default class Login extends React.Component<{}, State> {
     )
   }
 }
+
+export default Login
