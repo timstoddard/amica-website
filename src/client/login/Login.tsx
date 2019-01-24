@@ -2,6 +2,7 @@ import * as bcrypt from 'bcryptjs'
 import * as React from 'react'
 import { Redirect } from 'react-router-dom'
 import { PASSWORD_SALT_ROUNDS as SALT_ROUNDS } from '../shared/constants'
+import mockAuthState from '../shared/mock-auth-state'
 
 const styles = require('./scss/Login.scss') // tslint:disable-line no-var-requires
 
@@ -39,7 +40,7 @@ class Login extends React.Component<{}, State> {
         passwordHash,
       }
       console.log('form data:', data)
-      this.setState({ redirect: true })
+      mockAuthState.authenticate(() => this.setState({ redirect: true }))
     })
   }
 

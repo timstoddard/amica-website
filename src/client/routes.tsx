@@ -3,6 +3,7 @@ import * as Loadable from 'react-loadable'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
 import LoadingPage from './loading-page/LoadingPage'
+import ProtectedRoute from './shared/components/ProtectedRoute'
 
 interface LoadableRoute {
   path: string
@@ -22,27 +23,37 @@ const routes: LoadableRoute[] = [
     path: '/login',
     loader: (): Promise<any> => import('./login/Login'),
   },
+]
+
+const protectedRoutes: LoadableRoute[] = [
   {
     path: '/dashboard',
     loader: (): Promise<any> => import('./dashboard/Dashboard'),
   },
 ]
 
+const createLoadable = (loader: () => Promise<any>) => Loadable({
+  loader,
+  loading: LoadingPage,
+  delay: 1000, // 1 second
+  timeout: 5000, // 5 seconds
+} as Loadable.OptionsWithoutRender<any>)
+
 const Routes = (
   <Switch>
+    {protectedRoutes.map(({ path, loader }: LoadableRoute) => (
+      <ProtectedRoute
+        key={path}
+        exact={true}
+        path={path}
+        component={createLoadable(loader)} />
+    ))}
     {routes.map(({ path, loader }: LoadableRoute) => (
       <Route
         key={path}
         exact={true}
         path={path}
-        component={
-          Loadable({
-            loader,
-            loading: LoadingPage,
-            delay: 1000, // 1 second
-            timeout: 5000, // 5 seconds
-          } as Loadable.OptionsWithoutRender<any>)
-        } />
+        component={createLoadable(loader)} />
     ))}
     <Route path='/*'>
       <Redirect to='/' />
