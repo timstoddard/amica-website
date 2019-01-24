@@ -1,4 +1,6 @@
+import * as bcrypt from 'bcryptjs'
 import * as React from 'react'
+import { PASSWORD_SALT_ROUNDS as SALT_ROUNDS } from '../shared/constants'
 
 const styles = require('./scss/login.scss') // tslint:disable-line no-var-requires
 
@@ -23,18 +25,18 @@ export default class Login extends React.Component<{}, State> {
 
   submitForm = (e: any) => {
     e.preventDefault()
-    // TODO use real hashing functions
-    const hash = (a: any) => a
-    const salt = (a: any) => a
     const {
       email,
       password,
     } = this.state
-    const data = {
-      email,
-      password: hash(salt(password)),
-    }
-    console.log('form data:', data)
+
+    bcrypt.hash(password, SALT_ROUNDS, (err: Error, passwordHash: string) => {
+      const data = {
+        email,
+        passwordHash,
+      }
+      console.log('form data:', data)
+    })
   }
 
   render(): JSX.Element {
