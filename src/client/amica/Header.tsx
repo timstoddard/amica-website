@@ -20,8 +20,8 @@ const buttons: HeaderButton[] = [
 ]
 
 const links: HeaderLink[] = [
-  { to: 'signup', text: 'Sign Up' },
-  { to: 'login', text: 'Log In' },
+  { to: 'sign-up', text: 'Sign Up' },
+  { to: 'log-in', text: 'Log In' },
 ]
 
 const scrollToId = (toId: string) => () => {
