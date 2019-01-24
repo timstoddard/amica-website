@@ -41,7 +41,7 @@ const Games = () => (
     <div className={styles.games__text}>
       <p>We've worked tirelessly to bring your children games they will enjoy, that teach them all about how to behave online.</p>
       <ul className={styles.games__list}>
-        {games.map(({ imageSrc, title, description }: GameInfo) =>
+        {games.map(({ imageSrc, title, description }: GameInfo) => (
           <li
             key={title}
             className={styles.game}>
@@ -55,7 +55,8 @@ const Games = () => (
             <div className={styles.game__description}>
               {description}
             </div>
-          </li>)}
+          </li>
+        ))}
       </ul>
     </div>
   </div>

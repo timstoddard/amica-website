@@ -16,3 +16,12 @@
 @mixin playfairDisplayFont() {
   font-family: 'Playfair Display', serif;
 }
+
+@mixin resetButton() {
+  background: none;
+  border: 0;
+
+  &:focus {
+    outline: 0;
+  }
+}

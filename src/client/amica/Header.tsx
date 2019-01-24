@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { HashLink } from 'react-router-hash-link'
 
 const styles = require('./scss/Header.scss') // tslint:disable-line no-var-requires
 
@@ -9,38 +8,53 @@ interface HeaderLink {
   text: string
 }
 
+interface HeaderButton {
+  toId: string
+  text: string
+}
+
+const buttons: HeaderButton[] = [
+  { toId: 'about', text: 'About' },
+  { toId: 'games', text: 'Games' },
+  { toId: 'pricing', text: 'Pricing' },
+]
+
 const links: HeaderLink[] = [
-  { to: '#about', text: 'About' },
-  { to: '#games', text: 'Games' },
-  { to: '#pricing', text: 'Pricing' },
   { to: 'signup', text: 'Sign Up' },
   { to: 'login', text: 'Log In' },
 ]
 
+const scrollToId = (toId: string) => () => {
+  const element = document.getElementById(toId)
+  if (element) {
+    element.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'smooth' })
+  }
+}
+
 const Header = () => (
   <header className={styles.header}>
-    <Link
-      to=''
+    <button
+      onClick={scrollToId('app')}
       className={styles.header__title}>
       Amica
-    </Link>
+    </button>
     <div className={styles.header__links}>
-      {links.map(({ to, text }: HeaderLink) =>
-        to[0] === '#' ? (
-          <HashLink
-            key={to}
-            to={to}
-            className={styles.header__link}>
-            {text}
-          </HashLink>
-        ) : (
-          <Link
-            key={to}
-            to={to}
-            className={styles.header__link}>
-            {text}
-          </Link>
-        ))}
+      {buttons.map(({ toId, text }: HeaderButton) => (
+        <button
+          key={toId}
+          onClick={scrollToId(toId)}
+          className={styles.header__link}>
+          {text}
+        </button>
+      ))}
+      {links.map(({ to, text }: HeaderLink) => (
+        <Link
+          key={to}
+          to={to}
+          className={styles.header__link}>
+          {text}
+        </Link>
+      ))}
     </div>
   </header>
 )

@@ -3,12 +3,12 @@
 @mixin homepageSection() {
   margin-bottom: 40px;
 
-  &:target::before { // TODO this doesnt update after matching first target
-    // background: red;
+  &:before {
+    $height: 80px;
     content: ' ';
     display: block;
-    height: 80px;
-    margin-top: -80px;
+    height: $height;
+    margin-top: -$height;
   }
 }
 

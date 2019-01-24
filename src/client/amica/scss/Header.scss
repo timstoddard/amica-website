@@ -13,6 +13,7 @@
   width: 100%;
 
   &__title {
+    @include resetButton;
     @include undecoratedLink;
     color: rgb(255,0,0);
     cursor: pointer;
@@ -30,6 +31,7 @@
 
   &__link {
     @include defaultTransition;
+    @include resetButton;
     @include undecoratedLink;
     border-radius: 5px;
     color: #fcfcfc;

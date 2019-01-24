@@ -23,7 +23,7 @@ const Pricing = () => (
     <div className={styles.pricing__text}>
       <p>At Amica, we strive to create exciting and educational games that are well worth the price you pay. Our pricing model is detailed below.</p>
       <dl className={styles.pricing__options}>
-        {options.map(({ name, monthlyCost }: PricingOption) =>
+        {options.map(({ name, monthlyCost }: PricingOption) => (
           <React.Fragment key={name}>
             <dt className={styles.pricing__optionTitle}>
               {name}
@@ -31,7 +31,8 @@ const Pricing = () => (
             <dd className={styles.pricing__optionCost}>
               ${monthlyCost}/month
             </dd>
-          </React.Fragment>)}
+          </React.Fragment>
+        ))}
       </dl>
     </div>
   </div>
