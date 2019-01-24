@@ -1,41 +1,40 @@
 import * as React from 'react'
-import { Redirect } from 'react-router'
-import mockAuthState from '../shared/mock-auth-state'
+import { connect } from 'react-redux'
+import { logout } from '../redux/actions'
 
 const styles = require('./scss/Dashboard.scss') // tslint:disable-line no-var-requires
 
-interface State {
-  user: any
-  isLoggedOut: boolean
+interface Props {
+  isUserAuthenticated: boolean
+  doLogout: () => void
 }
 
-export default class Login extends React.Component<{}, State> {
-  constructor(props: {}) {
+interface State {
+  user: any
+}
+
+class Dashboard extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
       user: null,
-      isLoggedOut: false,
     }
   }
 
-  logout = (): void => {
-    mockAuthState.logout(() => this.setState({ isLoggedOut: true }))
+  logoutUser = (): void => {
+    const { doLogout } = this.props
+    doLogout()
   }
 
   render(): JSX.Element {
-    const { logout } = this
-    const { isLoggedOut } = this.state
-
-    if (isLoggedOut) {
-      return <Redirect to='/' />
-    }
+    const { logoutUser } = this
 
     return (
       <div className={styles.dashboard}>
         Dashboard
         <button
-          onClick={logout}
+          onClick={logoutUser}
           className={styles.dashboard__logoutButton}>
           Logout
         </button>
@@ -43,3 +42,12 @@ export default class Login extends React.Component<{}, State> {
     )
   }
 }
+
+const mapDispatchToProps = (dispatch: (_: any) => void) => ({
+  doLogout: () => dispatch(logout()),
+})
+
+export default connect(
+  () => ({}),
+  mapDispatchToProps,
+)(Dashboard)

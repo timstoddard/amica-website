@@ -1,10 +1,16 @@
 import * as bcrypt from 'bcryptjs'
 import * as React from 'react'
+import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { login } from '../redux/actions'
 import { PASSWORD_SALT_ROUNDS as SALT_ROUNDS } from '../shared/constants'
-import mockAuthState from '../shared/mock-auth-state'
 
 const styles = require('./scss/Login.scss') // tslint:disable-line no-var-requires
+
+interface Props {
+  isUserAuthenticated: boolean
+  doLogin: () => void
+}
 
 interface State {
   email: string
@@ -12,8 +18,8 @@ interface State {
   redirect: boolean
 }
 
-class Login extends React.Component<{}, State> {
-  constructor(props: {}) {
+class Login extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -30,6 +36,9 @@ class Login extends React.Component<{}, State> {
   submitForm = (e: any) => {
     e.preventDefault()
     const {
+      doLogin,
+    } = this.props
+    const {
       email,
       password,
     } = this.state
@@ -40,15 +49,15 @@ class Login extends React.Component<{}, State> {
         passwordHash,
       }
       console.log('form data:', data)
-      mockAuthState.authenticate(() => this.setState({ redirect: true }))
+      doLogin()
     })
   }
 
   render(): JSX.Element {
     const { handleChange, submitForm } = this
-    const { redirect } = this.state
+    const { isUserAuthenticated } = this.props
 
-    if (redirect === true) {
+    if (isUserAuthenticated) {
       return <Redirect to='/dashboard' />
     }
 
@@ -87,4 +96,15 @@ class Login extends React.Component<{}, State> {
   }
 }
 
-export default Login
+const mapStateToProps = ({ isUserAuthenticated }: any) => ({
+  isUserAuthenticated,
+})
+
+const mapDispatchToProps = (dispatch: (_: any) => void) => ({
+  doLogin: () => dispatch(login()),
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login)

@@ -1,13 +1,19 @@
 import * as React from 'react'
-import { Redirect, Route, RouteProps } from 'react-router-dom'
-import mockAuthState from '../mock-auth-state'
+import { connect } from 'react-redux'
+import { Redirect, Route } from 'react-router-dom'
 
-const ProtectedRoute = ({ ...props }: RouteProps) => (
-  mockAuthState.isAuthenticated ? (
+const ProtectedRoute = ({ isUserAuthenticated, ...props }: any) => (
+  isUserAuthenticated ? (
     <Route {...props} />
   ) : (
     <Redirect to='/login' />
   )
 )
 
-export default ProtectedRoute
+const mapStateToProps = ({ isUserAuthenticated }: any) => ({
+  isUserAuthenticated,
+})
+
+export default connect(
+  mapStateToProps,
+)(ProtectedRoute)
