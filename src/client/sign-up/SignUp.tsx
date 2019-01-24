@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcryptjs'
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import { PASSWORD_SALT_ROUNDS as SALT_ROUNDS } from '../shared/constants'
 
 const styles = require('./scss/SignUp.scss') // tslint:disable-line no-var-requires
@@ -98,6 +99,9 @@ export default class SignUp extends React.Component<{}, State> {
             Submit
           </button>
         </form>
+        <div className={styles.signUp__form__loginMessage}>
+          Already have an account? <Link to='/login'>Click here</Link> to login.
+        </div>
       </div>
     )
   }

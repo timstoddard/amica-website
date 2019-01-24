@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcryptjs'
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { login } from '../redux/actions'
 import { PASSWORD_SALT_ROUNDS as SALT_ROUNDS } from '../shared/constants'
 
@@ -91,6 +91,9 @@ class Login extends React.Component<Props, State> {
             Submit
           </button>
         </form>
+        <div className={styles.login__form__signUpMessage}>
+          Don't have an account yet? <Link to='/sign-up'>Click here</Link> to sign up.
+        </div>
       </div>
     )
   }

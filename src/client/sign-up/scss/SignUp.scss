@@ -41,5 +41,11 @@
         cursor: pointer;
       }
     }
+
+    &__loginMessage {
+      color: $gray;
+      font-size: 14px;
+      margin-top: 12px;
+    }
   }
 }
