@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import Textbox from '../shared/components/textbox/Textbox'
 import { hash } from '../shared/functions'
 
 const styles = require('./scss/SignUp.scss') // tslint:disable-line no-var-requires
@@ -56,44 +57,24 @@ export default class SignUp extends React.Component<{}, State> {
           Sign Up
         </h1>
         <form
-        onSubmit={submitForm}
-        className={styles.signUp__form}>
-          <div className={styles.signUp__form__field}>
-            <label className={styles.signUp__form__label}>
-              First Name
-            </label>
-            <input
-              type='text'
-              onChange={handleChange('firstName')}
-              className={styles.signUp__form__input} />
-          </div>
-          <div className={styles.signUp__form__field}>
-            <label className={styles.signUp__form__label}>
-              Last Name
-            </label>
-            <input
-              type='text'
-              onChange={handleChange('lastName')}
-              className={styles.signUp__form__input} />
-          </div>
-          <div className={styles.signUp__form__field}>
-            <label className={styles.signUp__form__label}>
-              Email
-            </label>
-            <input
-              type='email'
-              onChange={handleChange('email')}
-              className={styles.signUp__form__input} />
-          </div>
-          <div className={styles.signUp__form__field}>
-            <label className={styles.signUp__form__label}>
-              Password
-            </label>
-            <input
-              type='password'
-              onChange={handleChange('password')}
-              className={styles.signUp__form__input} />
-          </div>
+          onSubmit={submitForm}
+          className={styles.signUp__form}>
+          <Textbox
+            label='First Name'
+            type='text'
+            onChange={handleChange('firstName')} />
+          <Textbox
+            label='Last Name'
+            type='text'
+            onChange={handleChange('lastName')} />
+          <Textbox
+            label='Email'
+            type='email'
+            onChange={handleChange('email')} />
+          <Textbox
+            label='Password'
+            type='password'
+            onChange={handleChange('password')} />
           <button className={styles.signUp__form__submitButton}>
             Submit
           </button>

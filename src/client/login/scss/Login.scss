@@ -8,23 +8,6 @@
   flex-direction: column;
 
   &__form {
-    &__field {
-      align-items: flex-start;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      max-width: 400px;
-      margin-bottom: 10px;
-    }
-
-    &__label {
-      margin-right: 8px;
-    }
-
-    &__input {
-      @include formField;
-    }
-
     &__submitButton {
       @include defaultTransition;
       @include resetButton;

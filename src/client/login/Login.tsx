@@ -2,6 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { login } from '../redux/actions'
+import Textbox from '../shared/components/textbox/Textbox'
 import { hash } from '../shared/functions'
 
 const styles = require('./scss/Login.scss') // tslint:disable-line no-var-requires
@@ -66,26 +67,16 @@ class Login extends React.Component<Props, State> {
           Login
         </h1>
         <form
-        onSubmit={submitForm}
-        className={styles.login__form}>
-          <div className={styles.login__form__field}>
-            <label className={styles.login__form__label}>
-              Email
-            </label>
-            <input
-              type='email'
-              onChange={handleChange('email')}
-              className={styles.login__form__input} />
-          </div>
-          <div className={styles.login__form__field}>
-            <label className={styles.login__form__label}>
-              Password
-            </label>
-            <input
-              type='password'
-              onChange={handleChange('password')}
-              className={styles.login__form__input} />
-          </div>
+          onSubmit={submitForm}
+          className={styles.login__form}>
+          <Textbox
+            label='Email'
+            type='email'
+            onChange={handleChange('email')} />
+          <Textbox
+            label='Password'
+            type='password'
+            onChange={handleChange('password')} />
           <button className={styles.login__form__submitButton}>
             Submit
           </button>
