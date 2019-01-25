@@ -1,7 +1,6 @@
-import * as bcrypt from 'bcryptjs'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { PASSWORD_SALT_ROUNDS as SALT_ROUNDS } from '../shared/constants'
+import { hash } from '../shared/functions'
 
 const styles = require('./scss/SignUp.scss') // tslint:disable-line no-var-requires
 
@@ -37,7 +36,7 @@ export default class SignUp extends React.Component<{}, State> {
       password,
     } = this.state
 
-    bcrypt.hash(password, SALT_ROUNDS, (err: Error, passwordHash: string) => {
+    hash(password, (passwordHash: string) => {
       const data = {
         firstName,
         lastName,

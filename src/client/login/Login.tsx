@@ -1,9 +1,8 @@
-import * as bcrypt from 'bcryptjs'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { login } from '../redux/actions'
-import { PASSWORD_SALT_ROUNDS as SALT_ROUNDS } from '../shared/constants'
+import { hash } from '../shared/functions'
 
 const styles = require('./scss/Login.scss') // tslint:disable-line no-var-requires
 
@@ -43,7 +42,7 @@ class Login extends React.Component<Props, State> {
       password,
     } = this.state
 
-    bcrypt.hash(password, SALT_ROUNDS, (err: Error, passwordHash: string) => {
+    hash(password, (passwordHash: string) => {
       const data = {
         email,
         passwordHash,
