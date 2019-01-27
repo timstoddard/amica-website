@@ -2,10 +2,10 @@
 @import './mixins.scss';
 
 .pricing {
-  @include homepageSection;
+  @include landingPageSection;
 
   &__title {
-    @include homepageTitle;
+    @include landingPageTitle;
   }
 
   &__options {

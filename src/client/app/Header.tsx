@@ -33,11 +33,11 @@ const scrollToId = (toId: string) => () => {
 
 const Header = () => (
   <header className={styles.header}>
-    <button
-      onClick={scrollToId('app')}
+    <Link
+      to='/'
       className={styles.header__title}>
       Amica
-    </button>
+    </Link>
     <div className={styles.header__links}>
       {buttons.map(({ toId, text }: HeaderButton) => (
         <button

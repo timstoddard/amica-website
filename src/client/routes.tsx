@@ -3,36 +3,8 @@ import * as Loadable from 'react-loadable'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
 import LoadingPage from './loading-page/LoadingPage'
-import ProtectedRoute from './shared/components/ProtectedRoute'
 
-interface LoadableRoute {
-  path: string
-  loader: () => Promise<any>
-}
-
-const routes: LoadableRoute[] = [
-  {
-    path: '/',
-    loader: (): Promise<any> => import('./amica/Amica'),
-  },
-  {
-    path: '/sign-up',
-    loader: (): Promise<any> => import('./sign-up/SignUp'),
-  },
-  {
-    path: '/login',
-    loader: (): Promise<any> => import('./login/Login'),
-  },
-]
-
-const protectedRoutes: LoadableRoute[] = [
-  {
-    path: '/dashboard',
-    loader: (): Promise<any> => import('./dashboard/Dashboard'),
-  },
-]
-
-const createLoadable = (loader: () => Promise<any>) => Loadable({
+export const createLoadable = (loader: () => Promise<any>) => Loadable({
   loader,
   loading: LoadingPage,
   delay: 1000, // 1 second
@@ -41,20 +13,9 @@ const createLoadable = (loader: () => Promise<any>) => Loadable({
 
 const Routes = (
   <Switch>
-    {protectedRoutes.map(({ path, loader }: LoadableRoute) => (
-      <ProtectedRoute
-        key={path}
-        exact={true}
-        path={path}
-        component={createLoadable(loader)} />
-    ))}
-    {routes.map(({ path, loader }: LoadableRoute) => (
-      <Route
-        key={path}
-        exact={true}
-        path={path}
-        component={createLoadable(loader)} />
-    ))}
+    <Route
+      path='/'
+      component={createLoadable((): Promise<any> => import('./app/App'))} />
     <Route path='/*'>
       <Redirect to='/' />
     </Route>

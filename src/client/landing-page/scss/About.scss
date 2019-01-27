@@ -1,0 +1,9 @@
+@import './mixins.scss';
+
+.about {
+  @include landingPageSection;
+
+  &__title {
+    @include landingPageTitle;
+  }
+}
