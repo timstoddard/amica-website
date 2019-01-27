@@ -31,7 +31,6 @@
 
   &__link {
     @include defaultTransition;
-    @include resetButton;
     @include undecoratedLink;
     border-radius: 5px;
     color: #fcfcfc;

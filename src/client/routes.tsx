@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as Loadable from 'react-loadable'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 import LoadingPage from './loading-page/LoadingPage'
 
@@ -12,14 +12,9 @@ export const createLoadable = (loader: () => Promise<any>) => Loadable({
 } as Loadable.OptionsWithoutRender<any>)
 
 const Routes = (
-  <Switch>
-    <Route
-      path='/'
-      component={createLoadable((): Promise<any> => import('./app/App'))} />
-    <Route path='/*'>
-      <Redirect to='/' />
-    </Route>
-  </Switch>
+  <Route
+    path='/'
+    component={createLoadable((): Promise<any> => import('./app/App'))} />
 )
 
 export default Routes

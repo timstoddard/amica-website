@@ -15,7 +15,6 @@ interface Props {
 interface State {
   email: string
   password: string
-  redirect: boolean
 }
 
 class Login extends React.Component<Props, State> {
@@ -25,7 +24,6 @@ class Login extends React.Component<Props, State> {
     this.state = {
       email: '',
       password: '',
-      redirect: false,
     }
   }
 

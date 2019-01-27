@@ -34,18 +34,19 @@ const scrollToId = (toId: string) => () => {
 const Header = () => (
   <header className={styles.header}>
     <Link
-      to='/'
+      to=''
       className={styles.header__title}>
       Amica
     </Link>
     <div className={styles.header__links}>
       {buttons.map(({ toId, text }: HeaderButton) => (
-        <button
+        <Link
           key={toId}
+          to=''
           onClick={scrollToId(toId)}
           className={styles.header__link}>
           {text}
-        </button>
+        </Link>
       ))}
       {links.map(({ to, text }: HeaderLink) => (
         <Link
