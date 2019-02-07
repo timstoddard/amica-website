@@ -1,21 +1,41 @@
 /* eslint-disable no-console */
 
-const express = require('express')
-const compression = require('compression')
-const path = require('path')
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const passport = require("passport");
 
-const port = process.env.PORT || 8080
-const app = express()
+const users = require("./src/server/routes/api/users");
 
-app.use(compression())
+const app = express();
 
-// serve static assets normally
-app.use(express.static(__dirname))
+// Bodyparser middleware
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
 
-// pass every other route with index.html, and it will be handled with react-router
-app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, 'index.html'))
-})
+app.use(bodyParser.json());
 
-app.listen(port)
-console.log('Server started on port ', port)
+// MongoDB Config
+const config_db = require("./config/keys").mongoURI;
+
+// Connect to MongoDB
+mongoose.connect(config_db, { useNewUrlParser: true })
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
+
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport config
+require("./config/passport")(passport);
+
+// Routes
+app.use("/api/users", users);
+
+// process.env.port is Heroku's port if you choose to deploy
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => console.log(`Server up and running on port ${port} !`));
