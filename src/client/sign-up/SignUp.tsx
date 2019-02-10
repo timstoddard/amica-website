@@ -6,10 +6,10 @@ import { hash } from '../shared/functions'
 const styles = require('./scss/SignUp.scss') // tslint:disable-line no-var-requires
 
 interface State {
-  firstName: string
-  lastName: string
+  name: string
   email: string
   password: string
+  password2: string
 }
 
 export default class SignUp extends React.Component<{}, State> {
@@ -17,10 +17,10 @@ export default class SignUp extends React.Component<{}, State> {
     super(props)
 
     this.state = {
-      firstName: '',
-      lastName: '',
+      name: '',
       email: '',
       password: '',
+      password2: '',
     }
   }
 
@@ -31,21 +31,11 @@ export default class SignUp extends React.Component<{}, State> {
   submitForm = (e: any) => {
     e.preventDefault()
     const {
-      firstName,
-      lastName,
+      name,
       email,
       password,
+      password2,
     } = this.state
-
-    hash(password, (passwordHash: string) => {
-      const data = {
-        firstName,
-        lastName,
-        email,
-        passwordHash,
-      }
-      console.log('form data:', data)
-    })
   }
 
   render(): JSX.Element {
@@ -60,13 +50,9 @@ export default class SignUp extends React.Component<{}, State> {
           onSubmit={submitForm}
           className={styles.signUp__form}>
           <Textbox
-            label='First Name'
+            label='Name'
             type='text'
-            onChange={handleChange('firstName')} />
-          <Textbox
-            label='Last Name'
-            type='text'
-            onChange={handleChange('lastName')} />
+            onChange={handleChange('name')} />
           <Textbox
             label='Email'
             type='email'
@@ -75,6 +61,10 @@ export default class SignUp extends React.Component<{}, State> {
             label='Password'
             type='password'
             onChange={handleChange('password')} />
+          <Textbox
+            label='Confirm Password'
+            type='password'
+            onChange={handleChange('password2')} />
           <button className={styles.signUp__form__submitButton}>
             Submit
           </button>
