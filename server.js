@@ -4,6 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const passport = require('passport')
+const cors = require('cors')
 
 const users = require('./src/server/routes/api/users')
 
@@ -11,15 +12,20 @@ const app = express()
 
 // Bodyparser middleware
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // enable CORS
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*') // TODO should we just whitelist our own client? for security
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next()
-})
-
-app.use(bodyParser.json())
+var whitelist = ['http://localhost:8080', 'https://amica-safe.com']
+var options = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(options))
 
 // MongoDB Config
 const config_db = require('./config/keys').mongoURI
