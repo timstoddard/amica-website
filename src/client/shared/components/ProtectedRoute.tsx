@@ -1,17 +1,22 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route, RouteProps } from 'react-router-dom'
+import { AppState, User } from '../types'
 
-const ProtectedRoute = ({ isUserAuthenticated, ...props }: any) => (
-  isUserAuthenticated ? (
+interface ProtectedRouteProps extends RouteProps {
+  currentUser: User
+}
+
+const ProtectedRoute = ({ currentUser, ...props }: ProtectedRouteProps) => (
+  currentUser ? (
     <Route {...props} />
   ) : (
     <Redirect to='/login' />
   )
 )
 
-const mapStateToProps = ({ isUserAuthenticated }: any) => ({
-  isUserAuthenticated,
+const mapStateToProps = ({ currentUser }: AppState) => ({
+  currentUser,
 })
 
 export default connect(

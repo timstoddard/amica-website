@@ -1,9 +1,18 @@
+import { History } from 'history'
 import * as React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { registerUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
-import { hash } from '../shared/functions'
+import { AppState, SignUpFormData, StringMap } from '../shared/types'
 
 const styles = require('./scss/SignUp.scss') // tslint:disable-line no-var-requires
+
+interface Props {
+  registerUser: (data: SignUpFormData, history: History) => void
+  history: History
+  signUpErrors: StringMap
+}
 
 interface State {
   name: string
@@ -12,8 +21,8 @@ interface State {
   password2: string
 }
 
-export default class SignUp extends React.Component<{}, State> {
-  constructor(props: {}) {
+class SignUp extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -24,22 +33,43 @@ export default class SignUp extends React.Component<{}, State> {
     }
   }
 
-  handleChange = (field: string) => (e: any) => {
-    this.setState({ [field]: e.target.value } as any)
+  handleChange = (field: keyof State) => (e: React.SyntheticEvent) => {
+    this.setState({ [field]: (e.target as HTMLInputElement).value } as any)
   }
 
-  submitForm = (e: any) => {
+  submitForm = (e: React.SyntheticEvent) => {
     e.preventDefault()
+
+    const {
+      registerUser,
+      history,
+    } = this.props
     const {
       name,
       email,
       password,
       password2,
     } = this.state
+
+    if (password !== password2) {
+      // TODO add real validation
+      alert('Passwords do not match')
+      return
+    }
+
+    const data = {
+      name,
+      email,
+      password,
+    }
+    console.log('register:', data)
+    registerUser(data, history)
   }
 
   render(): JSX.Element {
     const { handleChange, submitForm } = this
+    const { signUpErrors } = this.props // TODO use these for client-side validation
+    console.log('sign up errors', signUpErrors)
 
     return (
       <div className={styles.signUp}>
@@ -76,3 +106,12 @@ export default class SignUp extends React.Component<{}, State> {
     )
   }
 }
+
+const mapStateToProps = ({ signUpErrors }: AppState) => ({
+  signUpErrors,
+})
+
+export default connect(
+  mapStateToProps,
+  { registerUser },
+)(SignUp)

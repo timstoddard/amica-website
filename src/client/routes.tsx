@@ -4,17 +4,17 @@ import { Route } from 'react-router-dom'
 
 import LoadingPage from './loading-page/LoadingPage'
 
-export const createLoadable = (loader: () => Promise<any>) => Loadable({
+export const createLoadable = (loader: () => Promise<unknown>) => Loadable({
   loader,
   loading: LoadingPage,
   delay: 1000, // 1 second
   timeout: 5000, // 5 seconds
-} as Loadable.OptionsWithoutRender<any>)
+} as Loadable.OptionsWithoutRender<unknown>)
 
 const Routes = (
   <Route
     path='/'
-    component={createLoadable((): Promise<any> => import('./app/App'))} />
+    component={createLoadable((): Promise<unknown> => import('./app/App'))} />
 )
 
 export default Routes

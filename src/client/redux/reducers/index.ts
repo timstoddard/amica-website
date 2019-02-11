@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux'
-import isUserAuthenticated from './is-user-authenticated'
+import { StringMap, User } from '../../shared/types'
+import currentUser from './current-user'
+import signUpErrors from './sign-up-errors'
 
 export default combineReducers({
-  isUserAuthenticated,
+  currentUser,
+  signUpErrors,
 })

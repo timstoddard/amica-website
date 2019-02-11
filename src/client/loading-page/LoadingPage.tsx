@@ -1,4 +1,3 @@
-import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 const styles = require('./scss/LoadingPage.scss') // tslint:disable-line no-var-requires
@@ -25,18 +24,6 @@ const LoadingPage: React.StatelessComponent<Props> = ({ error, timedOut, pastDel
       {loadingText}
     </div>
   )
-}
-
-LoadingPage.propTypes = {
-  error: PropTypes.bool,
-  timedOut: PropTypes.bool,
-  pastDelay: PropTypes.bool,
-}
-
-LoadingPage.defaultProps = {
-  error: false,
-  timedOut: false,
-  pastDelay: false,
 }
 
 export default LoadingPage

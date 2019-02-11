@@ -2,7 +2,14 @@ import * as React from 'react'
 
 const styles = require('./scss/Competitors.scss') // tslint:disable-line no-var-requires
 
-const competitors = [
+interface Competitor {
+  name: string
+  criteria1: boolean
+  criteria2: boolean
+  criteria3: boolean
+}
+
+const competitors: Competitor[] = [
   {
     name: 'Amica',
     criteria1: true,
@@ -41,7 +48,7 @@ const Competitors = () => (
     <table className={styles.competitors__table}>
       <thead>
         <tr>
-          {competitors.map(({ name }: any) => (
+          {competitors.map(({ name }: Competitor) => (
             <th
               key={name}
               className={styles.competitors__table__cell}>
@@ -51,9 +58,9 @@ const Competitors = () => (
         </tr>
       </thead>
       <tbody>
-        {['criteria1', 'criteria2', 'criteria3'].map((criteria: string) => (
+        {['criteria1', 'criteria2', 'criteria3'].map((criteria: keyof Competitor) => (
           <tr key={criteria}>
-            {competitors.map((item: any) => (
+            {competitors.map((item: Competitor) => (
               <td
                 key={item.name}
                 className={styles.competitors__table__cell}>
