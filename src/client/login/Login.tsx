@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loginUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
-import { hash } from '../shared/functions'
 import { User } from '../shared/types'
 
 const styles = require('./scss/Login.scss') // tslint:disable-line no-var-requires
@@ -44,36 +43,22 @@ class Login extends React.Component<Props, State> {
   submitForm = (e: any) => {
     e.preventDefault()
 
-    const { loginUser } = this.props // tslint:disable-line no-shadowed-variable
+    const { loginUser } = this.props
     const {
       email,
       password,
     } = this.state
+
     const data = {
       email,
       password,
     }
-
+    console.log('form data:', data)
     loginUser(data)
-    // TODO hash client side
-    /*hash(password, (passwordHash: string) => {
-      const data = {
-        email,
-        passwordHash,
-      }
-      console.log('form data:', data)
-      loginUser(data)
-    })*/
   }
 
   render(): JSX.Element {
     const { handleChange, submitForm } = this
-    // const { currentUser } = this.props
-    // console.log('cu', currentUser)
-
-    // if (currentUser) {
-    //   return <Redirect to='/dashboard' />
-    // }
 
     return (
       <div className={styles.login}>

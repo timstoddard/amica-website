@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { registerUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
-import { hash } from '../shared/functions'
 
 const styles = require('./scss/SignUp.scss') // tslint:disable-line no-var-requires
 
@@ -39,23 +38,30 @@ class SignUp extends React.Component<Props, State> {
   submitForm = (e: any) => {
     e.preventDefault()
 
-    const { registerUser } = this.props // tslint:disable-line no-shadowed-variable
+    const {
+      registerUser,
+      history,
+    } = this.props
     const {
       name,
       email,
       password,
       password2,
     } = this.state
-    const userData = {
+
+    if (password !== password2) {
+      // TODO add real validation
+      alert('Passwords do not match')
+      return
+    }
+
+    const data = {
       name,
       email,
       password,
-      password2,
     }
-
-    // TODO validate passwords match on client not backend
-    // TODO hash passwords before sending to backend
-    registerUser(userData, this.props.history)
+    console.log('register:', data)
+    registerUser(data, history)
   }
 
   render(): JSX.Element {
