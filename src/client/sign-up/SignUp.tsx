@@ -1,9 +1,17 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { registerUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
 import { hash } from '../shared/functions'
 
 const styles = require('./scss/SignUp.scss') // tslint:disable-line no-var-requires
+
+interface Props {
+  registerUser: (a: any, b: any) => void // TODO more specific type
+  history: any
+  signUpErrors: any[]
+}
 
 interface State {
   name: string
@@ -12,8 +20,8 @@ interface State {
   password2: string
 }
 
-export default class SignUp extends React.Component<{}, State> {
-  constructor(props: {}) {
+class SignUp extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -30,16 +38,30 @@ export default class SignUp extends React.Component<{}, State> {
 
   submitForm = (e: any) => {
     e.preventDefault()
+
+    const { registerUser } = this.props // tslint:disable-line no-shadowed-variable
     const {
       name,
       email,
       password,
       password2,
     } = this.state
+    const userData = {
+      name,
+      email,
+      password,
+      password2,
+    }
+
+    // TODO validate passwords match on client not backend
+    // TODO hash passwords before sending to backend
+    registerUser(userData, this.props.history)
   }
 
   render(): JSX.Element {
     const { handleChange, submitForm } = this
+    const { signUpErrors } = this.props // TODO use these for client-side validation
+    console.log('sign up errors', signUpErrors)
 
     return (
       <div className={styles.signUp}>
@@ -76,3 +98,12 @@ export default class SignUp extends React.Component<{}, State> {
     )
   }
 }
+
+const mapStateToProps = ({ signUpErrors }: any) => ({
+  signUpErrors,
+})
+
+export default connect(
+  mapStateToProps,
+  { registerUser },
+)(SignUp)

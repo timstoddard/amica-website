@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { logout } from '../redux/actions'
+import { logout } from '../redux/actions/types'
+import { User } from '../shared/types'
 
 const styles = require('./scss/Dashboard.scss') // tslint:disable-line no-var-requires
 
 interface Props {
-  isUserAuthenticated: boolean
+  currentUser: User
   doLogout: () => void
 }
 
@@ -29,10 +30,12 @@ class Dashboard extends React.Component<Props, State> {
 
   render(): JSX.Element {
     const { logoutUser } = this
+    const { currentUser } = this.props
 
     return (
       <div className={styles.dashboard}>
-        Dashboard
+        <h1>Dashboard</h1>
+        <div>Hello, {currentUser.name}!</div>
         <button
           onClick={logoutUser}
           className={styles.dashboard__logoutButton}>
@@ -43,11 +46,15 @@ class Dashboard extends React.Component<Props, State> {
   }
 }
 
+const mapStateToProps = ({ currentUser }: any) => ({
+  currentUser,
+})
+
 const mapDispatchToProps = (dispatch: (_: any) => void) => ({
   doLogout: () => dispatch(logout()),
 })
 
 export default connect(
-  () => ({}),
+  mapStateToProps,
   mapDispatchToProps,
 )(Dashboard)

@@ -1,15 +1,17 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
-import { login } from '../redux/actions'
+import { Link } from 'react-router-dom'
+import { loginUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
 import { hash } from '../shared/functions'
+import { User } from '../shared/types'
 
 const styles = require('./scss/Login.scss') // tslint:disable-line no-var-requires
 
 interface Props {
-  isUserAuthenticated: boolean
-  doLogin: () => void
+  currentUser: User
+  loginUser: (data: any) => void
+  history: any
 }
 
 interface State {
@@ -27,37 +29,51 @@ class Login extends React.Component<Props, State> {
     }
   }
 
+  componentWillReceiveProps({ currentUser }: Props): void {
+    const { history } = this.props
+
+    if (currentUser) {
+      history.push('/dashboard')
+    }
+  }
+
   handleChange = (field: string) => (e: any) => {
     this.setState({ [field]: e.target.value } as any)
   }
 
   submitForm = (e: any) => {
     e.preventDefault()
-    const {
-      doLogin,
-    } = this.props
+
+    const { loginUser } = this.props // tslint:disable-line no-shadowed-variable
     const {
       email,
       password,
     } = this.state
+    const data = {
+      email,
+      password,
+    }
 
-    hash(password, (passwordHash: string) => {
+    loginUser(data)
+    // TODO hash client side
+    /*hash(password, (passwordHash: string) => {
       const data = {
         email,
         passwordHash,
       }
       console.log('form data:', data)
-      doLogin()
-    })
+      loginUser(data)
+    })*/
   }
 
   render(): JSX.Element {
     const { handleChange, submitForm } = this
-    const { isUserAuthenticated } = this.props
+    // const { currentUser } = this.props
+    // console.log('cu', currentUser)
 
-    if (isUserAuthenticated) {
-      return <Redirect to='/dashboard' />
-    }
+    // if (currentUser) {
+    //   return <Redirect to='/dashboard' />
+    // }
 
     return (
       <div className={styles.login}>
@@ -87,15 +103,11 @@ class Login extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ isUserAuthenticated }: any) => ({
-  isUserAuthenticated,
-})
-
-const mapDispatchToProps = (dispatch: (_: any) => void) => ({
-  doLogin: () => dispatch(login()),
+const mapStateToProps = ({ currentUser }: any) => ({
+  currentUser,
 })
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { loginUser },
 )(Login)

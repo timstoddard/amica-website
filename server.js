@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const passport = require("passport");
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const passport = require('passport');
 
-const users = require("./src/server/routes/api/users");
+const users = require('./src/server/routes/api/users');
 
 const app = express();
 
@@ -16,24 +16,31 @@ app.use(
   })
 );
 
+// enable CORS
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*'); // TODO should we just whitelist our own client? for security
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 app.use(bodyParser.json());
 
 // MongoDB Config
-const config_db = require("./config/keys").mongoURI;
+const config_db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose.connect(config_db, { useNewUrlParser: true })
-  .then(() => console.log("MongoDB successfully connected"))
+  .then(() => console.log('MongoDB successfully connected'))
   .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
 
 // Passport config
-require("./config/passport")(passport);
+require('./config/passport')(passport);
 
 // Routes
-app.use("/api/users", users);
+app.use('/api/users', users);
 
 // process.env.port is Heroku's port if you choose to deploy
 const port = process.env.PORT || 5000;
