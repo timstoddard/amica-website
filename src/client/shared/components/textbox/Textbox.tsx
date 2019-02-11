@@ -5,7 +5,7 @@ const styles = require('./scss/Textbox.scss') // tslint:disable-line no-var-requ
 interface Props {
   label: string
   type: string
-  onChange: (e: any) => void
+  onChange: (e: React.SyntheticEvent) => void
 }
 
 const Textbox = ({ label, type, onChange }: Props) => (

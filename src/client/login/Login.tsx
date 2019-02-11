@@ -1,16 +1,17 @@
+import { History } from 'history'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loginUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
-import { User } from '../shared/types'
+import { AppState, LoginFormData, User } from '../shared/types'
 
 const styles = require('./scss/Login.scss') // tslint:disable-line no-var-requires
 
 interface Props {
   currentUser: User
-  loginUser: (data: any) => void
-  history: any
+  loginUser: (data: LoginFormData) => void
+  history: History
 }
 
 interface State {
@@ -36,11 +37,11 @@ class Login extends React.Component<Props, State> {
     }
   }
 
-  handleChange = (field: string) => (e: any) => {
-    this.setState({ [field]: e.target.value } as any)
+  handleChange = (field: keyof State) => (e: React.SyntheticEvent) => {
+    this.setState({ [field]: (e.target as HTMLInputElement).value } as any)
   }
 
-  submitForm = (e: any) => {
+  submitForm = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
     const { loginUser } = this.props
@@ -88,7 +89,7 @@ class Login extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ currentUser }: any) => ({
+const mapStateToProps = ({ currentUser }: AppState) => ({
   currentUser,
 })
 

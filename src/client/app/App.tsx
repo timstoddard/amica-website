@@ -9,28 +9,28 @@ const styles = require('./scss/App.scss') // tslint:disable-line no-var-requires
 
 interface LoadableRoute {
   path: string
-  loader: () => Promise<any>
+  loader: () => Promise<unknown>
 }
 
 const routes: LoadableRoute[] = [
   {
     path: '/',
-    loader: (): Promise<any> => import('../landing-page/LandingPage'),
+    loader: (): Promise<unknown> => import('../landing-page/LandingPage'),
   },
   {
     path: '/sign-up',
-    loader: (): Promise<any> => import('../sign-up/SignUp'),
+    loader: (): Promise<unknown> => import('../sign-up/SignUp'),
   },
   {
     path: '/login',
-    loader: (): Promise<any> => import('../login/Login'),
+    loader: (): Promise<unknown> => import('../login/Login'),
   },
 ]
 
 const protectedRoutes: LoadableRoute[] = [
   {
     path: '/dashboard',
-    loader: (): Promise<any> => import('../dashboard/Dashboard'),
+    loader: (): Promise<unknown> => import('../dashboard/Dashboard'),
   },
 ]
 

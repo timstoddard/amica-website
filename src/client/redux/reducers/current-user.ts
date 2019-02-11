@@ -1,7 +1,8 @@
+import { Action } from 'redux'
 import { User } from '../../shared/types'
-import { AuthenticationActions } from '../actions/types'
+import { AuthAction, AuthenticationActions } from '../actions/types'
 
-const currentUser = (state: User = null, action: any) => {
+const currentUser = (state: User = null, action: AuthAction) => {
   switch (action.type) {
     case AuthenticationActions.SET_CURRENT_USER:
       return action.payload.user

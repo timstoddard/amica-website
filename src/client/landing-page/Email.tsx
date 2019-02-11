@@ -15,11 +15,11 @@ export default class Email extends React.Component<{}, State> {
     }
   }
 
-  handleChange = (field: string) => (e: any) => {
-    this.setState({ [field]: e.target.value } as any)
+  handleChange = (field: keyof State) => (e: React.SyntheticEvent) => {
+    this.setState({ [field]: (e.target as HTMLInputElement).value })
   }
 
-  submitForm = (e: any) => {
+  submitForm = (e: React.SyntheticEvent) => {
     e.preventDefault()
     console.log('email entered:', this.state.email)
   }

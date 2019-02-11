@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { Action } from 'redux'
 import { logout } from '../redux/actions/types'
-import { User } from '../shared/types'
+import { AppState, User } from '../shared/types'
 
 const styles = require('./scss/Dashboard.scss') // tslint:disable-line no-var-requires
 
@@ -11,7 +12,7 @@ interface Props {
 }
 
 interface State {
-  user: any
+  user: User
 }
 
 class Dashboard extends React.Component<Props, State> {
@@ -46,11 +47,11 @@ class Dashboard extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ currentUser }: any) => ({
+const mapStateToProps = ({ currentUser }: AppState) => ({
   currentUser,
 })
 
-const mapDispatchToProps = (dispatch: (_: any) => void) => ({
+const mapDispatchToProps = (dispatch: (a: Action) => void) => ({
   doLogout: () => dispatch(logout()),
 })
 

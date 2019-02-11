@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../../../config/keys');
 
+const DAY_IN_MS = 1000 * 60 * 60 * 24
+
 // Load input validation
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
@@ -96,9 +98,7 @@ router.post('/login', (req, res) => {
         jwt.sign(
           payload,
           keys.secretOrKey,
-          {
-            expiresIn: 31556926 // 1 year in seconds TODO make this less
-          },
+          { expiresIn: DAY_IN_MS /* 24 hours */ },
           (err, token) => {
             if (err) {
               return res.status(500).json(serverError(err));

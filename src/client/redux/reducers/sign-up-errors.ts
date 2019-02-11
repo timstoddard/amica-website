@@ -1,10 +1,11 @@
-import { AuthenticationActions } from '../actions/types'
+import { StringMap } from '../../shared/types'
+import { AuthAction, AuthenticationActions } from '../actions/types'
 
-const signUpErrors = (state: any[] = [], action: any) => {
+const signUpErrors = (state: StringMap = {}, action: AuthAction) => {
   switch (action.type) {
     case AuthenticationActions.AUTH_ERRORS:
       console.log(action.payload)
-      return []
+      return {}
     default:
       return state
   }

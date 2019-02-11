@@ -1,15 +1,17 @@
+import { History } from 'history'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { registerUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
+import { AppState, SignUpFormData, StringMap } from '../shared/types'
 
 const styles = require('./scss/SignUp.scss') // tslint:disable-line no-var-requires
 
 interface Props {
-  registerUser: (a: any, b: any) => void // TODO more specific type
-  history: any
-  signUpErrors: any[]
+  registerUser: (data: SignUpFormData, history: History) => void
+  history: History
+  signUpErrors: StringMap
 }
 
 interface State {
@@ -31,11 +33,11 @@ class SignUp extends React.Component<Props, State> {
     }
   }
 
-  handleChange = (field: string) => (e: any) => {
-    this.setState({ [field]: e.target.value } as any)
+  handleChange = (field: keyof State) => (e: React.SyntheticEvent) => {
+    this.setState({ [field]: (e.target as HTMLInputElement).value } as any)
   }
 
-  submitForm = (e: any) => {
+  submitForm = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
     const {
@@ -105,7 +107,7 @@ class SignUp extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ signUpErrors }: any) => ({
+const mapStateToProps = ({ signUpErrors }: AppState) => ({
   signUpErrors,
 })
 

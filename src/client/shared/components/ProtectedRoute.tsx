@@ -1,8 +1,13 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route, RouteProps } from 'react-router-dom'
+import { AppState, User } from '../types'
 
-const ProtectedRoute = ({ currentUser, ...props }: any) => (
+interface ProtectedRouteProps extends RouteProps {
+  currentUser: User
+}
+
+const ProtectedRoute = ({ currentUser, ...props }: ProtectedRouteProps) => (
   currentUser ? (
     <Route {...props} />
   ) : (
@@ -10,7 +15,7 @@ const ProtectedRoute = ({ currentUser, ...props }: any) => (
   )
 )
 
-const mapStateToProps = ({ currentUser }: any) => ({
+const mapStateToProps = ({ currentUser }: AppState) => ({
   currentUser,
 })
 
