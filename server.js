@@ -39,7 +39,7 @@ mongoose.connect(config_db, { useNewUrlParser: true })
 app.use(passport.initialize())
 
 // Passport config
-require('./config/passport')(passport)
+require('./src/server/config/passport')(passport)
 
 // Routes
 app.use('/api/users', users)
