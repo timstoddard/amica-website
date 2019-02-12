@@ -22,7 +22,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // enable CORS
-const whitelist = ['http://localhost:8080', 'http://localhost:5000', 'https://amica-safe.com']
+const whitelist = [
+  'http://localhost:8080', // dev frontend
+  'http://localhost:5000', // dev backend + local prod server
+  'https://amica-safe.com' // live site
+]
 const options = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {
