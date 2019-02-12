@@ -9,7 +9,7 @@ if [ "$(docker ps -q -f name=amica)" ]; then
 fi
 
 # run the app, display info
-docker run -i --rm --name amica -p 80:8080 -d timstoddard/amica
+docker run -i --rm --name amica -p 5000:5000 -d timstoddard/amica
 docker ps
 
 # display dev message

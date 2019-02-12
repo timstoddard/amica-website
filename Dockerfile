@@ -23,8 +23,7 @@ COPY --chown=node:node . .
 USER node
 
 # tell docker which port to publish at runtime
-EXPOSE 8080
+EXPOSE 5000
 
 # run the app
-# CMD ["npm", "start"]
 CMD ["npm", "run", "prod"]
