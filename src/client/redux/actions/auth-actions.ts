@@ -18,6 +18,7 @@ export const loginUser = (userData: LoginFormData) => (dispatch: Dispatch<unknow
     .post('/api/users/login', userData)
     .then((res: AxiosResponse) => {
       const { token } = res.data
+      // TODO find out if users want to not have to log in every session; if so, use localStorage
       sessionStorage.setItem('jwtToken', token)
       setAuthToken(token)
       const decoded = jwt_decode(token) as User
