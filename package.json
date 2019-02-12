@@ -4,16 +4,15 @@
   "description": "Amica's Website",
   "main": "index.js",
   "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "client": "npm run clean && npm run webpack-dev",
     "server": "nodemon server.js",
     "webpack-dev": "webpack --config webpack/webpack.dev.js && webpack-dev-server --config webpack/webpack.dev.js --open",
     "prod": "npm run clean && npm run webpack-prod && node server.js",
     "webpack-prod": "webpack -p --config webpack/webpack.prod.js",
     "lint": "tslint --project . --fix",
-    "clean": "rm -rf dist index.html",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "clean": "rm -rf dist index.html"
   },
-  "proxy": "http://localhost:5000",
   "author": "Tim Stoddard, James Van, John Cunningham",
   "repository": {
     "url": "https://github.com/timstoddard/amica-website"
@@ -24,6 +23,7 @@
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "html-webpack-plugin": "^3.2.0",
