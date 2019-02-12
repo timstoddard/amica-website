@@ -7,5 +7,8 @@ module.exports = merge(common.baseConfig('dev'), {
   plugins: common.sharedPlugins('dev'),
   devServer: {
     historyApiFallback: true,
+    proxy: {
+      '/api': 'http://localhost:5000'
+    }
   },
 })

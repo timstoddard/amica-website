@@ -6,19 +6,16 @@ import setAuthToken from '../../shared/functions'
 import { LoginFormData, SignUpFormData, User } from '../../shared/types'
 import { authErrors, setCurrentUser } from './types'
 
-// TODO use proxy instead of this
-const apiBaseUrl = 'http://localhost:5000'
-
 export const registerUser = (userData: SignUpFormData, history: History) => (dispatch: Dispatch<unknown>) => {
   return axios
-    .post(`${apiBaseUrl}/api/users/register`, userData)
+    .post('/api/users/register', userData)
     .then((res: AxiosResponse) => history.push('/login'))
     .catch((err: AxiosError) => dispatch(authErrors(err.response.data)))
 }
 
 export const loginUser = (userData: LoginFormData) => (dispatch: Dispatch<unknown>) => {
   axios
-    .post(`${apiBaseUrl}/api/users/login`, userData)
+    .post('/api/users/login', userData)
     .then((res: AxiosResponse) => {
       const { token } = res.data
       sessionStorage.setItem('jwtToken', token)

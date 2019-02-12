@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // enable CORS
-var whitelist = ['http://localhost:8080', 'https://amica-safe.com']
-var options = {
+const whitelist = ['http://localhost:8080', 'https://amica-safe.com']
+const options = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
@@ -44,7 +44,7 @@ require('./src/server/config/passport')(passport)
 // Routes
 app.use('/api/users', users)
 
-// process.env.port is Heroku's port if you choose to deploy
-const port = process.env.PORT || 5000
+// define which port to bind to
+const port = 5000
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`))
