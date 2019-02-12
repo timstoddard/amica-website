@@ -31,6 +31,7 @@ app.use(bodyParser.json())
 const whitelist = [
   'http://localhost:8080', // dev frontend
   'http://localhost:5000', // dev backend + local prod server
+  'http://localhost:2375', // digitalocean docker port
   'https://amica-safe.com' // live site
 ]
 const options = {
@@ -64,5 +65,4 @@ app.use('/api/users', users)
 
 // define which port to bind to
 const port = 5000
-
-app.listen(port, () => console.log(`Server up and running on port ${port} !`))
+app.listen(port, () => console.log(`Server up and running on port ${port}!`))
