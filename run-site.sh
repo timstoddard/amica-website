@@ -9,7 +9,8 @@ if [ "$(docker ps -q -f name=amica)" ]; then
 fi
 
 # run the app, display info
-docker run -i --rm --name amica -p 5000:5000 -d timstoddard/amica
+# 2375 is the mandated DigitalOcean Docker port
+docker run -i --rm --name amica -p 2375:5000 -d timstoddard/amica
 docker ps
 
 # display dev message
