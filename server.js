@@ -4,18 +4,25 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const passport = require('passport')
+const compression = require('compression')
 const cors = require('cors')
 
 const users = require('./src/server/routes/api/users')
 
 const app = express()
 
+// use compression
+app.use(compression())
+
+// serve static assets normally
+app.use(express.static(__dirname))
+
 // Bodyparser middleware
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // enable CORS
-const whitelist = ['http://localhost:8080', 'https://amica-safe.com']
+const whitelist = ['http://localhost:8080', 'http://localhost:5000', 'https://amica-safe.com']
 const options = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {
