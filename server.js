@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // enable CORS
+/*
 const whitelist = [
   'http://localhost:8080', // dev frontend
   'http://localhost:5000', // dev backend + local prod server
@@ -45,6 +46,9 @@ const options = {
   }
 }
 app.use(cors(options))
+*/
+// TODO use cors whitelist once hosting is configured
+app.use(cors())
 
 // MongoDB Config
 const config_db = require('./config/keys').mongoURI
