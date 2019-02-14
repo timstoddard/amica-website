@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loginUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
+import { isRequired } from '../shared/components/textbox/validators'
 import { AppState, LoginFormData, User } from '../shared/types'
 
 const styles = require('./scss/Login.scss') // tslint:disable-line no-var-requires
@@ -59,7 +60,14 @@ class Login extends React.Component<Props, State> {
   }
 
   render(): JSX.Element {
-    const { handleChange, submitForm } = this
+    const {
+      handleChange,
+      submitForm,
+    } = this
+    const {
+      email,
+      password,
+    } = this.state
 
     return (
       <div className={styles.login}>
@@ -72,11 +80,25 @@ class Login extends React.Component<Props, State> {
           <Textbox
             label='Email'
             type='email'
-            onChange={handleChange('email')} />
+            value={email}
+            onChange={handleChange('email')}
+            validators={[
+              {
+                validatorFn: isRequired,
+                errorMessage: 'Email is required',
+              },
+            ]} />
           <Textbox
             label='Password'
             type='password'
-            onChange={handleChange('password')} />
+            value={password}
+            onChange={handleChange('password')}
+            validators={[
+              {
+                validatorFn: isRequired,
+                errorMessage: 'Password is required',
+              },
+            ]} />
           <button className={styles.login__form__submitButton}>
             Submit
           </button>

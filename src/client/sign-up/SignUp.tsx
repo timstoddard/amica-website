@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { registerUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
-import { AppState, SignUpFormData, StringMap } from '../shared/types'
+import { isEqual, isRequired, minLength } from '../shared/components/textbox/validators'
+import { AppState, SignUpFormData } from '../shared/types'
 
 const styles = require('./scss/SignUp.scss') // tslint:disable-line no-var-requires
 
 interface Props {
   registerUser: (data: SignUpFormData, history: History) => void
   history: History
-  signUpErrors: StringMap
 }
 
 interface State {
@@ -48,14 +48,7 @@ class SignUp extends React.Component<Props, State> {
       name,
       email,
       password,
-      password2,
     } = this.state
-
-    if (password !== password2) {
-      // TODO add real validation
-      alert('Passwords do not match')
-      return
-    }
 
     const data = {
       name,
@@ -68,8 +61,12 @@ class SignUp extends React.Component<Props, State> {
 
   render(): JSX.Element {
     const { handleChange, submitForm } = this
-    const { signUpErrors } = this.props // TODO use these for client-side validation
-    console.log('sign up errors', signUpErrors)
+    const {
+      name,
+      email,
+      password,
+      password2,
+    } = this.state
 
     return (
       <div className={styles.signUp}>
@@ -82,19 +79,55 @@ class SignUp extends React.Component<Props, State> {
           <Textbox
             label='Name'
             type='text'
-            onChange={handleChange('name')} />
+            value={name}
+            onChange={handleChange('name')}
+            validators={[
+              {
+                validatorFn: isRequired,
+                errorMessage: 'Name is required',
+              },
+            ]} />
           <Textbox
             label='Email'
             type='email'
-            onChange={handleChange('email')} />
+            value={email}
+            onChange={handleChange('email')}
+            validators={[
+              {
+                validatorFn: isRequired,
+                errorMessage: 'Email is required',
+              },
+            ]} />
           <Textbox
             label='Password'
             type='password'
-            onChange={handleChange('password')} />
+            value={password}
+            onChange={handleChange('password')}
+            validators={[
+              {
+                validatorFn: isRequired,
+                errorMessage: 'Password is required',
+              },
+              {
+                validatorFn: minLength(6),
+                errorMessage: 'Password must be at least 6 characters',
+              },
+            ]} />
           <Textbox
             label='Confirm Password'
             type='password'
-            onChange={handleChange('password2')} />
+            value={password2}
+            onChange={handleChange('password2')}
+            validators={[
+              {
+                validatorFn: isRequired,
+                errorMessage: 'Confirm password is required',
+              },
+              {
+                validatorFn: isEqual(password),
+                errorMessage: 'Passwords must match',
+              },
+            ]} />
           <button className={styles.signUp__form__submitButton}>
             Submit
           </button>
