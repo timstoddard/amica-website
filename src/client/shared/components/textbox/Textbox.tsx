@@ -1,22 +1,30 @@
 import * as React from 'react'
+import { AbstractControl } from 'react-reactive-form'
 
 const styles = require('./scss/Textbox.scss') // tslint:disable-line no-var-requires
 
-interface Props {
-  label: string
-  type: string
-  onChange: (e: React.SyntheticEvent) => void
-}
-
-const Textbox = ({ label, type, onChange }: Props) => (
+const Textbox = ({ handler, touched, errors, meta }: AbstractControl) => (
   <div className={styles.textbox}>
     <label className={styles.textbox__label}>
-      {label}
+      {meta.label}
     </label>
     <input
-      type={type}
-      onChange={onChange}
+      {...handler()}
+      type={meta.type}
       className={styles.textbox__input} />
+    {(touched && errors) && (
+      <ul className={styles.textbox__errors}>
+        {Object.keys(errors)
+        .map((name: string) => meta.errorMessages[name])
+        .map((errorMessage: string) => (
+          <li
+            key={errorMessage}
+            className={styles.textbox__error}>
+            {errorMessage}
+          </li>
+        ))}
+      </ul>
+    )}
   </div>
 )
 

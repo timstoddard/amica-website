@@ -28,3 +28,10 @@ export interface LoginFormData {
   email: string
   password: string
 }
+
+// form control metadata
+export interface FieldControlMeta {
+  label: string
+  type: string
+  errorMessages?: StringMap
+}

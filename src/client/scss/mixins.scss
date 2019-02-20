@@ -53,3 +53,15 @@
     border-color: $mainContentBlue;
   }
 }
+
+@mixin grayBackgroundWhenDisabled() {
+  &:disabled {
+    background: $lightGray;
+    user-select: none;
+
+    &:hover {
+      background: $lightGray;
+      cursor: default;
+    }
+  }
+}
