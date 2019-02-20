@@ -1,9 +1,9 @@
-// required
-export const isRequired = (s: string) => !!s
+import { AbstractControl, FormArray, FormGroup, ValidatorFn } from 'react-reactive-form'
 
-// equality
-export const isEqual = (target: string) => (s: string) => s === target
-
-// min/max length
-export const minLength = (n: number) => (s: string) => s.length >= n
-export const maxLength = (n: number) => (s: string) => s.length <= n
+// assumes password fields are siblings in the same form
+export const stringMatch = (otherFieldName: string): ValidatorFn =>
+  (c: AbstractControl | FormGroup | FormArray) => {
+    return c.parent && c.value !== c.parent.get(otherFieldName).value
+      ? { stringMatch: true }
+      : null
+  }

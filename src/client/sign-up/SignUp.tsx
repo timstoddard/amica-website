@@ -1,11 +1,12 @@
 import { History } from 'history'
 import * as React from 'react'
+import { AbstractControl, FieldControl, FieldGroup, FormBuilder, FormGroup, Validators } from 'react-reactive-form'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { registerUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
-import { isEqual, isRequired, minLength } from '../shared/components/textbox/validators'
-import { AppState, SignUpFormData } from '../shared/types'
+import { stringMatch } from '../shared/components/textbox/validators'
+import { AppState, FieldControlMeta, SignUpFormData } from '../shared/types'
 
 const styles = require('./scss/SignUp.scss') // tslint:disable-line no-var-requires
 
@@ -14,27 +15,16 @@ interface Props {
   history: History
 }
 
-interface State {
-  name: string
-  email: string
-  password: string
-  password2: string
-}
+class SignUp extends React.Component<Props, {}> {
+  form: FormGroup = FormBuilder.group({
+    name: ['', Validators.required],
+    email: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    password2: ['', [Validators.required, stringMatch('password')]],
+  })
 
-class SignUp extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
-
-    this.state = {
-      name: '',
-      email: '',
-      password: '',
-      password2: '',
-    }
-  }
-
-  handleChange = (field: keyof State) => (e: React.SyntheticEvent) => {
-    this.setState({ [field]: (e.target as HTMLInputElement).value } as any)
   }
 
   submitForm = (e: React.SyntheticEvent) => {
@@ -48,7 +38,7 @@ class SignUp extends React.Component<Props, State> {
       name,
       email,
       password,
-    } = this.state
+    } = this.form.value
 
     const data = {
       name,
@@ -60,78 +50,70 @@ class SignUp extends React.Component<Props, State> {
   }
 
   render(): JSX.Element {
-    const { handleChange, submitForm } = this
     const {
-      name,
-      email,
-      password,
-      password2,
-    } = this.state
+      form,
+      submitForm,
+    } = this
 
     return (
       <div className={styles.signUp}>
         <h1 className={styles.signUp__title}>
           Sign Up
         </h1>
-        <form
-          onSubmit={submitForm}
-          className={styles.signUp__form}>
-          <Textbox
-            label='Name'
-            type='text'
-            value={name}
-            onChange={handleChange('name')}
-            validators={[
-              {
-                validatorFn: isRequired,
-                errorMessage: 'Name is required',
-              },
-            ]} />
-          <Textbox
-            label='Email'
-            type='email'
-            value={email}
-            onChange={handleChange('email')}
-            validators={[
-              {
-                validatorFn: isRequired,
-                errorMessage: 'Email is required',
-              },
-            ]} />
-          <Textbox
-            label='Password'
-            type='password'
-            value={password}
-            onChange={handleChange('password')}
-            validators={[
-              {
-                validatorFn: isRequired,
-                errorMessage: 'Password is required',
-              },
-              {
-                validatorFn: minLength(6),
-                errorMessage: 'Password must be at least 6 characters',
-              },
-            ]} />
-          <Textbox
-            label='Confirm Password'
-            type='password'
-            value={password2}
-            onChange={handleChange('password2')}
-            validators={[
-              {
-                validatorFn: isRequired,
-                errorMessage: 'Confirm password is required',
-              },
-              {
-                validatorFn: isEqual(password),
-                errorMessage: 'Passwords must match',
-              },
-            ]} />
-          <button className={styles.signUp__form__submitButton}>
-            Submit
-          </button>
-        </form>
+        <FieldGroup
+          control={form}
+          render={({ invalid }: AbstractControl) => (
+            <form onSubmit={submitForm}>
+              <FieldControl
+                name='name'
+                render={Textbox}
+                meta={{
+                  label: 'Name',
+                  type: 'name',
+                  errorMessages: {
+                    required: 'Name is required',
+                  },
+                } as FieldControlMeta} />
+              <FieldControl
+                name='email'
+                render={Textbox}
+                meta={{
+                  label: 'Email',
+                  type: 'email',
+                  errorMessages: {
+                    required: 'Email is required',
+                  },
+                } as FieldControlMeta} />
+              <FieldControl
+                name='password'
+                render={Textbox}
+                meta={{
+                  label: 'Password',
+                  type: 'password',
+                  errorMessages: {
+                    required: 'Password is required',
+                    minLength: 'Password must be at least 6 characters',
+                  },
+                } as FieldControlMeta} />
+              <FieldControl
+                name='password2'
+                render={Textbox}
+                meta={{
+                  label: 'Confirm Password',
+                  type: 'password',
+                  errorMessages: {
+                    required: 'Confirm Password is required',
+                    stringMatch: 'Passwords must match',
+                  },
+                } as FieldControlMeta} />
+              <button
+                type='submit'
+                disabled={invalid}
+                className={styles.signUp__form__submitButton}>
+                Submit
+              </button>
+            </form>
+          )} />
         <div className={styles.signUp__form__loginMessage}>
           Already have an account? <Link to='/login'>Click here</Link> to login.
         </div>
