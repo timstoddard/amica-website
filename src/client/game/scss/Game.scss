@@ -1,0 +1,36 @@
+@import 'src/client/scss/mixins.scss';
+
+.game {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    height: 200px;
+    width: auto;
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__button {
+    @include defaultTransition;
+    @include resetButton;
+    @include undecoratedLink;
+    @include grayBackgroundWhenDisabled;
+    background: $green;
+    border-radius: 5px;
+    color: #fcfcfc;
+    font-size: 18px;
+    margin: 0 2px;
+    padding: 10px 20px;
+    white-space: nowrap;
+
+    &:hover {
+      background: $mainContentBlue;
+      color: #fcfcfc;
+      cursor: pointer;
+    }
+  }
+}

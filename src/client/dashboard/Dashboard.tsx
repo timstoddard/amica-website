@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Action } from 'redux'
 import { logout } from '../redux/actions/types'
 import { AppState, User } from '../shared/types'
@@ -37,6 +38,7 @@ class Dashboard extends React.Component<Props, State> {
       <div className={styles.dashboard}>
         <h1>Dashboard</h1>
         <div>Hello, {currentUser.name}!</div>
+        <Link to='game'>Open game</Link>
         <button
           onClick={logoutUser}
           className={styles.dashboard__logoutButton}>
