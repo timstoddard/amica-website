@@ -1,4 +1,4 @@
-import { GameState } from './Game'
+import { GameState } from '../shared/types'
 
 const states: GameState[] = [
   {

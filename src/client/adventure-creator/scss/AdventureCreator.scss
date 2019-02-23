@@ -1,0 +1,59 @@
+@import 'src/client/scss/mixins.scss';
+@import 'src/client/scss/variables.scss';
+
+.creator {
+  // background: $gray;
+  // color: white;
+
+  &__form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__cardDisplay {
+    overflow: auto;
+  }
+}
+
+.card {
+  align-items: center;
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+
+  &__info {
+    @include forceWidth(300px);
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+
+    // TODO figure this out (broken rn)
+    &--left::before {
+      border-top: 1px solid black;
+      border-left: 1px solid black;
+      content: ' ';
+      height: 20px;
+      width: 150px;
+    }
+
+    &--right::before {
+      border-top: 1px solid black;
+      border-right: 1px solid black;
+      content: ' ';
+      height: 20px;
+      width: 150px;
+    }
+
+    &::after {
+      border-right: 1px solid black;
+      content: ' ';
+      height: 20px;
+      width: 150px;
+    }
+  }
+
+  &__children {
+    display: flex;
+  }
+}

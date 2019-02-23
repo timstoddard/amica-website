@@ -1,31 +1,9 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { GameState } from '../shared/types'
 import states from './game-states'
 
 const styles = require('./scss/Game.scss') // tslint:disable-line no-var-requires
-
-interface GameStateBase {
-  id: number
-  description: string
-  imageSrc: string
-  imageAlt: string
-  isFinal: boolean
-}
-
-interface IntermediateGameState extends GameStateBase {
-  isFinal: false
-  choice1: string
-  choice2: string
-  choice1StateId: number
-  choice2StateId: number
-}
-
-interface FinalGameState extends GameStateBase {
-  isFinal: true
-  nextGameLink: string
-}
-
-export type GameState = FinalGameState | IntermediateGameState
 
 interface State {
   gameState: GameState
