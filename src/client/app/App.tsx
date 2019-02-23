@@ -25,6 +25,11 @@ const routes: LoadableRoute[] = [
     path: '/login',
     loader: (): Promise<unknown> => import('../login/Login'),
   },
+  // TODO move back to protected routes
+  {
+    path: '/game',
+    loader: (): Promise<unknown> => import('../game/Game'),
+  },
 ]
 
 const protectedRoutes: LoadableRoute[] = [
@@ -32,10 +37,10 @@ const protectedRoutes: LoadableRoute[] = [
     path: '/dashboard',
     loader: (): Promise<unknown> => import('../dashboard/Dashboard'),
   },
-  {
-    path: '/game',
-    loader: (): Promise<unknown> => import('../game/Game'),
-  },
+  // {
+  //   path: '/game',
+  //   loader: (): Promise<unknown> => import('../game/Game'),
+  // },
 ]
 
 const App: React.StatelessComponent<{}> = () => (
