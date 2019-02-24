@@ -2,7 +2,14 @@ import * as React from 'react'
 import { AbstractControl, FieldControl, FieldGroup, FormBuilder, FormGroup, Validators } from 'react-reactive-form'
 import Checkbox from '../shared/components/checkbox/Checkbox'
 import Textbox from '../shared/components/textbox/Textbox'
-import { DevGameState, DevIntermediateGameState, FieldControlMeta, GameState } from '../shared/types'
+import {
+  DevGameState,
+  DevIntermediateGameState,
+  FieldControlMeta,
+  FinalGameState,
+  GameState,
+  IntermediateGameState,
+} from '../shared/types'
 
 const styles = require('./scss/AdventureCreator.scss') // tslint:disable-line no-var-requires
 
@@ -41,14 +48,33 @@ const convertToDevGameState = (gameState: GameState, allStates: GameState[]) => 
   return base
 }
 
+const getGameStateCardTypeName = (type: GameStateCardType) => {
+  switch (type) {
+    case GameStateCardType.ROOT:
+      return 'Root'
+    case GameStateCardType.LEFT_CHILD:
+      return 'Choice 1'
+    case GameStateCardType.RIGHT_CHILD:
+      return 'Choice 2'
+    default:
+      return ''
+  }
+}
+
+enum GameStateCardType {
+  ROOT = 'root',
+  LEFT_CHILD = 'left child',
+  RIGHT_CHILD = 'right child',
+}
+
 const GameStateCard = ({
   gameState,
   selectGameState,
-  className,
+  type,
 }: {
   gameState: DevGameState,
   selectGameState: (id: number) => () => void,
-  className?: string,
+  type: GameStateCardType,
 }) => {
   if (!gameState) {
     return null
@@ -56,43 +82,172 @@ const GameStateCard = ({
 
   if (gameState.isFinal) {
     return (
-      <div className={`${styles.card} ${className || ''}`}>
+      <div className={styles.card}>
+        {/* TODO make shared component for info display */}
         <div
           onClick={selectGameState(gameState.id)}
           className={styles.card__info}>
-          <div>{gameState.id}</div>
-          <div>{gameState.description}</div>
-          <div>{gameState.imageSrc}</div>
-          <div>{gameState.imageAlt}</div>
-          <div>{gameState.isFinal}</div>
-          <div>{gameState.nextGameLink}</div>
+          <div className={styles.card__info__type}>
+          {getGameStateCardTypeName(type)}
+          </div>
+          <div className={styles.card__info__id}>
+            id: {gameState.id}
+          </div>
+          <img
+            src={gameState.imageSrc}
+            alt={gameState.imageAlt}
+            className={styles.card__info__image} />
+          <div className={styles.card__info__description}>
+            {gameState.description}
+          </div>
+          <div className={styles.card__info__isFinal}>
+            isFinal: {gameState.isFinal.toString()}
+          </div>
+          <div>nextGameLink: {gameState.nextGameLink}</div>
         </div>
       </div>
     )
   }
 
   const intermediateGameState = gameState as DevIntermediateGameState
+  const hasChild = intermediateGameState.choice1State || intermediateGameState.choice2State
+  const hasChildClass = hasChild
+    ? styles['card--hasChild']
+    : ''
   return (
-    <div className={`${styles.card} ${className || ''}`}>
+    <div className={`${styles.card} ${hasChildClass}`}>
       <div
         onClick={selectGameState(gameState.id)}
         className={styles.card__info}>
-        <div>id: {intermediateGameState.id}</div>
-        <div>description: {intermediateGameState.description}</div>
-        <div>imageSrc: {intermediateGameState.imageSrc}</div>
-        <div>imageAlt: {intermediateGameState.imageAlt}</div>
-        <div>isFinal: {intermediateGameState.isFinal}</div>
-        <div>choice1: {intermediateGameState.choice1}</div>
-        <div>choice2: {intermediateGameState.choice2}</div>
+        <div className={styles.card__info__type}>
+          {getGameStateCardTypeName(type)}
+        </div>
+        <div className={styles.card__info__id}>
+          id: {intermediateGameState.id}
+        </div>
+        <img
+          src={intermediateGameState.imageSrc}
+          alt={intermediateGameState.imageAlt}
+          className={styles.card__info__image} />
+        <div className={styles.card__info__description}>
+          {intermediateGameState.description}
+        </div>
+        <div className={styles.card__info__isFinal}>
+          isFinal: {intermediateGameState.isFinal.toString()}
+        </div>
       </div>
-      <div className={styles.card__children}>
-        <GameStateCard
-          gameState={intermediateGameState.choice1State}
-          selectGameState={selectGameState} />
-        <GameStateCard
-          gameState={intermediateGameState.choice2State}
-          selectGameState={selectGameState} />
+      {hasChild && (
+        <div className={styles.card__children}>
+          <GameStateCard
+            gameState={intermediateGameState.choice1State}
+            selectGameState={selectGameState}
+            type={GameStateCardType.LEFT_CHILD} />
+          <GameStateCard
+            gameState={intermediateGameState.choice2State}
+            selectGameState={selectGameState}
+            type={GameStateCardType.RIGHT_CHILD} />
+        </div>
+      )}
+    </div>
+  )
+}
+
+const SelectedState = ({
+  selectedState,
+  childChoiceToAdd,
+  addChildChoice,
+}: {
+  selectedState: GameState,
+  childChoiceToAdd: ChildChoiceToAdd,
+  addChildChoice: (n: number) => () => void,
+}) => {
+  const intermediateGameState = selectedState as IntermediateGameState
+  const finalGameState = selectedState as FinalGameState
+  let selectedStateInfo = null
+  if (selectedState && selectedState.isFinal) {
+    selectedStateInfo = (
+      <div className={styles.selectedStateWrapper}>
+        <div className={styles.selectedState__info}>
+          <div>id: {finalGameState.id}</div>
+          <div>description: {finalGameState.description}</div>
+          <div>isFinal: {finalGameState.isFinal}</div>
+          <div>nextGameLink: {finalGameState.nextGameLink}</div>
+        </div>
       </div>
+    )
+  } else if (selectedState && selectedState.isFinal === false) {
+    selectedStateInfo = (
+      <div className={styles.selectedStateWrapper}>
+        <div className={styles.selectedState__info}>
+          {/* TODO add edit button (top right corner) */}
+          <div>id: {intermediateGameState.id}</div>
+          <div>description: {intermediateGameState.description}</div>
+          <div>isFinal: {intermediateGameState.isFinal.toString()}</div>
+          <div>choice1: {intermediateGameState.choice1}</div>
+          <div>choice2: {intermediateGameState.choice2}</div>
+          <div>choice1StateId: {intermediateGameState.choice1StateId}</div>
+          <div>choice2StateId: {intermediateGameState.choice2StateId}</div>
+        </div>
+      </div>
+    )
+  } else {
+    selectedStateInfo = (
+      <div>None</div>
+    )
+  }
+
+  const canAddChildState = selectedState && selectedState.isFinal === false
+    ? !(intermediateGameState.choice1StateId && intermediateGameState.choice2StateId)
+    : false
+
+  return (
+    <div className={styles.selectedState}>
+      <h2 className={styles.selectedState__header}>
+        Selected state
+      </h2>
+      {selectedStateInfo}
+      {selectedState && (
+        <>
+          <img
+            src={selectedState.imageSrc}
+            alt='MISSING/MISNAMED IMAGE'
+            className={styles.selectedState__image} />
+          <img
+            src=''
+            alt={selectedState.imageAlt}
+            className={styles.selectedState__image} />
+          {canAddChildState && (
+            <>
+              <div>Add Child State</div>
+              <button
+                onClick={addChildChoice(1)}
+                disabled={!!intermediateGameState.choice1StateId}
+                className={`
+                  ${styles.selectedState__addChild}
+                  ${childChoiceToAdd === 1 ? styles['selectedState__addChild--selected'] : ''}
+                `}>
+                Choice 1
+              </button>
+              <button
+                onClick={addChildChoice(2)}
+                disabled={!!intermediateGameState.choice2StateId}
+                className={`
+                  ${styles.selectedState__addChild}
+                  ${childChoiceToAdd === 2 ? styles['selectedState__addChild--selected'] : ''}
+                `}>
+                Choice 2
+              </button>
+              <button
+                onClick={addChildChoice(0)}
+                className={`
+                  ${styles.selectedState__addChild}
+                `}>
+                X
+              </button>
+            </>
+          )}
+        </>
+      )}
     </div>
   )
 }
@@ -124,9 +279,98 @@ export default class AdventureCreator extends React.Component<{}, State> {
     super(props)
 
     this.state = {
-      gameStates: [],
+      gameStates: [
+        {
+          id: 1,
+          description: 'This is a sample description.',
+          imageSrc: '/media/images/game-2.jpeg',
+          imageAlt: 'image alt',
+          isFinal: false,
+          choice1: 'choice 1',
+          choice2: 'choice 2',
+          choice1StateId: 2,
+          choice2StateId: 3,
+        },
+        {
+          id: 2,
+          description: 'This is a sample description.',
+          imageSrc: '/media/images/game-2.jpeg',
+          imageAlt: 'image alt',
+          isFinal: false,
+          choice1: 'choice 1',
+          choice2: 'choice 2',
+          choice1StateId: 6,
+          choice2StateId: 7,
+        },
+        {
+          id: 3,
+          description: 'This is a sample description.',
+          imageSrc: '/media/images/game-2.jpeg',
+          imageAlt: 'image alt',
+          isFinal: false,
+          choice1: 'choice 1',
+          choice2: 'choice 2',
+          choice1StateId: 4,
+          choice2StateId: 5,
+        },
+        {
+          id: 4,
+          description: 'This is a sample description.',
+          imageSrc: '/media/images/game-2.jpeg',
+          imageAlt: 'image alt',
+          isFinal: false,
+          choice1: 'choice 1',
+          choice2: 'choice 2',
+          choice1StateId: null,
+          choice2StateId: null,
+        },
+        {
+          id: 5,
+          description: 'This is a sample description.',
+          imageSrc: '/media/images/game-2.jpeg',
+          imageAlt: 'image alt',
+          isFinal: false,
+          choice1: 'choice 1',
+          choice2: 'choice 2',
+          choice1StateId: null,
+          choice2StateId: null,
+        },
+        {
+          id: 6,
+          description: 'This is a sample description.',
+          imageSrc: '/media/images/game-2.jpeg',
+          imageAlt: 'image alt',
+          isFinal: false,
+          choice1: 'choice 1',
+          choice2: 'choice 2',
+          choice1StateId: null,
+          choice2StateId: null,
+        },
+        {
+          id: 7,
+          description: 'This is a sample description.',
+          imageSrc: '/media/images/game-2.jpeg',
+          imageAlt: 'image alt',
+          isFinal: false,
+          choice1: 'choice 1',
+          choice2: 'choice 2',
+          choice1StateId: 8,
+          choice2StateId: null,
+        },
+        {
+          id: 8,
+          description: 'This is a sample description.',
+          imageSrc: '/media/images/game-2.jpeg',
+          imageAlt: 'image alt',
+          isFinal: false,
+          choice1: 'choice 1',
+          choice2: 'choice 2',
+          choice1StateId: null,
+          choice2StateId: null,
+        },
+      ],
       selectedId: 0,
-      uniqueId: 1,
+      uniqueId: 100, // 1,
       showIsFinalForm: false,
       childChoiceToAdd: 0,
     }
@@ -140,7 +384,10 @@ export default class AdventureCreator extends React.Component<{}, State> {
   }
 
   selectGameState = (id: number) => () => {
-    this.setState({ selectedId: id })
+    this.setState({
+      selectedId: id,
+      childChoiceToAdd: 0,
+    })
   }
 
   addChildChoice = (childChoiceToAdd: ChildChoiceToAdd) => () => {
@@ -167,6 +414,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
       choice2StateId,
       nextGameLink,
     } = this.form.value
+    // TODO reset form value
 
     const data: GameState = Object.assign({
       id: uniqueId,
@@ -218,132 +466,129 @@ export default class AdventureCreator extends React.Component<{}, State> {
     } = this.state
 
     const devGameState = convertToDevGameState(gameStates[0], gameStates)
-    console.log('??', devGameState, gameStates)
+    console.log('state tree', devGameState, gameStates)
+    const selectedState = gameStates.find((state: GameState) => state.id === selectedId)
 
     return (
       <div className={styles.creator}>
         <h1 className={styles.creator__title}>
-          Create new adventure game!
+          Game Creator/Editor
         </h1>
-        <FieldGroup
-          control={form}
-          render={({ invalid }: AbstractControl) => (
-            <form
-              onSubmit={submitForm}
-              className={styles.creator__form}>
-              <FieldControl
-                name='description'
-                render={Textbox}
-                meta={{
-                  label: 'Description',
-                  type: 'description',
-                  errorMessages: {
-                    required: 'Description is required',
-                  },
-                } as FieldControlMeta} />
-              <FieldControl
-                name='imageSrc'
-                render={Textbox}
-                meta={{
-                  label: 'Image Src',
-                  type: 'imageSrc',
-                  errorMessages: {
-                    required: 'Image Src is required',
-                  },
-                } as FieldControlMeta} />
-              <FieldControl
-                name='imageAlt'
-                render={Textbox}
-                meta={{
-                  label: 'Image Alt',
-                  type: 'imageAlt',
-                  errorMessages: {
-                    required: 'Image Alt is required',
-                  },
-                } as FieldControlMeta} />
-              <FieldControl
-                name='isFinal'
-                render={Checkbox}
-                meta={{
-                  label: 'isFinal',
-                  type: 'isFinal',
-                } as FieldControlMeta} />
-              {!showIsFinalForm && (
-                <>
-                  <FieldControl
-                    name='choice1'
-                    render={Textbox}
-                    meta={{
-                      label: 'Choice 1',
-                      type: 'choice1',
-                      errorMessages: {
-                        required: 'Choice 1 is required',
-                      },
-                    } as FieldControlMeta} />
-                  <FieldControl
-                    name='choice2'
-                    render={Textbox}
-                    meta={{
-                      label: 'Choice 2',
-                      type: 'choice2',
-                      errorMessages: {
-                        required: 'Choice 2 is required',
-                      },
-                    } as FieldControlMeta} />
-                  <FieldControl
-                    name='choice1StateId'
-                    render={Textbox}
-                    meta={{
-                      label: 'Choice 1 State Id',
-                      type: 'choice1StateId',
-                    } as FieldControlMeta} />
-                  <FieldControl
-                    name='choice2StateId'
-                    render={Textbox}
-                    meta={{
-                      label: 'Choice 2 State Id',
-                      type: 'choice2StateId',
-                    } as FieldControlMeta} />
-                  </>
-              )}
-              {showIsFinalForm && (
+        <div className={styles.creator__formWrapper}>
+          <SelectedState
+            selectedState={selectedState}
+            childChoiceToAdd={childChoiceToAdd}
+            addChildChoice={addChildChoice} />
+          <FieldGroup
+            control={form}
+            render={({ invalid }: AbstractControl) => (
+              <form
+                onSubmit={submitForm}
+                className={styles.creator__form}>
+                <h2 className={styles.creator__formHeader}>Add/Edit Game State</h2>
                 <FieldControl
-                  name='nextGameLink'
+                  name='description'
                   render={Textbox}
                   meta={{
-                    label: 'Next Game Link',
-                    type: 'nextGameLink',
+                    label: 'Description',
+                    type: 'description',
                     errorMessages: {
-                      required: 'Next Game Link is required',
+                      required: 'Description is required',
                     },
                   } as FieldControlMeta} />
-              )}
-              <button
-                type='submit'
-                disabled={invalid}
-                className={styles.creator__form__submitButton}>
-                Submit
-              </button>
-            </form>
-          )} />
-          {selectedId > 0 && (
-            <>
-              <div>selected id: {selectedId}</div>
-              {childChoiceToAdd === 1 && 'adding choice 1'}
-              {childChoiceToAdd === 2 && 'adding choice 2'}
-              <button onClick={addChildChoice(1)}>
-                Add Choice 1 State
-              </button>
-              <button onClick={addChildChoice(2)}>
-                Add Choice 2 State
-              </button>
-            </>
-          )}
+                <FieldControl
+                  name='imageSrc'
+                  render={Textbox}
+                  meta={{
+                    label: 'Image Src',
+                    type: 'imageSrc',
+                    errorMessages: {
+                      required: 'Image Src is required',
+                    },
+                  } as FieldControlMeta} />
+                <FieldControl
+                  name='imageAlt'
+                  render={Textbox}
+                  meta={{
+                    label: 'Image Alt',
+                    type: 'imageAlt',
+                    errorMessages: {
+                      required: 'Image Alt is required',
+                    },
+                  } as FieldControlMeta} />
+                <FieldControl
+                  name='isFinal'
+                  render={Checkbox}
+                  meta={{
+                    label: 'isFinal',
+                    type: 'isFinal',
+                  } as FieldControlMeta} />
+                {!showIsFinalForm && (
+                  <>
+                    <FieldControl
+                      name='choice1'
+                      render={Textbox}
+                      meta={{
+                        label: 'Choice 1',
+                        type: 'choice1',
+                        errorMessages: {
+                          required: 'Choice 1 is required',
+                        },
+                      } as FieldControlMeta} />
+                    <FieldControl
+                      name='choice2'
+                      render={Textbox}
+                      meta={{
+                        label: 'Choice 2',
+                        type: 'choice2',
+                        errorMessages: {
+                          required: 'Choice 2 is required',
+                        },
+                      } as FieldControlMeta} />
+                    <FieldControl
+                      name='choice1StateId'
+                      render={Textbox}
+                      meta={{
+                        label: 'Choice 1 State Id',
+                        type: 'choice1StateId',
+                      } as FieldControlMeta} />
+                    <FieldControl
+                      name='choice2StateId'
+                      render={Textbox}
+                      meta={{
+                        label: 'Choice 2 State Id',
+                        type: 'choice2StateId',
+                      } as FieldControlMeta} />
+                    </>
+                )}
+                {showIsFinalForm && (
+                  <FieldControl
+                    name='nextGameLink'
+                    render={Textbox}
+                    meta={{
+                      label: 'Next Game Link',
+                      type: 'nextGameLink',
+                      errorMessages: {
+                        required: 'Next Game Link is required',
+                      },
+                    } as FieldControlMeta} />
+                )}
+                <button
+                  type='submit'
+                  disabled={invalid}
+                  className={styles.creator__form__submitButton}>
+                  Submit
+                </button>
+              </form>
+            )} />
+          </div>
           {devGameState && (
-            <GameStateCard
-              gameState={devGameState}
-              selectGameState={selectGameState}
-              className={styles.creator__cardDisplay} />
+            <div className={styles.creator__preview}>
+              <GameStateCard
+                gameState={devGameState}
+                selectGameState={selectGameState}
+                type={GameStateCardType.ROOT} />
+            </div>
           )}
       </div>
     )

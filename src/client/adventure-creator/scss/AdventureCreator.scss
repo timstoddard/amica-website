@@ -1,59 +1,230 @@
 @import 'src/client/scss/mixins.scss';
 @import 'src/client/scss/variables.scss';
 
+// setting sizes in em makes sure that the gaps and border widths scale too with the scaling factor
+$scaling_factor: 1;
+$node_gap: 1em;
+$border_width: 0.125em;
+$connector_width: .0625em;
+$connector_style: solid;
+
+@mixin headerWithOnlyBottomMargin($marginBottom: 12px) {
+  margin: 0 0 $marginBottom 0;
+}
+
 .creator {
-  // background: $gray;
-  // color: white;
+  background: rgb(222,222,222);
+
+  &__formWrapper {
+    border-bottom: 1px dashed black;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-bottom: 20px;
+  }
 
   &__form {
     align-items: center;
     display: flex;
     flex-direction: column;
+
+    &__submitButton {
+      @include defaultTransition;
+      @include resetButton;
+      @include grayBackgroundWhenDisabled;
+      background: $green;
+      border-radius: 5px;
+      color: #fcfcfc;
+      font-size: 16px;
+      margin: 0 2px;
+      padding: 10px 20px;
+      white-space: nowrap;
+
+      &:hover {
+        background: $mainContentBlue;
+        color: #fcfcfc;
+        cursor: pointer;
+      }
+    }
   }
 
-  &__cardDisplay {
+  &__formHeader {
+    @include headerWithOnlyBottomMargin;
+  }
+
+  &__preview {
+    font-size: 16px * $scaling_factor;
     overflow: auto;
+    padding-top: 20px;
+
+    > .card > .card__info:before {
+      display: none;
+    }
   }
 }
 
 .card {
   align-items: center;
-  border: 2px solid red;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0 $node_gap;
+  position: relative;
+  
+  &:before {
+    border-top: $connector_width $connector_style black;
+    content: '';
+    display: block;
+    height: $connector_width;
+    left: calc(0% - #{$connector_width / 2});
+    position: absolute;
+    top: calc(#{-$node_gap} - #{$connector_width / 2});
+    width: 100%;
+  }
+  
+  &:first-child:before {
+    left: calc(50% - #{$connector_width / 2});
+    max-width: calc(100% - 50% + #{$connector_width});
+  }
+
+  &:last-child:before {
+    left: auto;
+    max-width: calc(100% - 50% + #{$connector_width});
+    right: calc(50% - #{$connector_width / 2});
+  }
+
+  &:only-child {
+    &:before {
+      display: none;
+    }
+  
+    & > &__info:before {
+      height: calc(#{$node_gap} + #{$connector_width});
+      top: calc(#{-$node_gap} - #{$connector_width});
+    }
+  }
 
   &__info {
-    @include forceWidth(300px);
-    border: 1px solid black;
-    margin: 10px;
-    padding: 10px;
-
-    // TODO figure this out (broken rn)
-    &--left::before {
-      border-top: 1px solid black;
-      border-left: 1px solid black;
-      content: ' ';
-      height: 20px;
-      width: 150px;
+    background: white;
+    border: $border_width solid black;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 30px 8px 10px;
+    position: relative;
+    width: 300px;
+  
+    &:hover {
+      border: $border_width solid $mainContentBlue;
+      cursor: pointer;
     }
 
-    &--right::before {
-      border-top: 1px solid black;
-      border-right: 1px solid black;
-      content: ' ';
-      height: 20px;
-      width: 150px;
+    &:before,
+    &:after {
+      border-left: $connector_width $connector_style black;
+      content: '';
+      display: block;
+      height: $node_gap;
+      left: calc(50% - #{$connector_width / 2});
+      position: absolute;
+      width: $connector_width;
+    }
+  
+    &:before {
+      top: calc(#{-$node_gap} - #{$border_width});
+    }
+  
+    &:after {
+      top: calc(100% + #{$border_width});
     }
 
-    &::after {
-      border-right: 1px solid black;
-      content: ' ';
-      height: 20px;
-      width: 150px;
+    &:only-child:after {
+      display: none;
+    }
+
+    &__type,
+    &__id {
+      border-bottom: 1px dashed $lightGray;
+      padding: 2px 2px 2px 2px;
+      position: absolute;
+      top: 0;
+    }
+
+    &__type {
+      border-right: 1px dashed $lightGray;
+      left: 0;
+      padding-left: 4px;
+    }
+    
+    &__id {
+      border-left: 1px dashed $lightGray;
+      padding-right: 4px;
+      right: 0;
+    }
+
+    &__image {
+      width: 100%;
     }
   }
 
   &__children {
-    display: flex;
+    display: inline-flex;
+    margin: ($node_gap * 2) 0;
+  }
+}
+
+.selectedState {
+  padding: 0 20px;
+
+  &__header {
+    @include headerWithOnlyBottomMargin;
+  }
+
+  &__info {
+    border: 1px solid black;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
+  &__image {
+    height: 200px;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    width: auto;
+  }
+
+  &__addChild {
+    @include defaultTransition;
+    @include resetButton;
+    @include grayBackgroundWhenDisabled;
+    background: $green;
+    border: 1px solid $gray;
+    color: #fcfcfc;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    white-space: nowrap;
+
+    &:hover {
+      background: $mainContentBlue;
+      color: #fcfcfc;
+      cursor: pointer;
+    }
+
+    &:first-of-type {
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+
+    &:last-of-type {
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    &:not(:last-of-type) {
+      border-right: 0;
+    }
+
+    &--selected {
+      background: red;
+    }
   }
 }
