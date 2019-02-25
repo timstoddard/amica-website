@@ -44,7 +44,7 @@ interface GameStateBase {
   description: string
   imageSrc: string
   imageAlt: string
-  isFinal: boolean
+  isFinal: boolean // TODO change this to `type: GameStateType`
 }
 
 export interface IntermediateGameState extends GameStateBase {

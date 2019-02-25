@@ -2,16 +2,16 @@ import * as React from 'react'
 import { AbstractControl, FieldControl, FieldGroup, FormBuilder, FormGroup, Validators } from 'react-reactive-form'
 import Checkbox from '../shared/components/checkbox/Checkbox'
 import Textbox from '../shared/components/textbox/Textbox'
-import {
-  DevGameState,
-  DevIntermediateGameState,
-  FieldControlMeta,
-  FinalGameState,
-  GameState,
-  IntermediateGameState,
-} from '../shared/types'
+import { DevGameState, FieldControlMeta, GameState } from '../shared/types'
+import GameStateCard from './game-state-card/GameStateCard'
+import SelectedState from './selected-state/SelectedState'
 
 const styles = require('./scss/AdventureCreator.scss') // tslint:disable-line no-var-requires
+
+const getSelectedGameState = (gameStates: GameState[], selectedId: number) => {
+  const selectedState = gameStates.find((state: GameState) => state.id === selectedId)
+  return selectedState || null
+}
 
 const convertToDevGameState = (gameState: GameState, allStates: GameState[]) => {
   if (!gameState) {
@@ -40,225 +40,21 @@ const convertToDevGameState = (gameState: GameState, allStates: GameState[]) => 
       choice1State: null,
       choice2State: null,
     }
-    const choice1State = allStates.find((state: GameState) => state.id === gameState.choice1StateId)
-    const choice2State = allStates.find((state: GameState) => state.id === gameState.choice2StateId)
+    const choice1State = getSelectedGameState(allStates, gameState.choice1StateId)
+    const choice2State = getSelectedGameState(allStates, gameState.choice2StateId)
     base.choice1State = convertToDevGameState(choice1State, allStates)
     base.choice2State = convertToDevGameState(choice2State, allStates)
   }
   return base
 }
 
-const getGameStateCardTypeName = (type: GameStateCardType) => {
-  switch (type) {
-    case GameStateCardType.ROOT:
-      return 'Root'
-    case GameStateCardType.LEFT_CHILD:
-      return 'Choice 1'
-    case GameStateCardType.RIGHT_CHILD:
-      return 'Choice 2'
-    default:
-      return ''
-  }
-}
-
-enum GameStateCardType {
-  ROOT = 'root',
-  LEFT_CHILD = 'left child',
-  RIGHT_CHILD = 'right child',
-}
-
-const GameStateCard = ({
-  gameState,
-  selectGameState,
-  type,
-}: {
-  gameState: DevGameState,
-  selectGameState: (id: number) => () => void,
-  type: GameStateCardType,
-}) => {
-  if (!gameState) {
-    return null
-  }
-
-  if (gameState.isFinal) {
-    return (
-      <div className={styles.card}>
-        {/* TODO make shared component for info display */}
-        <div
-          onClick={selectGameState(gameState.id)}
-          className={styles.card__info}>
-          <div className={styles.card__info__type}>
-          {getGameStateCardTypeName(type)}
-          </div>
-          <div className={styles.card__info__id}>
-            id: {gameState.id}
-          </div>
-          <img
-            src={gameState.imageSrc}
-            alt={gameState.imageAlt}
-            className={styles.card__info__image} />
-          <div className={styles.card__info__description}>
-            {gameState.description}
-          </div>
-          <div className={styles.card__info__isFinal}>
-            isFinal: {gameState.isFinal.toString()}
-          </div>
-          <div>nextGameLink: {gameState.nextGameLink}</div>
-        </div>
-      </div>
-    )
-  }
-
-  const intermediateGameState = gameState as DevIntermediateGameState
-  const hasChild = intermediateGameState.choice1State || intermediateGameState.choice2State
-  const hasChildClass = hasChild
-    ? styles['card--hasChild']
-    : ''
-  return (
-    <div className={`${styles.card} ${hasChildClass}`}>
-      <div
-        onClick={selectGameState(gameState.id)}
-        className={styles.card__info}>
-        <div className={styles.card__info__type}>
-          {getGameStateCardTypeName(type)}
-        </div>
-        <div className={styles.card__info__id}>
-          id: {intermediateGameState.id}
-        </div>
-        <img
-          src={intermediateGameState.imageSrc}
-          alt={intermediateGameState.imageAlt}
-          className={styles.card__info__image} />
-        <div className={styles.card__info__description}>
-          {intermediateGameState.description}
-        </div>
-        <div className={styles.card__info__isFinal}>
-          isFinal: {intermediateGameState.isFinal.toString()}
-        </div>
-      </div>
-      {hasChild && (
-        <div className={styles.card__children}>
-          <GameStateCard
-            gameState={intermediateGameState.choice1State}
-            selectGameState={selectGameState}
-            type={GameStateCardType.LEFT_CHILD} />
-          <GameStateCard
-            gameState={intermediateGameState.choice2State}
-            selectGameState={selectGameState}
-            type={GameStateCardType.RIGHT_CHILD} />
-        </div>
-      )}
-    </div>
-  )
-}
-
-const SelectedState = ({
-  selectedState,
-  childChoiceToAdd,
-  addChildChoice,
-}: {
-  selectedState: GameState,
-  childChoiceToAdd: ChildChoiceToAdd,
-  addChildChoice: (n: number) => () => void,
-}) => {
-  const intermediateGameState = selectedState as IntermediateGameState
-  const finalGameState = selectedState as FinalGameState
-  let selectedStateInfo = null
-  if (selectedState && selectedState.isFinal) {
-    selectedStateInfo = (
-      <div className={styles.selectedStateWrapper}>
-        <div className={styles.selectedState__info}>
-          <div>id: {finalGameState.id}</div>
-          <div>description: {finalGameState.description}</div>
-          <div>isFinal: {finalGameState.isFinal}</div>
-          <div>nextGameLink: {finalGameState.nextGameLink}</div>
-        </div>
-      </div>
-    )
-  } else if (selectedState && selectedState.isFinal === false) {
-    selectedStateInfo = (
-      <div className={styles.selectedStateWrapper}>
-        <div className={styles.selectedState__info}>
-          {/* TODO add edit button (top right corner) */}
-          <div>id: {intermediateGameState.id}</div>
-          <div>description: {intermediateGameState.description}</div>
-          <div>isFinal: {intermediateGameState.isFinal.toString()}</div>
-          <div>choice1: {intermediateGameState.choice1}</div>
-          <div>choice2: {intermediateGameState.choice2}</div>
-          <div>choice1StateId: {intermediateGameState.choice1StateId}</div>
-          <div>choice2StateId: {intermediateGameState.choice2StateId}</div>
-        </div>
-      </div>
-    )
-  } else {
-    selectedStateInfo = (
-      <div>None</div>
-    )
-  }
-
-  const canAddChildState = selectedState && selectedState.isFinal === false
-    ? !(intermediateGameState.choice1StateId && intermediateGameState.choice2StateId)
-    : false
-
-  return (
-    <div className={styles.selectedState}>
-      <h2 className={styles.selectedState__header}>
-        Selected state
-      </h2>
-      {selectedStateInfo}
-      {selectedState && (
-        <>
-          <img
-            src={selectedState.imageSrc}
-            alt='MISSING/MISNAMED IMAGE'
-            className={styles.selectedState__image} />
-          <img
-            src=''
-            alt={selectedState.imageAlt}
-            className={styles.selectedState__image} />
-          {canAddChildState && (
-            <>
-              <div>Add Child State</div>
-              <button
-                onClick={addChildChoice(1)}
-                disabled={!!intermediateGameState.choice1StateId}
-                className={`
-                  ${styles.selectedState__addChild}
-                  ${childChoiceToAdd === 1 ? styles['selectedState__addChild--selected'] : ''}
-                `}>
-                Choice 1
-              </button>
-              <button
-                onClick={addChildChoice(2)}
-                disabled={!!intermediateGameState.choice2StateId}
-                className={`
-                  ${styles.selectedState__addChild}
-                  ${childChoiceToAdd === 2 ? styles['selectedState__addChild--selected'] : ''}
-                `}>
-                Choice 2
-              </button>
-              <button
-                onClick={addChildChoice(0)}
-                className={`
-                  ${styles.selectedState__addChild}
-                `}>
-                X
-              </button>
-            </>
-          )}
-        </>
-      )}
-    </div>
-  )
-}
-
-type ChildChoiceToAdd = 0 | 1 | 2
+export type ChildChoiceToAdd = 0 | 1 | 2
 
 interface State {
   gameStates: GameState[]
   selectedId: number
   uniqueId: number
-  showIsFinalForm: boolean,
+  showIsFinalForm: boolean
   childChoiceToAdd: ChildChoiceToAdd
 }
 
@@ -267,11 +63,11 @@ export default class AdventureCreator extends React.Component<{}, State> {
     description: [''/*, Validators.required*/],
     imageSrc: [''/*, Validators.required*/],
     imageAlt: [''/*, Validators.required*/],
-    isFinal: [false/*, Validators.required*/],
+    isFinal: false,
     choice1: [''/*, Validators.required*/],
     choice2: [''/*, Validators.required*/],
-    choice1StateId: [''],
-    choice2StateId: [''],
+    choice1StateId: '',
+    choice2StateId: '',
     nextGameLink: [''/*, Validators.required*/],
   })
 
@@ -384,14 +180,34 @@ export default class AdventureCreator extends React.Component<{}, State> {
   }
 
   selectGameState = (id: number) => () => {
+    const {
+      gameStates,
+    } = this.state
     this.setState({
       selectedId: id,
       childChoiceToAdd: 0,
     })
+    this.resetForm()
+    this.form.patchValue(getSelectedGameState(gameStates, id))
   }
 
-  addChildChoice = (childChoiceToAdd: ChildChoiceToAdd) => () => {
+  setChildChoiceToAdd = (childChoiceToAdd: ChildChoiceToAdd) => () => {
     this.setState({ childChoiceToAdd })
+    this.resetForm()
+  }
+
+  resetForm = () => {
+    this.form.reset({
+      description: '',
+      imageSrc: '',
+      imageAlt: '',
+      isFinal: false,
+      choice1: '',
+      choice2: '',
+      choice1StateId: '',
+      choice2StateId: '',
+      nextGameLink: '',
+    })
   }
 
   submitForm = (e: React.SyntheticEvent) => {
@@ -414,10 +230,10 @@ export default class AdventureCreator extends React.Component<{}, State> {
       choice2StateId,
       nextGameLink,
     } = this.form.value
-    // TODO reset form value
+    // this.resetForm() // TODO is this useful?
 
     const data: GameState = Object.assign({
-      id: uniqueId,
+      id: childChoiceToAdd > 0 ? uniqueId : selectedId || uniqueId,
       description,
       imageSrc,
       imageAlt,
@@ -433,11 +249,14 @@ export default class AdventureCreator extends React.Component<{}, State> {
 
     console.log('add new state:', data)
     const updatedStates: GameState[] = gameStates.map((state: GameState) => {
-      if (childChoiceToAdd === 0 || state.isFinal) {
-        return state
-      }
+      // if this state is being edited
       if (state.id === selectedId) {
-        return Object.assign({ ...state }, childChoiceToAdd === 1 ? {
+        // if not adding a child, update the existing state
+        if (childChoiceToAdd === 0) {
+          return Object.assign(state, data)
+        }
+        // otherwise, add the child choice to its parent
+        return Object.assign(state, childChoiceToAdd === 1 ? {
           choice1StateId: data.id,
         } : {
           choice2StateId: data.id,
@@ -446,7 +265,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
       return state
     })
     this.setState({
-      gameStates: [...updatedStates, data],
+      gameStates: childChoiceToAdd > 0 ? [...updatedStates, data] : [...updatedStates],
       uniqueId: uniqueId + 1,
     })
   }
@@ -455,7 +274,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
     const {
       form,
       selectGameState,
-      addChildChoice,
+      setChildChoiceToAdd,
       submitForm,
     } = this
     const {
@@ -467,7 +286,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
 
     const devGameState = convertToDevGameState(gameStates[0], gameStates)
     console.log('state tree', devGameState, gameStates)
-    const selectedState = gameStates.find((state: GameState) => state.id === selectedId)
+    const selectedState = getSelectedGameState(gameStates, selectedId)
 
     return (
       <div className={styles.creator}>
@@ -478,7 +297,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
           <SelectedState
             selectedState={selectedState}
             childChoiceToAdd={childChoiceToAdd}
-            addChildChoice={addChildChoice} />
+            setChildChoiceToAdd={setChildChoiceToAdd} />
           <FieldGroup
             control={form}
             render={({ invalid }: AbstractControl) => (
@@ -586,8 +405,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
             <div className={styles.creator__preview}>
               <GameStateCard
                 gameState={devGameState}
-                selectGameState={selectGameState}
-                type={GameStateCardType.ROOT} />
+                selectGameState={selectGameState} />
             </div>
           )}
       </div>
