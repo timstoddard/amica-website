@@ -28,7 +28,7 @@ const GameStateCard = ({
   type = GameStateCardType.ROOT,
 }: {
   gameState: DevGameState,
-  selectGameState: (id: number) => () => void,
+  selectGameState: (id: string) => () => void,
   type?: GameStateCardType,
 }) => {
   if (!gameState) {

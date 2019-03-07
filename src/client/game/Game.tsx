@@ -26,7 +26,7 @@ export default class Game extends React.Component<{}, State> {
     this.showDescription()
   }
 
-  updateGameState = (gameStateId: number) => () => {
+  updateGameState = (gameStateId: string) => () => {
     this.setState({
       gameState: states.find((state: GameState) => state.id === gameStateId),
       showButtons: false,

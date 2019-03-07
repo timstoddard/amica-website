@@ -52,7 +52,7 @@ $connectorWidth: .0625em;
 
   &__info {
     background: white;
-    border: $borderWidth solid black;
+    border: $borderWidth solid $lightGray;
     border-radius: 4px;
     display: inline-block;
     padding: 30px 8px 10px;
@@ -60,7 +60,7 @@ $connectorWidth: .0625em;
     width: 300px;
   
     &:hover {
-      border: $borderWidth solid $mainContentBlue;
+      border: $borderWidth solid red;
       cursor: pointer;
     }
 

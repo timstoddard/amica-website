@@ -8,7 +8,7 @@ import SelectedState from './selected-state/SelectedState'
 
 const styles = require('./scss/AdventureCreator.scss') // tslint:disable-line no-var-requires
 
-const getSelectedGameState = (gameStates: GameState[], selectedId: number) => {
+const getSelectedGameState = (gameStates: GameState[], selectedId: string) => {
   const selectedState = gameStates.find((state: GameState) => state.id === selectedId)
   return selectedState || null
 }
@@ -52,10 +52,11 @@ export type ChildChoiceToAdd = 0 | 1 | 2
 
 interface State {
   gameStates: GameState[]
-  selectedId: number
+  selectedId: string
   uniqueId: number
   showIsFinalForm: boolean
   childChoiceToAdd: ChildChoiceToAdd
+  isFullscreen: boolean
 }
 
 export default class AdventureCreator extends React.Component<{}, State> {
@@ -77,51 +78,40 @@ export default class AdventureCreator extends React.Component<{}, State> {
     this.state = {
       gameStates: [
         {
-          id: 1,
+          id: '1',
           description: 'This is a sample description.',
           imageSrc: '/media/images/game-2.jpeg',
           imageAlt: 'image alt',
           isFinal: false,
           choice1: 'choice 1',
           choice2: 'choice 2',
-          choice1StateId: 2,
-          choice2StateId: 3,
+          choice1StateId: '2',
+          choice2StateId: '3',
         },
         {
-          id: 2,
+          id: '2',
           description: 'This is a sample description.',
           imageSrc: '/media/images/game-2.jpeg',
           imageAlt: 'image alt',
           isFinal: false,
           choice1: 'choice 1',
           choice2: 'choice 2',
-          choice1StateId: 6,
-          choice2StateId: 7,
+          choice1StateId: '6',
+          choice2StateId: '7',
         },
         {
-          id: 3,
+          id: '3',
           description: 'This is a sample description.',
           imageSrc: '/media/images/game-2.jpeg',
           imageAlt: 'image alt',
           isFinal: false,
           choice1: 'choice 1',
           choice2: 'choice 2',
-          choice1StateId: 4,
-          choice2StateId: 5,
+          choice1StateId: '4',
+          choice2StateId: '5',
         },
         {
-          id: 4,
-          description: 'This is a sample description.',
-          imageSrc: '/media/images/game-2.jpeg',
-          imageAlt: 'image alt',
-          isFinal: false,
-          choice1: 'choice 1',
-          choice2: 'choice 2',
-          choice1StateId: null,
-          choice2StateId: null,
-        },
-        {
-          id: 5,
+          id: '4',
           description: 'This is a sample description.',
           imageSrc: '/media/images/game-2.jpeg',
           imageAlt: 'image alt',
@@ -132,7 +122,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
           choice2StateId: null,
         },
         {
-          id: 6,
+          id: '5',
           description: 'This is a sample description.',
           imageSrc: '/media/images/game-2.jpeg',
           imageAlt: 'image alt',
@@ -143,18 +133,29 @@ export default class AdventureCreator extends React.Component<{}, State> {
           choice2StateId: null,
         },
         {
-          id: 7,
+          id: '6',
           description: 'This is a sample description.',
           imageSrc: '/media/images/game-2.jpeg',
           imageAlt: 'image alt',
           isFinal: false,
           choice1: 'choice 1',
           choice2: 'choice 2',
-          choice1StateId: 8,
+          choice1StateId: null,
           choice2StateId: null,
         },
         {
-          id: 8,
+          id: '7',
+          description: 'This is a sample description.',
+          imageSrc: '/media/images/game-2.jpeg',
+          imageAlt: 'image alt',
+          isFinal: false,
+          choice1: 'choice 1',
+          choice2: 'choice 2',
+          choice1StateId: '8',
+          choice2StateId: null,
+        },
+        {
+          id: '8',
           description: 'This is a sample description.',
           imageSrc: '/media/images/game-2.jpeg',
           imageAlt: 'image alt',
@@ -165,10 +166,11 @@ export default class AdventureCreator extends React.Component<{}, State> {
           choice2StateId: null,
         },
       ],
-      selectedId: 0,
+      selectedId: '',
       uniqueId: 100, // 1,
       showIsFinalForm: false,
       childChoiceToAdd: 0,
+      isFullscreen: false,
     }
   }
 
@@ -179,7 +181,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
     })
   }
 
-  selectGameState = (id: number) => () => {
+  selectGameState = (id: string) => () => {
     const {
       gameStates,
     } = this.state
@@ -210,6 +212,11 @@ export default class AdventureCreator extends React.Component<{}, State> {
     })
   }
 
+  toggleFullscreen = () => () => {
+    const { isFullscreen } = this.state
+    this.setState({ isFullscreen: !isFullscreen })
+  }
+
   submitForm = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
@@ -233,7 +240,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
     // this.resetForm() // TODO is this useful?
 
     const data: GameState = Object.assign({
-      id: childChoiceToAdd > 0 ? uniqueId : selectedId || uniqueId,
+      id: childChoiceToAdd > 0 ? uniqueId.toString() : selectedId || uniqueId.toString(),
       description,
       imageSrc,
       imageAlt,
@@ -247,22 +254,21 @@ export default class AdventureCreator extends React.Component<{}, State> {
       nextGameLink,
     })
 
-    console.log('add new state:', data)
     const updatedStates: GameState[] = gameStates.map((state: GameState) => {
       // if this state is being edited
       if (state.id === selectedId) {
         // if not adding a child, update the existing state
         if (childChoiceToAdd === 0) {
-          return Object.assign(state, data)
+          return Object.assign({ ...state }, data)
         }
         // otherwise, add the child choice to its parent
-        return Object.assign(state, childChoiceToAdd === 1 ? {
+        return Object.assign({ ...state }, childChoiceToAdd === 1 ? {
           choice1StateId: data.id,
         } : {
           choice2StateId: data.id,
         })
       }
-      return state
+      return { ...state }
     })
     this.setState({
       gameStates: childChoiceToAdd > 0 ? [...updatedStates, data] : [...updatedStates],
@@ -275,6 +281,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
       form,
       selectGameState,
       setChildChoiceToAdd,
+      toggleFullscreen,
       submitForm,
     } = this
     const {
@@ -282,16 +289,21 @@ export default class AdventureCreator extends React.Component<{}, State> {
       selectedId,
       showIsFinalForm,
       childChoiceToAdd,
+      isFullscreen,
     } = this.state
 
     const devGameState = convertToDevGameState(gameStates[0], gameStates)
-    console.log('state tree', devGameState, gameStates)
     const selectedState = getSelectedGameState(gameStates, selectedId)
 
     return (
-      <div className={styles.creator}>
+      <div className={`${styles.creator} ${isFullscreen && styles['creator--fullscreen']}`}>
         <h1 className={styles.creator__title}>
           Game Creator/Editor
+          <button
+            onClick={toggleFullscreen()}
+            className={styles.creator__fullscreenButton}>
+            {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+          </button>
         </h1>
         <div className={styles.creator__formWrapper}>
           <SelectedState

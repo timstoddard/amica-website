@@ -40,7 +40,7 @@ export interface FieldControlMeta {
 
 // game states
 interface GameStateBase {
-  id: number
+  id: string
   description: string
   imageSrc: string
   imageAlt: string
@@ -51,8 +51,8 @@ export interface IntermediateGameState extends GameStateBase {
   isFinal: false
   choice1: string
   choice2: string
-  choice1StateId: number
-  choice2StateId: number
+  choice1StateId: string
+  choice2StateId: string
 }
 
 export interface FinalGameState extends GameStateBase {

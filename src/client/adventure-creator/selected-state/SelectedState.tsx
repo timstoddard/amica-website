@@ -15,36 +15,29 @@ const SelectedState = ({
 }) => {
   const intermediateGameState = selectedState as IntermediateGameState
   const finalGameState = selectedState as FinalGameState
-  let selectedStateInfo = null
+  let selectedStateInfo = (
+    <div>None</div>
+  )
   if (selectedState && selectedState.isFinal) {
     selectedStateInfo = (
-      <div className={styles.selectedStateWrapper}>
-        <div className={styles.selectedState__info}>
-          <div>id: {finalGameState.id}</div>
-          <div>description: {finalGameState.description}</div>
-          <div>isFinal: {finalGameState.isFinal}</div>
-          <div>nextGameLink: {finalGameState.nextGameLink}</div>
-        </div>
-      </div>
+      <>
+        <div>id: {finalGameState.id}</div>
+        <div>description: {finalGameState.description}</div>
+        <div>isFinal: {finalGameState.isFinal}</div>
+        <div>nextGameLink: {finalGameState.nextGameLink}</div>
+      </>
     )
   } else if (selectedState && selectedState.isFinal === false) {
     selectedStateInfo = (
-      <div className={styles.selectedStateWrapper}>
-        <div className={styles.selectedState__info}>
-          {/* TODO add edit button (top right corner) */}
-          <div>id: {intermediateGameState.id}</div>
-          <div>description: {intermediateGameState.description}</div>
-          <div>isFinal: {intermediateGameState.isFinal.toString()}</div>
-          <div>choice1: {intermediateGameState.choice1}</div>
-          <div>choice2: {intermediateGameState.choice2}</div>
-          <div>choice1StateId: {intermediateGameState.choice1StateId}</div>
-          <div>choice2StateId: {intermediateGameState.choice2StateId}</div>
-        </div>
-      </div>
-    )
-  } else {
-    selectedStateInfo = (
-      <div>None</div>
+      <>
+        <div>id: {intermediateGameState.id}</div>
+        <div>description: {intermediateGameState.description}</div>
+        <div>isFinal: {intermediateGameState.isFinal.toString()}</div>
+        <div>choice1: {intermediateGameState.choice1}</div>
+        <div>choice2: {intermediateGameState.choice2}</div>
+        <div>choice1StateId: {intermediateGameState.choice1StateId}</div>
+        <div>choice2StateId: {intermediateGameState.choice2StateId}</div>
+      </>
     )
   }
 
@@ -57,19 +50,20 @@ const SelectedState = ({
       <h2 className={styles.selectedState__header}>
         Selected state
       </h2>
-      <div className={styles.selectedStateWrapper}>
+      <div className={styles.selectedState__info}>
         {selectedStateInfo}
       </div>
       {selectedState && (
         <>
-          <img
-            src={selectedState.imageSrc}
-            alt='MISSING/MISNAMED IMAGE'
-            className={styles.selectedState__image} />
-          <img
-            src=''
-            alt={selectedState.imageAlt}
-            className={styles.selectedState__image} />
+          <div className={styles.selectedState__graphic}>
+            <img
+              src={selectedState.imageSrc}
+              alt='MISSING/MISNAMED IMAGE'
+              className={styles.selectedState__graphic__image} />
+            <div className={styles.selectedState__graphic__caption}>
+              {selectedState.imageAlt}
+            </div>
+          </div>
           {canAddChildState && (
             <>
               <div>Add Child State</div>
