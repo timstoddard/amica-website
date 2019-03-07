@@ -9,7 +9,6 @@
     &__submitButton {
       @include defaultTransition;
       @include resetButton;
-      @include undecoratedLink;
       @include grayBackgroundWhenDisabled;
       background: $green;
       border-radius: 5px;

@@ -54,6 +54,7 @@
   }
 }
 
+// TODO make a whole disabled style
 @mixin grayBackgroundWhenDisabled() {
   &:disabled {
     background: $lightGray;
@@ -64,4 +65,8 @@
       cursor: default;
     }
   }
+}
+
+@mixin headerWithOnlyBottomMargin($marginBottom: 12px) {
+  margin: 0 0 $marginBottom 0;
 }
