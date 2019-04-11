@@ -25,11 +25,6 @@ const routes: LoadableRoute[] = [
     path: '/login',
     loader: (): Promise<unknown> => import('../login/Login'),
   },
-  // TODO move game back to protected routes
-  {
-    path: '/game',
-    loader: (): Promise<unknown> => import('../game/Game'),
-  },
   {
     path: '/creator',
     loader: (): Promise<unknown> => import('../adventure-creator/AdventureCreator'),
@@ -41,10 +36,10 @@ const protectedRoutes: LoadableRoute[] = [
     path: '/dashboard',
     loader: (): Promise<unknown> => import('../dashboard/Dashboard'),
   },
-  /*{
+  {
     path: '/game',
     loader: (): Promise<unknown> => import('../game/Game'),
-  },*/
+  },
   {
     path: '/minigames',
     loader: (): Promise<unknown> => import('../minigames/Minigames'),
@@ -64,7 +59,8 @@ const App: React.StatelessComponent<{}> = () => (
             component={createLoadable(loader)} />
         ))}
         {protectedRoutes.map(({ path, loader }: LoadableRoute) => (
-          <ProtectedRoute
+          // TODO change back to protectedroute before going live!
+          <Route
             key={path}
             exact={true}
             path={path}
