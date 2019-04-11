@@ -45,6 +45,10 @@ const protectedRoutes: LoadableRoute[] = [
     path: '/game',
     loader: (): Promise<unknown> => import('../game/Game'),
   },*/
+  {
+    path: '/minigames',
+    loader: (): Promise<unknown> => import('../minigames/Minigames'),
+  },
 ]
 
 const App: React.StatelessComponent<{}> = () => (
