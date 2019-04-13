@@ -1,51 +1,49 @@
 import * as React from 'react'
-import { Person, pickRandom } from './mock-person'
+import PasswordGenerator, { Password } from './password-generator/password-generator'
+import { Profile, ProfileGenerator } from './profile-generator/profile-generator'
 
 const styles = require('./scss/PasswordList.scss') // tslint:disable-line no-var-requires
 
 interface State {
   round: number
   maxRounds: number
-  passwords: string[]
-  mockPerson: Person
+  passwords: Password[]
+  profile: Profile
 }
 
 export default class PasswordList extends React.Component<{}, State> {
+  profileGenerator: ProfileGenerator
+
   constructor(props: {} = {}) {
     super(props)
+
+    this.profileGenerator = new ProfileGenerator()
 
     this.state = {
       round: 1,
       maxRounds: 10,
       passwords: [],
-      mockPerson: null,
+      profile: null,
     }
   }
 
   componentDidMount = () => {
-    this.init()
+    this.generateNewRound()
   }
 
-  generateRandomInfo = () => {
-    const newInfo: Person = {
-      name: pickRandom('name'),
-      birthday: pickRandom('birthday'),
-      address: pickRandom('address'),
-      password: pickRandom('password'),
+  generateNewRound = () => {
+    const profile: Profile = {
+      name: this.profileGenerator.getName(),
+      birthday: this.profileGenerator.getBirthday(),
+      address: this.profileGenerator.getAddress(),
     }
-    this.setState({ mockPerson: newInfo })
-  }
-
-  generatePasswords = () => {
-    const passwords: string[] = []
-    for (let i = 0; i < 4; i++) {
-      let nextPassword = pickRandom('password')
-      while (passwords.includes(nextPassword)) {
-        nextPassword = pickRandom('password')
-      }
-      passwords.push(nextPassword)
-    }
-    this.setState({ passwords })
+    const passwordGenerator = new PasswordGenerator(profile)
+    const passwords = passwordGenerator.getPasswords(4)
+    // console.log(passwords)
+    this.setState({
+      profile,
+      passwords,
+    })
   }
 
   mapNumToLetter = (n: number) => String.fromCharCode(n + 65)
@@ -53,13 +51,15 @@ export default class PasswordList extends React.Component<{}, State> {
   selectPassword = (i: number) => () => {
     const { passwords } = this.state
     const selectedPassword = passwords[i]
-    alert(`You have selected: ${selectedPassword}`)
-    this.init()
-  }
-
-  init = () => {
-    this.generateRandomInfo()
-    this.generatePasswords()
+    const bestPassword = passwords
+      .reduce((prev: Password, curr: Password) => curr.rank > prev.rank ? curr : prev, passwords[0])
+    // TODO better win/lose workflow
+    if (selectedPassword.rank !== bestPassword.rank) {
+      alert('You lost, best password was ' + bestPassword.value)
+    } else {
+      alert(selectedPassword.value + ' is correct!')
+    }
+    this.generateNewRound()
   }
 
   render(): JSX.Element {
@@ -70,7 +70,7 @@ export default class PasswordList extends React.Component<{}, State> {
     const {
       round,
       passwords,
-      mockPerson,
+      profile,
     } = this.state
 
     return (
@@ -78,16 +78,16 @@ export default class PasswordList extends React.Component<{}, State> {
         <h2>Round {round}</h2>
         <div className={styles.infoCard}>
           <div className={styles.infoCard__info}>
-            {mockPerson && (
+            {profile && (
               <>
-                <div className={styles.infoCard__info__name}>{mockPerson.name}</div>
-                <div className={styles.infoCard__info__birthday}>{mockPerson.birthday}</div>
-                <div className={styles.infoCard__info__address}>{mockPerson.address}</div>
+                <div className={styles.infoCard__info__name}>{profile.name}</div>
+                <div className={styles.infoCard__info__birthday}>{profile.birthday}</div>
+                <div className={styles.infoCard__info__address}>{profile.address}</div>
               </>
             )}
           </div>
           <ul className={styles.infoCard__password}>
-            {passwords.map((password: string, i: number) => (
+            {passwords.map((password: Password, i: number) => (
               <li
                 key={i}
                 onClick={selectPassword(i)}
@@ -96,7 +96,7 @@ export default class PasswordList extends React.Component<{}, State> {
                   {mapNumToLetter(i)}
                 </div>
                 <div className={styles.infoCard__password__listItem__value}>
-                  {password}
+                  {password.value}
                 </div>
               </li>
             ))}
