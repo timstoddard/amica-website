@@ -17,11 +17,13 @@ interface State {
 
 export default class PasswordList extends React.Component<{}, State> {
   profileGenerator: ProfileGenerator
+  passwordGenerator: PasswordGenerator
 
   constructor(props: {} = {}) {
     super(props)
 
     this.profileGenerator = new ProfileGenerator()
+    this.passwordGenerator = new PasswordGenerator()
 
     this.state = {
       round: 0,
@@ -40,7 +42,10 @@ export default class PasswordList extends React.Component<{}, State> {
   }
 
   restartGame = () => {
-    this.setState({ round: 0 }, () => {
+    this.setState({
+      round: 0,
+      wins: 0,
+    }, () => {
       this.generateNewRound()
     })
   }
@@ -52,15 +57,16 @@ export default class PasswordList extends React.Component<{}, State> {
       birthday: this.profileGenerator.getBirthday(),
       address: this.profileGenerator.getAddress(),
     }
-    const passwordGenerator = new PasswordGenerator(profile)
-    const passwords = passwordGenerator.getPasswords(4)
+    const passwords = this.passwordGenerator.getPasswords(4, profile)
+    const bestPassword = passwords
+      .reduce((prev: Password, curr: Password) => curr.rank > prev.rank ? curr : prev, passwords[0])
     this.setState({
       profile,
       passwords,
+      bestPassword,
       selectedIndex: -1,
       round: round + 1,
       selectedPassword: null,
-      bestPassword: null,
     })
   }
 
@@ -69,21 +75,18 @@ export default class PasswordList extends React.Component<{}, State> {
   selectPassword = (i: number) => () => {
     const {
       passwords,
+      bestPassword,
       selectedIndex,
       wins,
     } = this.state
-    if (selectedIndex !== -1) {
-      return
+    if (selectedIndex === -1) {
+      const selectedPassword = passwords[i]
+      this.setState({
+        selectedIndex: i,
+        selectedPassword,
+        wins: wins + (selectedPassword === bestPassword ? 1 : 0),
+      })
     }
-    const selectedPassword = passwords[i]
-    const bestPassword = passwords
-      .reduce((prev: Password, curr: Password) => curr.rank > prev.rank ? curr : prev, passwords[0])
-    this.setState({
-      selectedIndex: i,
-      selectedPassword,
-      bestPassword,
-      wins: wins + (selectedPassword === bestPassword ? 1 : 0),
-    })
   }
 
   getScore = () => {
@@ -159,7 +162,7 @@ export default class PasswordList extends React.Component<{}, State> {
             ))}
           </ul>
         </div>
-        {(selectPassword && bestPassword) && (
+        {selectedPassword && (
           <div className={styles.message}>
             <div className={styles.message__result}>
               {selectedPassword === bestPassword

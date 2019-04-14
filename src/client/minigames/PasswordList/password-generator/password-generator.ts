@@ -12,14 +12,12 @@ export interface Password {
 
 export default class PasswordGenerator {
   characterGenerator: CharacterGenerator
-  profile: Profile
 
-  constructor(profile: Profile) {
+  constructor() {
     this.characterGenerator = new CharacterGenerator()
-    this.profile = profile
   }
 
-  getPasswords = (n: number) => {
+  getPasswords = (n: number, profile: Profile) => {
     const result: Password[] = []
     const usedTypes: { [key: string]: boolean } = {}
     for (let i = 0; i < n; i++) {
@@ -33,7 +31,7 @@ export default class PasswordGenerator {
       // generate new password with that type
       const passwordInfo: PasswordEntry = PasswordTypeDB[randomType]
       const password: Password = {
-        value: passwordInfo.generator(this.characterGenerator, this.profile),
+        value: passwordInfo.generator(this.characterGenerator, profile),
         type: randomType,
         rank: passwordInfo.rank,
         message: passwordInfo.message,

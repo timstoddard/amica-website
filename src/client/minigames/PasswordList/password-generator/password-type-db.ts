@@ -48,7 +48,7 @@ export const PasswordTypeDB: { [K in PasswordType]: PasswordEntry } = {
   RELATED: {
     rank: 3,
     // tslint:disable-next-line:max-line-length
-    message: 'This password is related to the user\'s person information, so it would be one of the first things an adversary might guess.',
+    message: 'This password is related to the user\'s personal information, so it would be one of the first things an adversary might guess.',
     generator: (generator: CharacterGenerator, profile: Profile) => {
       const names = profile.name.toLowerCase().split(' ')
       const numbers = [
