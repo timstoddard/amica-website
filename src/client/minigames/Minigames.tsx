@@ -1,4 +1,5 @@
 import * as React from 'react'
+import PasswordList from './PasswordList/PasswordList'
 
 const styles = require('./scss/Minigames.scss') // tslint:disable-line no-var-requires
 
@@ -21,7 +22,7 @@ export default class Minigames extends React.Component<{}, State> {
   render(): JSX.Element {
     return (
       <div className={styles.minigames}>
-        {/* TODO add minigames */}
+        <PasswordList />
       </div>
     )
   }
