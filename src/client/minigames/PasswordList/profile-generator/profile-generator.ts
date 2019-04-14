@@ -61,7 +61,7 @@ export class ProfileGenerator {
       11: 30,
       12: 31,
     }
-    const month = randomInt(12)
+    const month = randomInt(12) + 1
     const day = randomInt(daysInMonths[month])
     const year = randomInRange(2000, 2008)
     return `${this.stringPad(month, 2)}/${this.stringPad(day, 2)}/${year}`

@@ -76,7 +76,7 @@ export const PasswordTypeDB: { [K in PasswordType]: PasswordEntry } = {
   ONLY_ALPHA: {
     rank: 5,
     // tslint:disable-next-line:max-line-length
-    message: 'This password contains only letters, so it is much easier for an adversary to guess than one with numbers or symbols too.',
+    message: 'This password contains only letters, so it is somewhat secure but also much easier for an adversary to guess than one with numbers or symbols too.',
     generator: (generator: CharacterGenerator, profile: Profile) => {
       let value = ''
       const limit = randomInRange(8, 10)
@@ -96,7 +96,7 @@ export const PasswordTypeDB: { [K in PasswordType]: PasswordEntry } = {
   ONLY_ALPHANUMERIC: {
     rank: 6,
     // tslint:disable-next-line:max-line-length
-    message: 'This password contains only letters and numbers, so it is easier for an adversary to guess than one with symbols too.',
+    message: 'This password contains only letters and numbers, so it is pretty secure but also easier for an adversary to guess than one with symbols too.',
     generator: (generator: CharacterGenerator, profile: Profile) => {
       let value = ''
       const limit = randomInRange(7, 9)

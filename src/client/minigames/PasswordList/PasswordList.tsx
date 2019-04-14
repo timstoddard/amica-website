@@ -6,9 +6,13 @@ const styles = require('./scss/PasswordList.scss') // tslint:disable-line no-var
 
 interface State {
   round: number
+  wins: number
   maxRounds: number
   passwords: Password[]
+  selectedPassword: Password
+  bestPassword: Password
   profile: Profile
+  selectedIndex: number
 }
 
 export default class PasswordList extends React.Component<{}, State> {
@@ -20,10 +24,14 @@ export default class PasswordList extends React.Component<{}, State> {
     this.profileGenerator = new ProfileGenerator()
 
     this.state = {
-      round: 1,
+      round: 0,
+      wins: 0,
       maxRounds: 10,
+      selectedPassword: null,
+      bestPassword: null,
       passwords: [],
       profile: null,
+      selectedIndex: -1,
     }
   }
 
@@ -31,7 +39,14 @@ export default class PasswordList extends React.Component<{}, State> {
     this.generateNewRound()
   }
 
+  restartGame = () => {
+    this.setState({ round: 0 }, () => {
+      this.generateNewRound()
+    })
+  }
+
   generateNewRound = () => {
+    const { round } = this.state
     const profile: Profile = {
       name: this.profileGenerator.getName(),
       birthday: this.profileGenerator.getBirthday(),
@@ -39,39 +54,78 @@ export default class PasswordList extends React.Component<{}, State> {
     }
     const passwordGenerator = new PasswordGenerator(profile)
     const passwords = passwordGenerator.getPasswords(4)
-    // console.log(passwords)
     this.setState({
       profile,
       passwords,
+      selectedIndex: -1,
+      round: round + 1,
+      selectedPassword: null,
+      bestPassword: null,
     })
   }
 
   mapNumToLetter = (n: number) => String.fromCharCode(n + 65)
 
   selectPassword = (i: number) => () => {
-    const { passwords } = this.state
+    const {
+      passwords,
+      selectedIndex,
+      wins,
+    } = this.state
+    if (selectedIndex !== -1) {
+      return
+    }
     const selectedPassword = passwords[i]
     const bestPassword = passwords
       .reduce((prev: Password, curr: Password) => curr.rank > prev.rank ? curr : prev, passwords[0])
-    // TODO better win/lose workflow
-    if (selectedPassword.rank !== bestPassword.rank) {
-      alert('You lost, best password was ' + bestPassword.value)
-    } else {
-      alert(selectedPassword.value + ' is correct!')
-    }
-    this.generateNewRound()
+    this.setState({
+      selectedIndex: i,
+      selectedPassword,
+      bestPassword,
+      wins: wins + (selectedPassword === bestPassword ? 1 : 0),
+    })
+  }
+
+  getScore = () => {
+    const {
+      wins,
+      maxRounds,
+    } = this.state
+    const rawScore = wins / maxRounds * 100
+    return rawScore.toFixed(2)
   }
 
   render(): JSX.Element {
     const {
+      generateNewRound,
+      restartGame,
       mapNumToLetter,
       selectPassword,
+      getScore,
     } = this
     const {
       round,
+      maxRounds,
       passwords,
+      selectedPassword,
+      bestPassword,
       profile,
+      selectedIndex,
     } = this.state
+
+    if (round > maxRounds) {
+      return (
+        <>
+          <h2>Score</h2>
+          <div>{getScore()}%</div>
+          <button
+            onClick={restartGame}
+            className={styles.newGameButton}>
+            Play Again
+          </button>
+        </>
+      )
+    }
 
     return (
       <>
@@ -91,7 +145,10 @@ export default class PasswordList extends React.Component<{}, State> {
               <li
                 key={i}
                 onClick={selectPassword(i)}
-                className={styles.infoCard__password__listItem}>
+                className={`
+                  ${styles.infoCard__password__listItem}
+                  ${selectedIndex === i ? styles['infoCard__password__listItem--selected'] : ''}
+                  ${selectedIndex === -1 ? styles['infoCard__password__listItem--noSelection'] : ''}`}>
                 <div className={styles.infoCard__password__listItem__letter}>
                   {mapNumToLetter(i)}
                 </div>
@@ -102,6 +159,23 @@ export default class PasswordList extends React.Component<{}, State> {
             ))}
           </ul>
         </div>
+        {(selectPassword && bestPassword) && (
+          <div className={styles.message}>
+            <div className={styles.message__result}>
+              {selectedPassword === bestPassword
+                ? `Correct! ${selectedPassword.value} is the most secure password in the list.`
+                : `Nice try, but ${bestPassword.value} is more secure than your choice of ${selectedPassword.value}.`}
+            </div>
+            <div className={styles.message__explanation}>
+              {selectedPassword.message}
+            </div>
+            <button
+              className={styles.message__nextButton}
+              onClick={generateNewRound}>
+              {round === maxRounds ? 'See Results' : 'Next Round'}
+            </button>
+          </div>
+        )}
       </>
     )
   }
