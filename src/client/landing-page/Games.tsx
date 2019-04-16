@@ -2,7 +2,7 @@ import * as React from 'react'
 
 const styles = require('./scss/Games.scss') // tslint:disable-line no-var-requires
 
-interface GameInfo {
+/*interface GameInfo {
   imageSrc: string
   title: string
   description: string
@@ -29,7 +29,7 @@ const games: GameInfo[] = [
     title: 'Game 4',
     description: 'This is a short blurb about game 4.',
   },
-]
+]*/
 
 const Games = () => (
   <div
@@ -39,8 +39,10 @@ const Games = () => (
       Games
     </h2>
     <div className={styles.games__text}>
+      {/* tslint:disable-next-line:max-line-length */}
       <p>We've worked tirelessly to bring your children games they will enjoy, that teach them all about how to behave online.</p>
-      <ul className={styles.games__list}>
+      <p>COMING SOON: More info about our games!!</p>
+      {/* <ul className={styles.games__list}>
         {games.map(({ imageSrc, title, description }: GameInfo) => (
           <li
             key={title}
@@ -57,7 +59,7 @@ const Games = () => (
             </div>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   </div>
 )

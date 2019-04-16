@@ -8,20 +8,26 @@
     @include landingPageTitle;
   }
 
-  &__table {
-    border-collapse: collapse;
-    color: $darkGray;
-    margin: 0 auto;
+  &__criterion {
 
-    &__cell {
-      border: 1px solid $lightGray;
-      padding: 4px 8px;
+    &--yes,
+    &--high {
+      border-radius: 4px;
+      padding: 5px 10px;
+      background: rgba($green, 0.35);
     }
-  }
 
-  &__criteria {
-    &--hasFeature {
-      background: $green;
+    &--medium {
+      border-radius: 4px;
+      padding: 5px 10px;
+      background: rgba(yellow, 0.35);
+    }
+
+    &--no,
+    &--low {
+      border-radius: 4px;
+      padding: 5px 10px;
+      background: rgba(red, 0.35);
     }
   }
 }

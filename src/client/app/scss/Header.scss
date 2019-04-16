@@ -2,7 +2,7 @@
 @import 'src/client/scss/variables.scss';
 
 .header {
-  background: $mainContentBlue;
+  background: $blue;
   box-shadow: 0 0 8px 4px rgba(0,0,0,0.3);
   display: flex;
   justify-content: space-between;
@@ -42,7 +42,7 @@
 
     &:hover {
       background: #fcfcfc;
-      color: $mainContentBlue;
+      color: $blue;
       cursor: pointer;
     }
   }
