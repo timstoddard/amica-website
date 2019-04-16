@@ -1,13 +1,15 @@
 import * as Owasp from 'owasp-password-strength-test'
 import * as React from 'react'
 import { Alert, Form, FormGroup, Input, Label, Progress } from 'reactstrap'
+import { TestResult } from 'owasp-password-strength-test'
 
 const styles = require('./scss/PasswordGame.scss') // tslint:disable-line no-var-requires
 
 interface State {
-  first: string,
+  password: string,
   passed: number,
   percent: number,
+  passwordResult: TestResult,
 }
 
 class PasswordGame extends React.Component<{}, State> {
@@ -15,9 +17,10 @@ class PasswordGame extends React.Component<{}, State> {
   constructor(props: {} = {}) {
     super(props)
     this.state = {
-      first : '',
+      password : '',
       passed: 0,
       percent: 0,
+      passwordResult: null,
     }
   }
 
@@ -33,18 +36,18 @@ class PasswordGame extends React.Component<{}, State> {
   }
 
   firstChange = (e: React.SyntheticEvent) => {
-    const first = (e.target as HTMLInputElement).value
-    console.log(first)
-    const passed = Owasp.test(first).passedTests.length
-    const failed = Owasp.test(first).failedTests.length
+    const password = (e.target as HTMLInputElement).value
+    console.log(password)
+    const passwordResult = Owasp.test(password)
+    const passed = passwordResult.passedTests.length
+    const failed = passwordResult.failedTests.length
     const total = passed + failed
-
-    const percent = Owasp.test(first).passedTests.includes(0)
-      ? passed / total * 100
-      : first.length
+    const percent = passwordResult.passedTests.includes(0)
+      ? passed / total * 100 : password.length
     this.setState({
-      first,
+      password,
       percent,
+      passwordResult,
     })
   }
 
@@ -58,11 +61,10 @@ class PasswordGame extends React.Component<{}, State> {
       handleSubmit,
     } = this
     const {
-      first,
+      password,
       percent,
+      passwordResult,
     } = this.state
-
-    var text = Owasp.test(first).errors.join('\n')
 
     return (
         <div>
@@ -76,7 +78,7 @@ class PasswordGame extends React.Component<{}, State> {
                     type='text'
                     placeholder='Password'
                     id='first'
-                    value={first}
+                    value={password}
                     onChange={firstChange} />
               </FormGroup>
             </Form>
@@ -86,9 +88,9 @@ class PasswordGame extends React.Component<{}, State> {
                 animated />
           </div>
           <div>
-            {(Owasp.test(first).errors.length > 0) && (
+            {(passwordResult && passwordResult.errors.length > 0) && (
                 <div>
-                  {text.split('\n').map((i, key) => {
+                  {passwordResult.errors.map((i, key) => {
                     return <Alert color='danger' key={key}>{i}</Alert>;
                   })}
                 </div>
