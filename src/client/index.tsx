@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom'
 import Routes from './routes'
 import store from './store'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 render(
   <Provider store={store}>
     <BrowserRouter key={new Date().valueOf()}>
