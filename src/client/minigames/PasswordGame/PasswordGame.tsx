@@ -35,15 +35,15 @@ class PasswordGame extends React.Component<{}, State> {
       })
   }
 
-  firstChange = (e: React.SyntheticEvent) => {
+  handlePasswordChange = (e: React.SyntheticEvent) => {
     const password = (e.target as HTMLInputElement).value
-    console.log(password)
     const passwordResult = Owasp.test(password)
     const passed = passwordResult.passedTests.length
     const failed = passwordResult.failedTests.length
     const total = passed + failed
     const percent = passwordResult.passedTests.includes(0)
-      ? passed / total * 100 : password.length
+      ? passed / total * 100
+        : password.length
     this.setState({
       password,
       percent,
@@ -57,7 +57,7 @@ class PasswordGame extends React.Component<{}, State> {
 
   render(): JSX.Element {
     const {
-      firstChange,
+      handlePasswordChange,
       handleSubmit,
     } = this
     const {
@@ -71,15 +71,15 @@ class PasswordGame extends React.Component<{}, State> {
           <div>
             <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label for='first'>
-                  Enter Password
+                <Label for='password'>
+                  Password Strength Minigame
                 </Label>
                 <Input
                     type='text'
                     placeholder='Password'
-                    id='first'
+                    id='password'
                     value={password}
-                    onChange={firstChange} />
+                    onChange={handlePasswordChange} />
               </FormGroup>
             </Form>
             <Progress
