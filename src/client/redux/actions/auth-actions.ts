@@ -1,34 +1,36 @@
-import axios, { AxiosError, AxiosResponse } from 'axios'
 import { History } from 'history'
-import * as jwt_decode from 'jwt-decode'
 import { Dispatch } from 'react'
-import setAuthToken from '../../shared/functions'
-import { LoginFormData, SignUpFormData, User } from '../../shared/types'
+import {auth} from '../../shared/firebase'
+import { LoginFormData, SignUpFormData, StringMap, User} from '../../shared/types'
 import { authErrors, setCurrentUser } from './types'
+import UserCredential = firebase.auth.UserCredential
 
 export const registerUser = (userData: SignUpFormData, history: History) => (dispatch: Dispatch<unknown>) => {
-  return axios
-    .post('/api/users/register', userData)
-    .then((res: AxiosResponse) => history.push('/login'))
-    .catch((err: AxiosError) => dispatch(authErrors(err.response.data)))
+  auth
+    .createUserWithEmailAndPassword(
+        userData.email,
+        userData.password,
+    )
+    .then((res: UserCredential) => history.push('/login'))
+    .catch((err: StringMap) => dispatch(authErrors(err)))
 }
 
 export const loginUser = (userData: LoginFormData) => (dispatch: Dispatch<unknown>) => {
-  axios
-    .post('/api/users/login', userData)
-    .then((res: AxiosResponse) => {
-      const { token } = res.data
-      // TODO find out if users want to not have to log in every session; if so, use localStorage
-      sessionStorage.setItem('jwtToken', token)
-      setAuthToken(token)
-      const decoded = jwt_decode(token) as User
-      dispatch(setCurrentUser(decoded))
-    })
-    .catch((err: AxiosError) => dispatch(authErrors(err.response.data)))
+    auth
+        .signInWithEmailAndPassword(
+            userData.email,
+            userData.password,
+        )
+        .then((res: UserCredential) => {
+            const loggedUser = {
+                id: res.additionalUserInfo.providerId,
+                name: userData.email,
+            }
+            dispatch(setCurrentUser(loggedUser))
+        })
+        .catch( (err: StringMap) => dispatch(authErrors(err)))
 }
 
 export const logoutUser = () => (dispatch: Dispatch<unknown>) => {
-  sessionStorage.removeItem('jwtToken')
-  setAuthToken()
   dispatch(setCurrentUser())
 }

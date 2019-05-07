@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Action } from 'redux'
 import { logout } from '../redux/actions/types'
 import { AppState, User } from '../shared/types'
+import Module from './Modules'
 
 const styles = require('./scss/Dashboard.scss') // tslint:disable-line no-var-requires
 
@@ -36,6 +37,7 @@ class Dashboard extends React.Component<Props, State> {
 
     return (
       <div className={styles.dashboard}>
+        /*
         <h1>Dashboard</h1>
         <div>Hello, {currentUser.name}!</div>
         <Link to='game'>Open game</Link>
@@ -44,6 +46,10 @@ class Dashboard extends React.Component<Props, State> {
           className={styles.dashboard__logoutButton}>
           Logout
         </button>
+         */
+        <div>
+          <Module/>
+        </div>
       </div>
     )
   }

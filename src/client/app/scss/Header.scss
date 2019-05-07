@@ -1,9 +1,12 @@
 @import 'src/client/scss/mixins.scss';
 @import 'src/client/scss/variables.scss';
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
 
 .header {
-  background: $blue;
+  background: $lightGreen; // $blue
   box-shadow: 0 0 8px 4px rgba(0,0,0,0.3);
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
   left: 0;
@@ -16,12 +19,17 @@
   &__title {
     @include resetButton;
     @include undecoratedLink;
-    color: rgb(255,0,0);
+    color: rgb(255,255,255);
     cursor: pointer;
-    font-size: 32px;
-    font-weight: bold;
-    margin: 8px;
-    padding: 2px 4px;
+    align-items: center;
+    font-size: 40px; // 32px
+    font-weight: 900;
+    margin: 3px; // 8px
+    padding: 0px 20px; // 2px 4px
+
+    &:hover {
+      color: #fcfcfc;
+    }
   }
 
   &__links {
@@ -35,14 +43,15 @@
     @include undecoratedLink;
     border-radius: 5px;
     color: #fcfcfc;
-    font-size: 18px;
-    margin: 0 2px;
-    padding: 10px 20px;
+    font-size: 14px; //18px
+    margin: 0 6px; // 0 6px
+    padding: 8px 20px; // 10px 20px
     white-space: nowrap;
+    box-shadow: 0px 0px 0px 2px #ffffff inset !important;
 
     &:hover {
       background: #fcfcfc;
-      color: $blue;
+      color: $lightGreen;
       cursor: pointer;
     }
   }

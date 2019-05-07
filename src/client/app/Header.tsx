@@ -36,7 +36,7 @@ const Header = () => (
     <Link
       to=''
       className={styles.header__title}>
-      Amica
+      amica
     </Link>
     <div className={styles.header__links}>
       {buttons.map(({ toId, text }: HeaderButton) => (

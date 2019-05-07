@@ -67,7 +67,7 @@ export default class Game extends React.Component<{}, State> {
     return (
       <div className={styles.game}>
         <h2 className={styles.game__header}>
-          prototype game
+          Bullying Module
         </h2>
         <div
           className={styles.game__content}

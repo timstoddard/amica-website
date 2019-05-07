@@ -1,5 +1,11 @@
 @import 'src/client/scss/variables.scss';
 
+img {
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0 10px;
+}
+
 .footer {
   align-items: center;
   background: rgb(200,200,200);

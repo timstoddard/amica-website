@@ -1,6 +1,9 @@
 @import 'src/client/scss/variables.scss';
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
 
 .content {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
   margin: 0 auto;
   max-width: 700px;
   min-height: calc(100vh - #{$footerHeight});

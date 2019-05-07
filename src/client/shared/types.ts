@@ -15,8 +15,6 @@ export interface AppState {
 export interface User {
   id: string
   name: string
-  exp: number
-  iat: number
 }
 
 // form data
