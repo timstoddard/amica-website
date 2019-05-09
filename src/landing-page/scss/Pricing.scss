@@ -1,0 +1,10 @@
+@import 'src/scss/variables.scss';
+@import './mixins.scss';
+
+.pricing {
+  @include landingPageSection;
+
+  &__title {
+    @include landingPageTitle;
+  }
+}

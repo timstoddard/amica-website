@@ -5,8 +5,8 @@ const autoprefixer = require('autoprefixer')
 module.exports = {
   baseConfig: (mode = 'prod') => ({
     entry: [
-      './src/client/index.tsx',
-      './src/client/index.scss',
+      './src/index.tsx',
+      './src/index.scss',
     ],
     output: {
       filename: 'bundle.js',
@@ -56,6 +56,12 @@ module.exports = {
             },
           ],
         },
+        {
+          test: /\.(png|svg|jpg|gif)$/,
+          use: [
+           'file-loader'
+          ]
+        }
       ],
     },
     resolve: {
@@ -64,7 +70,7 @@ module.exports = {
   }),
   sharedPlugins: (mode = 'prod') => {
     const htmlWebpackPluginOptions = {
-      template: 'src/client/app.html',
+      template: 'src/app.html',
       filename: '../index.html',
     }
     if (mode === 'prod') {

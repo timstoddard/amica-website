@@ -5,9 +5,6 @@ npm-debug.log
 # apple files
 .DS_Store
 
-# Config
-config/keys.js
-
 # generated production files
 dist/*
 index.html

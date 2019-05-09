@@ -51,7 +51,7 @@ app.use(cors(options))
 app.use(cors())
 
 // MongoDB Config
-const config_db = require('./config/keys').mongoURI
+const config_db = {} // require('./config/keys').mongoURI
 
 // Connect to MongoDB
 mongoose.connect(config_db, { useNewUrlParser: true })
