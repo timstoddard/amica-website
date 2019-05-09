@@ -1,5 +1,4 @@
 import * as React from 'react'
-import PasswordList from './PasswordList/PasswordList'
 import PasswordGame from './PasswordGame/PasswordGame'
 
 const styles = require('./scss/Minigames.scss') // tslint:disable-line no-var-requires

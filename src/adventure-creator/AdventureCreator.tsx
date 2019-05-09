@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { AbstractControl, FieldControl, FieldGroup, FormBuilder, FormGroup, Validators } from 'react-reactive-form'
+import { AbstractControl, FieldControl, FieldGroup, FormBuilder, FormGroup } from 'react-reactive-form'
 import Checkbox from '../shared/components/checkbox/Checkbox'
 import Textbox from '../shared/components/textbox/Textbox'
 import { DevGameState, FieldControlMeta, GameState } from '../shared/types'
