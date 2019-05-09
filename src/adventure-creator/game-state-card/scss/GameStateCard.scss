@@ -1,0 +1,119 @@
+@import 'src/scss/variables.scss';
+
+// setting sizes in em makes sure that the gaps and border widths scale too with the scaling factor
+$nodeGap: 1em;
+$borderWidth: 0.125em;
+$connectorWidth: .0625em;
+
+.card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0 $nodeGap;
+  position: relative;
+  
+  &:before {
+    border-top: $connectorWidth solid black;
+    content: '';
+    display: block;
+    height: $connectorWidth;
+    left: calc(0% - #{$connectorWidth / 2});
+    position: absolute;
+    top: calc(#{-$nodeGap} - #{$connectorWidth / 2});
+    width: 100%;
+  }
+  
+  &:first-child:before {
+    left: calc(50% - #{$connectorWidth / 2});
+    max-width: calc(100% - 50% + #{$connectorWidth});
+  }
+
+  &:last-child:before {
+    left: auto;
+    max-width: calc(100% - 50% + #{$connectorWidth});
+    right: calc(50% - #{$connectorWidth / 2});
+  }
+
+  &:only-child {
+    &:before {
+      display: none;
+    }
+  
+    & > &__info:before {
+      height: calc(#{$nodeGap} + #{$connectorWidth});
+      top: calc(#{-$nodeGap} - #{$connectorWidth});
+    }
+  }
+
+  &--root > .card__info:before {
+    display: none;
+  }
+
+  &__info {
+    background: white;
+    border: $borderWidth solid $lightGray;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 30px 8px 10px;
+    position: relative;
+    width: 300px;
+  
+    &:hover {
+      border: $borderWidth solid red;
+      cursor: pointer;
+    }
+
+    &:before,
+    &:after {
+      border-left: $connectorWidth solid black;
+      content: '';
+      display: block;
+      height: $nodeGap;
+      left: calc(50% - #{$connectorWidth / 2});
+      position: absolute;
+      width: $connectorWidth;
+    }
+  
+    &:before {
+      top: calc(#{-$nodeGap} - #{$borderWidth});
+    }
+  
+    &:after {
+      top: calc(100% + #{$borderWidth});
+    }
+
+    &:only-child:after {
+      display: none;
+    }
+
+    &__type,
+    &__id {
+      border-bottom: 1px dashed $lightGray;
+      padding: 2px 2px 2px 2px;
+      position: absolute;
+      top: 0;
+    }
+
+    &__type {
+      border-right: 1px dashed $lightGray;
+      left: 0;
+      padding-left: 4px;
+    }
+    
+    &__id {
+      border-left: 1px dashed $lightGray;
+      padding-right: 4px;
+      right: 0;
+    }
+
+    &__image {
+      width: 100%;
+    }
+  }
+
+  &__children {
+    display: inline-flex;
+    margin: ($nodeGap * 2) 0;
+  }
+}

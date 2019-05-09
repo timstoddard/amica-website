@@ -1,0 +1,21 @@
+@import 'src/scss/mixins.scss';
+
+@mixin landingPageSection() {
+  margin-bottom: 40px;
+
+  &:before {
+    $height: 80px;
+    content: ' ';
+    display: block;
+    height: $height;
+    margin-top: -$height;
+  }
+}
+
+@mixin landingPageTitle() {
+  @include playfairDisplayFont;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 12px;
+}
