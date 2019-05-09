@@ -1,4 +1,3 @@
-import { Action } from 'redux'
 import { NotificationType, StringMap, User } from '../../shared/types'
 
 // auth stuff

@@ -14,4 +14,4 @@ Technologies used:
 * [SCSS](https://sass-lang.com)
 * [CSS Modules](https://github.com/css-modules/css-modules)
 * [TSLint](https://palantir.github.io/tslint)
-* [Express](https://expressjs.com)
+* [Firebase](https://firebase.google.com)

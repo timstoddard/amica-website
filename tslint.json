@@ -5,14 +5,14 @@
     "interface-name": false,
     "max-classes-per-file": false,
     "member-access": false,
+    "no-any": true,
     "no-empty": false,
-    "no-string-throw": false,
     "no-unused-expression": true,
+    "no-shadowed-variable": false,
+    "no-string-throw": false,
     "object-literal-sort-keys": false,
     "quotemark": [true, "single"],
     "semicolon": [true, "never"],
-    "no-any": true,
-    "no-shadowed-variable": false,
     "typedef": {
       "options": [
         "call-signature",

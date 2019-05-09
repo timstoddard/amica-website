@@ -25,7 +25,8 @@ class Dashboard extends React.Component<Props, {}> {
 
   render(): JSX.Element {
     const { logoutUser } = this
-    const { currentUser } = this.props
+    // TODO uncomment this once firebase auth works
+    // const { currentUser } = this.props
 
     return (
       <div className={styles.dashboard}>

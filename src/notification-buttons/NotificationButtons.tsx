@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { Action } from 'redux'
 import { newNotification } from '../redux/actions/types'
-import { AppState, Notification, NotificationType, User } from '../shared/types'
+import { AppState, Notification, NotificationType } from '../shared/types'
 import NotificationButton from './notification-button/NotificationButton'
 
 const styles = require('./scss/NotificationButtons.scss') // tslint:disable-line no-var-requires

@@ -1,9 +1,9 @@
 import * as Owasp from 'owasp-password-strength-test'
+import { TestResult } from 'owasp-password-strength-test'
 import * as React from 'react'
 import { Alert, Form, FormGroup, Input, Label, Progress } from 'reactstrap'
-import { TestResult } from 'owasp-password-strength-test'
 
-const styles = require('./scss/PasswordGame.scss') // tslint:disable-line no-var-requires
+// const styles = require('./scss/PasswordGame.scss') // tslint:disable-line no-var-requires
 
 interface State {
   password: string,
@@ -43,7 +43,7 @@ class PasswordGame extends React.Component<{}, State> {
     const total = passed + failed
     const percent = passwordResult.passedTests.includes(0)
       ? passed / total * 100
-        : password.length
+      : password.length
     this.setState({
       password,
       percent,
@@ -67,36 +67,38 @@ class PasswordGame extends React.Component<{}, State> {
     } = this.state
 
     return (
+      <div>
         <div>
-          <div>
-            <Form onSubmit={handleSubmit}>
-              <FormGroup>
-                <Label for='password'>
-                  Password Strength Minigame
-                </Label>
-                <Input
-                    type='text'
-                    placeholder='Password'
-                    id='password'
-                    value={password}
-                    onChange={handlePasswordChange} />
-              </FormGroup>
-            </Form>
-            <Progress
-                value={percent.toFixed(2)}
-                color='success'
-                animated />
-          </div>
-          <div>
-            {(passwordResult && passwordResult.errors.length > 0) && (
-                <div>
-                  {passwordResult.errors.map((i, key) => {
-                    return <Alert color='danger' key={key}>{i}</Alert>;
-                  })}
-                </div>
-            )}
-          </div>
+          <Form onSubmit={handleSubmit}>
+            <FormGroup>
+              <Label for='password'>
+                Password Strength Minigame
+              </Label>
+              <Input
+                type='text'
+                placeholder='Password'
+                id='password'
+                value={password}
+                onChange={handlePasswordChange} />
+            </FormGroup>
+          </Form>
+          <Progress
+            value={percent.toFixed(2)}
+            color='success'
+            animated />
         </div>
+        <div>
+          {(passwordResult && passwordResult.errors.length > 0) && (
+            <div>
+              {passwordResult.errors.map((error: string, i: number) => (
+                <Alert color='danger' key={i}>
+                  {error}
+                </Alert>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     )
   }
 }

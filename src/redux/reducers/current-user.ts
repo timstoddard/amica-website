@@ -1,4 +1,3 @@
-import { Action } from 'redux'
 import { User } from '../../shared/types'
 import { AuthAction, AuthenticationActions } from '../actions/types'
 
