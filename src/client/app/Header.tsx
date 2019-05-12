@@ -31,6 +31,8 @@ const scrollToId = (toId: string) => () => {
   }
 }
 
+// TODO: ADD LOGO
+
 const Header = () => (
   <header className={styles.header}>
     <Link

@@ -1,15 +1,6 @@
-@import 'src/client/scss/variables.scss';
-@import './mixins.scss';
 
-img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-span {
-  text-align: left;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-  font-weight: 100;
+.landingPage {
+  background: url('/media/images/landing.png');
+  width: 100%;
+  min-height: 500px;
 }

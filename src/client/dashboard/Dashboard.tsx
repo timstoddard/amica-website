@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {Button, Col, Container, Row} from 'reactstrap'
-import { Action } from 'redux'
+import {Action} from 'redux'
 import Game from '../game/Game'
-import { logout } from '../redux/actions/types'
-import { AppState, User } from '../shared/types'
+import {logout} from '../redux/actions/types'
+import {AppState, User} from '../shared/types'
 
 const styles = require('./scss/Dashboard.scss') // tslint:disable-line no-var-requires
 
@@ -28,7 +28,7 @@ class Dashboard extends React.Component<Props, State> {
   }
 
   logoutUser = (): void => {
-    const { doLogout } = this.props
+    const {doLogout} = this.props
     doLogout()
   }
 
@@ -41,21 +41,21 @@ class Dashboard extends React.Component<Props, State> {
     } = this.props
 
     return (
-        <div className={styles.dashboard}>
-          <h1>Dashboard</h1>
-          <div>Hello, {currentUser.name}!</div>
-          <Link to='game'>Open game</Link>
-          <button
-              onClick={logoutUser}
-              className={styles.dashboard__logoutButton}>
-            Logout
-          </button>
-        </div>
+      <div className={styles.dashboard}>
+        <h1>Dashboard</h1>
+        <div>Hello, {currentUser.name}!</div>
+        <Link to='game'>Open game</Link>
+        <button
+          onClick={logoutUser}
+          className={styles.dashboard__logoutButton}>
+          Logout
+        </button>
+      </div>
     )
   }
 }
 
-const mapStateToProps = ({ currentUser }: AppState) => ({
+const mapStateToProps = ({currentUser}: AppState) => ({
   currentUser,
 })
 
