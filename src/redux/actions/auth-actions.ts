@@ -1,8 +1,8 @@
-import {History} from 'history'
-import {Dispatch} from 'react'
-import {auth} from '../../shared/firebase'
-import {LoginFormData, SignUpFormData, StringMap} from '../../shared/types'
-import {authErrors, setCurrentUser} from './types'
+import { History } from 'history'
+import { Dispatch } from 'react'
+import { auth } from '../../shared/firebase'
+import { LoginFormData, SignUpFormData, StringMap } from '../../shared/types'
+import { authErrors, setCurrentUser } from './types'
 import UserCredential = firebase.auth.UserCredential
 
 export const registerUser = (userData: SignUpFormData, history: History) => (dispatch: Dispatch<unknown>) => {

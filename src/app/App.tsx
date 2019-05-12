@@ -1,6 +1,6 @@
 import * as React from 'react'
-import {Redirect, Route, Switch} from 'react-router-dom'
-import {createLoadable} from '../routes'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import { createLoadable } from '../routes'
 import ProtectedRoute from '../shared/components/ProtectedRoute'
 import Footer from './Footer'
 import Header from './Header'
