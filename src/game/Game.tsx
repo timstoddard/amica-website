@@ -19,7 +19,7 @@ export default class Game extends React.Component<{}, State> {
     super(props)
 
     this.state = {
-      gameState: states[0],
+      gameState: states[19],
       descriptionToShow: '',
       showButtons: false,
     }
@@ -59,7 +59,7 @@ export default class Game extends React.Component<{}, State> {
           this.setState({ showButtons: true })
         }, 1000)  as unknown as number
       }
-    }, 120) as unknown as number
+    }, 1) as unknown as number // 120
   }
 
   render(): JSX.Element {
@@ -75,7 +75,7 @@ export default class Game extends React.Component<{}, State> {
     return (
       <div className={styles.game}>
         <h2 className={styles.game__header}>
-          prototype game
+          Bullying Module
         </h2>
         <div
           className={styles.game__content}
@@ -109,7 +109,7 @@ export default class Game extends React.Component<{}, State> {
                 <Link
                   to='game'
                   className={styles.game__link}>
-                  Go to next game
+                  Go to home
                 </Link>
               )}
             </>

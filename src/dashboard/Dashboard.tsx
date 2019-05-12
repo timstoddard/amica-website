@@ -19,14 +19,17 @@ class Dashboard extends React.Component<Props, {}> {
   }
 
   logoutUser = (): void => {
-    const { doLogout } = this.props
+    const {doLogout} = this.props
     doLogout()
   }
 
   render(): JSX.Element {
-    const { logoutUser } = this
-    // TODO uncomment this once firebase auth works
-    // const { currentUser } = this.props
+    const {
+      logoutUser,
+    } = this
+    //const {
+    //  currentUser,
+    //} = this.props
 
     return (
       <div className={styles.dashboard}>
@@ -48,7 +51,7 @@ class Dashboard extends React.Component<Props, {}> {
   }
 }
 
-const mapStateToProps = ({ currentUser }: AppState) => ({
+const mapStateToProps = ({currentUser}: AppState) => ({
   currentUser,
 })
 

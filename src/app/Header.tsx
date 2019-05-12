@@ -40,6 +40,8 @@ interface HeaderProps {
   currentUser: User
 }
 
+// TODO: ADD LOGO
+
 const Header = ({ currentUser }: HeaderProps) => {
   const links = currentUser ? loggedInLinks : loggedOutLinks
   return (
@@ -47,7 +49,7 @@ const Header = ({ currentUser }: HeaderProps) => {
       <Link
         to=''
         className={styles.header__title}>
-        Amica
+        amica
       </Link>
       <div className={styles.header__links}>
         {buttons.map(({ toId, text }: HeaderButton) => (
