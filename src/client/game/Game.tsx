@@ -16,7 +16,7 @@ export default class Game extends React.Component<{}, State> {
     super(props)
 
     this.state = {
-      gameState: states[0],
+      gameState: states[19],
       descriptionToShow: '',
       showButtons: false,
     }
@@ -51,7 +51,7 @@ export default class Game extends React.Component<{}, State> {
           this.setState({ showButtons: true })
         }, 1000)
       }
-    }, 120)
+    }, 1) // 120
   }
 
   render(): JSX.Element {
@@ -101,7 +101,7 @@ export default class Game extends React.Component<{}, State> {
                 <Link
                   to='game'
                   className={styles.game__link}>
-                  Go to next game
+                  Go to home
                 </Link>
               )}
             </>

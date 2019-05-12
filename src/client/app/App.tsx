@@ -32,7 +32,7 @@ const routes: LoadableRoute[] = [
 ]
 
 const protectedRoutes: LoadableRoute[] = [
-  {
+  { // TODO: MOVE DASHBOARD BACK TO PROTECTED
     path: '/dashboard',
     loader: (): Promise<unknown> => import('../dashboard/Dashboard'),
   },
@@ -52,19 +52,19 @@ const App: React.StatelessComponent<{}> = () => (
     <div className={styles.content}>
       <Switch>
         {routes.map(({ path, loader }: LoadableRoute) => (
-          <Route
-            key={path}
-            exact={true}
-            path={path}
-            component={createLoadable(loader)} />
+            <Route
+                key={path}
+                exact={true}
+                path={path}
+                component={createLoadable(loader)} />
         ))}
         {protectedRoutes.map(({ path, loader }: LoadableRoute) => (
-          // TODO change back to protectedroute before going live!
-          <Route
-            key={path}
-            exact={true}
-            path={path}
-            component={createLoadable(loader)} />
+            // TODO change back to protectedroute before going live!
+            <Route
+                key={path}
+                exact={true}
+                path={path}
+                component={createLoadable(loader)} />
         ))}
         <Route path='/*'>
           <Redirect to='/' />

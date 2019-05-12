@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f7a51fe0-0d34-4dd1-bebf-4b42d3c588f3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/media/bully/Bully_Screen_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 12-A – 2_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 12-A_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 12-B – 2_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 12-B_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 16-A-2-B –Messages Group_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 16-A-2-B –Messages Penny_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 16-A-2-B –Messages_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 16-A-2-B –Social Media_no_buttons_no_text.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 16-A-2-B_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 16-A-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 16-A-2_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 20_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 24 – 1_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying- 24_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-12-B-2- B_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-12-B-2- C_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-12-B-2- D_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-12-B-2- E_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-12_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-14_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-15_no_buttons_no_text.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-16 - B_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-16- A_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-16- B- 2-B –Messages_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-16- B- 2-B –Penny_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-16- B- 2-B_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-16- B- 2_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-16_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18A – 1_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18A – 2_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18A – 3_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18A- 1A_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18A- 2A_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18A- 3A_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18A_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18B – 1A_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18B – 1_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18B – 2A_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18B – 2_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-18B_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-21_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-22_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bullying-23_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bystander_Screen_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Bystander_screen_9_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Good_Job_No_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Landing_Page_Bullying.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Screen_11_1_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Screen_11_2_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Screen_11_No_Buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Screen_3_no_button.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Screen_4_no_button.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Screen_5_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Screen_6_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Screen_7a_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Screen_8_No_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/bully/Screen_9_no_buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/images/landing.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/client/dashboard/Email.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/client/dashboard/Phone.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/client/dashboard/SocialMedia.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/client/dashboard/game-states.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/background.png" beforeDir="false" afterPath="$PROJECT_DIR$/media/bully/Background_Light.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/monster1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/monster2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/monster3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/app/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/app/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/app/scss/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/app/scss/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/app/scss/Footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/app/scss/Footer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/app/scss/Header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/app/scss/Header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/dashboard/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/dashboard/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/dashboard/Modules.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/dashboard/scss/Dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/dashboard/scss/Dashboard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/dashboard/scss/Modules.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/game/Game.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/game/Game.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/game/game-states.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/game/game-states.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/game/scss/Game.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/game/scss/Game.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/landing-page/LandingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/landing-page/LandingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/scss/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/scss/variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/shared/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/shared/firebase.ts" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/node_modules/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/client/game/game-states.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/media/bully/Bullying-14_no_buttons.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/game/Game.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/client/account/Account.tsx" />
+        <option value="$PROJECT_DIR$/src/client/login/LoginForm.tsx" />
+        <option value="$PROJECT_DIR$/src/client/firebase/config.ts" />
+        <option value="$PROJECT_DIR$/src/client/firebase/db.ts" />
+        <option value="$PROJECT_DIR$/src/client/login/Login.tsx" />
+        <option value="$PROJECT_DIR$/src/client/firebase/firebase.ts" />
+        <option value="$PROJECT_DIR$/src/client/firebase/auth.ts" />
+        <option value="$PROJECT_DIR$/src/client/firebase/index.ts" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/client/shared/theme.ts" />
+        <option value="$PROJECT_DIR$/src/client/app/Header.tsx" />
+        <option value="$PROJECT_DIR$/src/client/app.html" />
+        <option value="$PROJECT_DIR$/src/client/landing-page/scss/LandingPage.scss" />
+        <option value="$PROJECT_DIR$/src/client/dashboard/modules.ts" />
+        <option value="$PROJECT_DIR$/src/client/dashboard/modules.tsx" />
+        <option value="$PROJECT_DIR$/src/client/dashboard/scss/Modules.scss" />
+        <option value="$PROJECT_DIR$/src/client/landing-page/LandingPage.tsx" />
+        <option value="$PROJECT_DIR$/src/client/scss/variables.scss" />
+        <option value="$PROJECT_DIR$/src/client/app/scss/Header.scss" />
+        <option value="$PROJECT_DIR$/src/client/app/scss/Footer.scss" />
+        <option value="$PROJECT_DIR$/src/client/dashboard/scss/Dashboard.scss" />
+        <option value="$PROJECT_DIR$/src/client/dashboard/Modules.tsx" />
+        <option value="$PROJECT_DIR$/src/client/shared/types.ts" />
+        <option value="$PROJECT_DIR$/src/client/dashboard/Game.tsx" />
+        <option value="$PROJECT_DIR$/src/client/app/Footer.tsx" />
+        <option value="$PROJECT_DIR$/src/client/app/App.tsx" />
+        <option value="$PROJECT_DIR$/src/client/shared/firebase.ts" />
+        <option value="$PROJECT_DIR$/src/client/dashboard/Dashboard.tsx" />
+        <option value="$PROJECT_DIR$/src/client/redux/actions/auth-actions.ts" />
+        <option value="$PROJECT_DIR$/src/client/app/scss/App.scss" />
+        <option value="$PROJECT_DIR$/src/client/game/scss/Game.scss" />
+        <option value="$PROJECT_DIR$/src/client/game/game-states.ts" />
+        <option value="$PROJECT_DIR$/src/client/game/Game.tsx" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="720" />
+    <option name="y" value="23" />
+    <option name="width" value="720" />
+    <option name="height" value="845" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="amica_website" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amica_website" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amica_website" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amica_website" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amica_website" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amica_website" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="bully" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amica_website" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amica_website" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amica_website" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amica_website" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amica_website" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amica_website" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/client/dashboard/scss" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.quicklists" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/media/gameImages" />
+      <recent name="$PROJECT_DIR$/media/images" />
+      <recent name="$PROJECT_DIR$/media/svgicon" />
+      <recent name="$PROJECT_DIR$/src/client/shared" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/client/dashboard/scss" />
+      <recent name="$PROJECT_DIR$/src/client/dashboard" />
+      <recent name="$PROJECT_DIR$/src/client/app" />
+      <recent name="$PROJECT_DIR$/src/client/account" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f7a51fe0-0d34-4dd1-bebf-4b42d3c588f3" name="Default Changelist" comment="" />
+      <created>1556562207359</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1556562207359</updated>
+      <workItem from="1556562211172" duration="454000" />
+      <workItem from="1556568137275" duration="243000" />
+      <workItem from="1556568415528" duration="10367000" />
+      <workItem from="1556590601346" duration="827000" />
+      <workItem from="1556678055067" duration="1499000" />
+      <workItem from="1556680817322" duration="12000" />
+      <workItem from="1556701053597" duration="1115000" />
+      <workItem from="1556719736916" duration="11219000" />
+      <workItem from="1556786824661" duration="2126000" />
+      <workItem from="1556808760017" duration="1037000" />
+      <workItem from="1556851845807" duration="2749000" />
+      <workItem from="1556877604033" duration="879000" />
+      <workItem from="1556922511606" duration="8317000" />
+      <workItem from="1556962020487" duration="3278000" />
+      <workItem from="1556969590181" duration="2842000" />
+      <workItem from="1557013108803" duration="3588000" />
+      <workItem from="1557021342205" duration="196000" />
+      <workItem from="1557030565076" duration="1640000" />
+      <workItem from="1557055071214" duration="3465000" />
+      <workItem from="1557170145467" duration="2014000" />
+      <workItem from="1557175758403" duration="10290000" />
+      <workItem from="1557194962626" duration="193000" />
+      <workItem from="1557199187976" duration="264000" />
+      <workItem from="1557273605846" duration="572000" />
+      <workItem from="1557276386316" duration="249000" />
+      <workItem from="1557290766474" duration="6000" />
+      <workItem from="1557309154031" duration="3598000" />
+      <workItem from="1557313738848" duration="254000" />
+      <workItem from="1557342177127" duration="13439000" />
+      <workItem from="1557363102804" duration="9070000" />
+      <workItem from="1557393059951" duration="10000" />
+      <workItem from="1557490909050" duration="1062000" />
+      <workItem from="1557495009800" duration="3150000" />
+      <workItem from="1557503339292" duration="549000" />
+      <workItem from="1557522306032" duration="8616000" />
+      <workItem from="1557539290226" duration="1044000" />
+      <workItem from="1557584639183" duration="1300000" />
+      <workItem from="1557595067396" duration="4800000" />
+      <workItem from="1557689311337" duration="501000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="116834000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="720" y="23" width="720" height="845" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3318584" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32802126" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32891247" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32934928" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="TypeScript" order="12" />
+      <window_info anchor="bottom" id="Messages" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22418879" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32891247" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="TypeScript" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/client/sign-up/SignUp.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-41">
+          <caret line="17" column="49" lean-forward="true" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/login/Login.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="31" column="3" lean-forward="true" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/svgicon/edsurge.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/app/Footer.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/dashboard/Game.tsx" />
+    <entry file="file://$PROJECT_DIR$/src/client/shared/types.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="880">
+          <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/redux/actions/types.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/shared/firebase.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/shared/components/ProtectedRoute.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/redux/actions/auth-actions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/app/App.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/landing-page/LandingPage.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/landing-page/scss/LandingPage.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/dashboard/Dashboard.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/images/story0-0.png" />
+    <entry file="file://$PROJECT_DIR$/media/images/game-1.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/landing-page/Games.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="21" column="3" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/images/story0-2.png" />
+    <entry file="file://$PROJECT_DIR$/media/images/story1-0.png" />
+    <entry file="file://$PROJECT_DIR$/src/client/app/scss/App.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/game/scss/Game.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/images/standup.png" />
+    <entry file="file://$PROJECT_DIR$/media/bully/Screen_11_1_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-12_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Screen_4_no_button.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Screen_8_No_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Screen_9_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Screen_11_2_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Screen_6_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Screen_11_No_Buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Screen_5_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-15_no_buttons_no_text.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying- 16-A-2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-16- A_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying- 16-A-2_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying- 16-A-2-B_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying- 16-A-2-B –Messages_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-18A_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-18A- 3A_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying- 20_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-16_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-16- B- 2_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-16 - B_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-18B – 2_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-18B – 2A_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-18B_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-18B – 1A_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-18B – 1_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/game/Game.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/bully/Bullying-14_no_buttons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/game/game-states.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
