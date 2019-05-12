@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
-import { createLoadable } from '../routes'
+import {Redirect, Route, Switch} from 'react-router-dom'
+import {createLoadable} from '../routes'
 import ProtectedRoute from '../shared/components/ProtectedRoute'
 import Footer from './Footer'
 import Header from './Header'
@@ -48,29 +48,29 @@ const protectedRoutes: LoadableRoute[] = [
 
 const App: React.StatelessComponent<{}> = () => (
   <>
-    <Header />
+    <Header/>
     <div className={styles.content}>
       <Switch>
-        {routes.map(({ path, loader }: LoadableRoute) => (
-            <Route
-                key={path}
-                exact={true}
-                path={path}
-                component={createLoadable(loader)} />
+        {routes.map(({path, loader}: LoadableRoute) => (
+          <Route
+            key={path}
+            exact={true}
+            path={path}
+            component={createLoadable(loader)}/>
         ))}
-        {protectedRoutes.map(({ path, loader }: LoadableRoute) => (
+        {protectedRoutes.map(({path, loader}: LoadableRoute) => (
           <ProtectedRoute
             key={path}
             exact={true}
             path={path}
-            component={createLoadable(loader)} />
+            component={createLoadable(loader)}/>
         ))}
         <Route path='/*'>
-          <Redirect to='/' />
+          <Redirect to='/'/>
         </Route>
       </Switch>
     </div>
-    <Footer />
+    <Footer/>
   </>
 )
 

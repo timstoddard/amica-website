@@ -1,7 +1,7 @@
 import {History} from 'history'
 import {Dispatch} from 'react'
 import {auth} from '../../shared/firebase'
-import {LoginFormData, SignUpFormData, StringMap, User} from '../../shared/types'
+import {LoginFormData, SignUpFormData, StringMap} from '../../shared/types'
 import {authErrors, setCurrentUser} from './types'
 import UserCredential = firebase.auth.UserCredential
 
