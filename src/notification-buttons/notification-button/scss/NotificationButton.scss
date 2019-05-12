@@ -1,0 +1,30 @@
+.notificationButton {
+  background-color: transparent !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0 !important;
+  display: block;
+  height: 100px;
+  margin: 5px 10px;
+  position: relative;
+  width: 100px;
+
+  &:not(:disabled):hover {
+    cursor: pointer;
+  }
+
+  &__count {
+    $notificationDimension: 25px;
+    align-items: center;
+    background: red;
+    border-radius: 50%;
+    display: flex;
+    height: $notificationDimension;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $notificationDimension;
+  }
+}

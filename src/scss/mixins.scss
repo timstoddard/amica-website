@@ -1,0 +1,72 @@
+@import 'src/scss/variables.scss';
+
+@mixin defaultTransition($propertyName: all) {
+  transition: $propertyName 0.25s ease;
+}
+
+@mixin forceWidth($width) {
+  max-width: $width;
+  min-width: $width;
+}
+
+@mixin undecoratedLink() {
+  &:link, &:visited, &:hover, &:active {
+    text-decoration: none;
+  }
+}
+
+@mixin playfairDisplayFont() {
+  font-family: 'Playfair Display', serif;
+}
+
+@mixin resetButton() {
+  background: none;
+  border: 0;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+@mixin formElement() {
+  border-radius: 4px;
+  font-size: 16px;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+@mixin formField() {
+  @include defaultTransition;
+  @include formElement;
+  border: 2px solid $gray;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 4px;
+
+  &:hover {
+    cursor: text;
+  }
+
+  &:focus {
+    border-color: $blue;
+  }
+}
+
+// TODO make a whole disabled style
+@mixin grayBackgroundWhenDisabled() {
+  &:disabled {
+    background: $lightGray;
+    user-select: none;
+
+    &:hover {
+      background: $lightGray;
+      cursor: default;
+    }
+  }
+}
+
+@mixin headerWithOnlyBottomMargin($marginBottom: 12px) {
+  margin: 0 0 $marginBottom 0;
+}

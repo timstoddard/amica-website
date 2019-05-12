@@ -1,0 +1,57 @@
+@import 'src/scss/mixins.scss';
+@import 'src/scss/variables.scss';
+
+.header {
+  background: $themeBlue; // $blue
+  box-shadow: 0 0 8px 4px rgba(0,0,0,0.3);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  &__title {
+    @include resetButton;
+    @include undecoratedLink;
+    color: rgb(255,255,255);
+    cursor: pointer;
+    align-items: center;
+    font-size: 40px; // 32px
+    font-weight: 900;
+    margin: 3px; // 8px
+    padding: 0px 20px; // 2px 4px
+
+    &:hover {
+      color: #fcfcfc;
+    }
+  }
+
+  &__links {
+    align-items: center;
+    display: flex;
+    margin-right: 10px;
+  }
+
+  &__link {
+    @include defaultTransition;
+    @include undecoratedLink;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: #fcfcfc;
+    font-size: 14px; //18px
+    margin: 0 6px; // 0 6px
+    padding: 8px 20px; // 10px 20px
+    white-space: nowrap;
+
+    &:hover {
+      background: #fcfcfc;
+      color: $themeBlue;
+      cursor: pointer;
+    }
+  }
+}

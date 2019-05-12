@@ -1,0 +1,80 @@
+@import 'src/scss/mixins.scss';
+@import 'src/scss/variables.scss';
+
+.creator {
+  background: rgb(222,222,222);
+  position: relative;
+  
+  &--fullscreen {
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  &__fullscreenButton {
+    @include defaultTransition;
+    @include resetButton;
+    @include grayBackgroundWhenDisabled;
+    background: $green;
+    border-radius: 5px;
+    color: #fcfcfc;
+    font-size: 16px;
+    padding: 5px 10px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    white-space: nowrap;
+
+    &:hover {
+      background: $blue;
+      color: #fcfcfc;
+      cursor: pointer;
+    }
+  }
+
+  &__formWrapper {
+    border-bottom: 1px dashed black;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-bottom: 10px;
+  }
+
+  &__form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    &__submitButton {
+      @include defaultTransition;
+      @include resetButton;
+      @include grayBackgroundWhenDisabled;
+      background: $green;
+      border-radius: 5px;
+      color: #fcfcfc;
+      font-size: 16px;
+      margin: 0 2px;
+      padding: 10px 20px;
+      white-space: nowrap;
+
+      &:hover {
+        background: $blue;
+        color: #fcfcfc;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__formHeader {
+    @include headerWithOnlyBottomMargin;
+  }
+
+  &__preview {
+    font-size: 16px;
+    overflow: auto;
+    padding-top: 20px;
+  }
+}

@@ -5,6 +5,7 @@
     "sourceMap": true,
     "removeComments": true,
     "noImplicitAny": true,
+    "noUnusedLocals": true,
     "outDir": "build",
     "jsx": "react",
     "lib": [
