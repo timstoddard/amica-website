@@ -13,10 +13,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '2',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '2' },
+    ],
     isFinal: false,
   },
   {
@@ -24,10 +23,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Screen_3_no_button.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '3',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '3' },
+    ],
     isFinal: false,
   },
   {
@@ -35,10 +33,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Screen_4_no_button.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '4',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '4' },
+    ],
     isFinal: false,
   },
   {
@@ -46,7 +43,8 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Screen_5_no_buttons.png',
     imageAlt: 'something',
-    nextGameLink: 'game',
+    nextGameText: 'Home',
+    nextGameLink: 'dashboard',
     isFinal: true,
   },
   {
@@ -54,10 +52,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Screen_6_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '6',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '6' },
+    ],
     isFinal: false,
   },
   {
@@ -65,10 +62,10 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Screen_7a_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Bystander',
-    choice2: 'Bully',
-    choice1StateId: '7',
-    choice2StateId: '9',
+    choices: [
+      { text: 'Bystander', toId: '7' },
+      { text: 'Bully', toId: '9' },
+    ],
     isFinal: false,
   },
   {
@@ -76,10 +73,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bystander_Screen_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '8',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '8' },
+    ],
     isFinal: false,
   },
   {
@@ -87,10 +83,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bystander_Screen_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '11',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '11' },
+    ],
     isFinal: false,
   },
   {
@@ -98,10 +93,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bully_Screen_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '10',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '10' },
+    ],
     isFinal: false,
   },
   {
@@ -109,10 +103,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bully_Screen_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '11',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '11' },
+    ],
     isFinal: false,
   },
   {
@@ -120,10 +113,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Screen_8_No_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '12',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '12' },
+    ],
     isFinal: false,
   },
   {
@@ -131,10 +123,10 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Screen_9_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Bystander',
-    choice2: 'Stand Up',
-    choice1StateId: '13',
-    choice2StateId: '15',
+    choices: [
+      { text: 'Bystander', toId: '13' },
+      { text: 'Stand Up', toId: '15' },
+    ],
     isFinal: false,
   },
   {
@@ -142,10 +134,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bystander_screen_9_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '14',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '14' },
+    ],
     isFinal: false,
   },
   {
@@ -153,10 +144,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bystander_screen_9_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '17',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '17' },
+    ],
     isFinal: false,
   },
   {
@@ -164,10 +154,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Good_Job_No_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '16',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '16' },
+    ],
     isFinal: false,
   },
   {
@@ -175,10 +164,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Good_Job_No_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '17',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '17' },
+    ],
     isFinal: false,
   },
   {
@@ -186,10 +174,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '18',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '18' },
+    ],
     isFinal: false,
   },
   {
@@ -197,7 +184,8 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Screen_11_No_buttons.png',
     imageAlt: 'something',
-    nextGameLink: 'game',
+    nextGameText: 'Home',
+    nextGameLink: 'dashboard',
     isFinal: true,
   },
   {
@@ -205,10 +193,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Screen_11_1_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '20',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '20' },
+    ],
     isFinal: false,
   },
   {
@@ -216,10 +203,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Screen_11_2_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '21',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '21' },
+    ],
     isFinal: false,
   },
   {
@@ -227,10 +213,10 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-12_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Bystander',
-    choice2: 'Stand Up',
-    choice1StateId: '22',
-    choice2StateId: '24',
+    choices: [
+      { text: 'Bystander', toId: '22' },
+      { text: 'Stand Up', toId: '24' },
+    ],
     isFinal: false,
   },
   {
@@ -238,10 +224,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 12-A_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '23',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '23' },
+    ],
     isFinal: false,
   },
   {
@@ -249,10 +234,9 @@ const states: GameState[] = [
     description: 'media/bully/Bullying- 12-A – 2_no_buttons.png',
     imageSrc: '',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '24',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '24' },
+    ],
     isFinal: false,
   },
   {
@@ -260,10 +244,9 @@ const states: GameState[] = [
     description: 'media/bully/Bullying- 12-A – 2_no_buttons.png',
     imageSrc: '',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '33',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '33' },
+    ],
     isFinal: false,
   },
   {
@@ -271,10 +254,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 12-B_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '26',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '26' },
+    ],
     isFinal: false,
   },
   {
@@ -282,10 +264,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 12-B – 2_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '27',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '27' },
+    ],
     isFinal: false,
   },
   {
@@ -293,10 +274,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 12-B – 2_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '28',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '28' },
+    ],
     isFinal: false,
   },
   {
@@ -304,10 +284,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-12-B-2- B_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '29',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '29' },
+    ],
     isFinal: false,
   },
   {
@@ -315,10 +294,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-12-B-2- C_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '30',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '30' },
+    ],
     isFinal: false,
   },
   {
@@ -326,10 +304,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-12-B-2- D_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '31',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '31' },
+    ],
     isFinal: false,
   },
   {
@@ -337,10 +314,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-12-B-2- E_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '32',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '32' },
+    ],
     isFinal: false,
   },
   {
@@ -348,10 +324,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-12-B-2- E_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '33',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '33' },
+    ],
     isFinal: false,
   },
   {
@@ -359,7 +334,8 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-14_no_buttons.png',
     imageAlt: 'something',
-    nextGameLink: 'game',
+    nextGameText: 'Home',
+    nextGameLink: 'dashboard',
     isFinal: true,
   },
   {
@@ -367,10 +343,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-15_no_buttons_no_text.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '35',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '35' },
+    ],
     isFinal: false,
   },
   {
@@ -378,10 +353,10 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-16_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Stand Up',
-    choice2: 'right', // TODO: RENAME
-    choice1StateId: '36',
-    choice2StateId: '51',
+    choices: [
+      { text: 'Stand Up', toId: '36' },
+      { text: 'right' /* TODO: rename */, toId: '51' },
+    ],
     isFinal: false,
   },
   {
@@ -389,10 +364,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-16- A_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '37',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '37' },
+    ],
     isFinal: false,
   },
   {
@@ -400,10 +374,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 16-A-2_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '38',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '38' },
+    ],
     isFinal: false,
   },
   {
@@ -411,10 +384,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 16-A-2.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '39',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '39' },
+    ],
     isFinal: false,
   },
   {
@@ -422,7 +394,8 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 16-A-2-B_no_buttons.png',
     imageAlt: 'something',
-    nextGameLink: 'game',
+    nextGameText: 'Home',
+    nextGameLink: 'dashboard',
     isFinal: true,
   },
   {
@@ -430,10 +403,10 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 16-A-2-B –Messages_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'View Group Message',
-    choice2: 'View Penny Message',
-    choice1StateId: '41',
-    choice2StateId: '42',
+    choices: [
+      { text: 'View Group Message', toId: '41' },
+      { text: 'View Penny Message', toId: '42' },
+    ],
     isFinal: false,
   },
   {
@@ -441,10 +414,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 16-A-2-B –Messages Group_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '43',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '43' },
+    ],
     isFinal: false,
   },
   {
@@ -452,10 +424,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 16-A-2-B –Messages Penny_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '43',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '43' },
+    ],
     isFinal: false,
   },
   {
@@ -463,10 +434,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '44',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '44' },
+    ],
     isFinal: false,
   },
   {
@@ -474,10 +444,10 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18A_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Bystander',
-    choice2: 'Samaritan',
-    choice1StateId: '45',
-    choice2StateId: '49',
+    choices: [
+      { text: 'Bystander', toId: '45' },
+      { text: 'Samaritan', toId: '49' },
+    ],
     isFinal: false,
   },
   {
@@ -485,10 +455,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18A – 1_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '46',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '46' },
+    ],
     isFinal: false,
   },
   {
@@ -496,10 +465,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18A- 1A_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '51',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '51' },
+    ],
     isFinal: false,
   },
   {
@@ -507,10 +475,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18A – 2_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '48',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '48' },
+    ],
     isFinal: false,
   },
   {
@@ -518,10 +485,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18A- 2A_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '51',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '51' },
+    ],
     isFinal: false,
   },
   {
@@ -529,10 +495,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18A – 3_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '50',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '50' },
+    ],
     isFinal: false,
   },
   {
@@ -540,10 +505,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18A- 3A_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '51', // TODO:
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '51' },
+    ],
     isFinal: false,
   },
   {
@@ -551,10 +515,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-16 - B_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '52',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '52' },
+    ],
     isFinal: false,
   },
   {
@@ -562,10 +525,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-16- B- 2_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '53',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '53' },
+    ],
     isFinal: false,
   },
   {
@@ -573,10 +535,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '54',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '54' },
+    ],
     isFinal: false,
   },
   {
@@ -584,10 +545,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-16- B- 2-B_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '55',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '55' },
+    ],
     isFinal: false,
   },
   {
@@ -595,10 +555,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-16- B- 2-B –Messages_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '56',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '56' },
+    ],
     isFinal: false,
   },
   {
@@ -606,10 +565,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-16- B- 2-B –Penny_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '57',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '57' },
+    ],
     isFinal: false,
   },
   {
@@ -617,10 +575,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '58',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '58' },
+    ],
     isFinal: false,
   },
   {
@@ -628,10 +585,10 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18B_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Befriend',
-    choice2: 'Bully',
-    choice1StateId: '59',
-    choice2StateId: '61',
+    choices: [
+      { text: 'Befriend', toId: '59' },
+      { text: 'Bully', toId: '61' },
+    ],
     isFinal: false,
   },
   {
@@ -639,10 +596,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18B – 1_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '60',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '60' },
+    ],
     isFinal: false,
   },
   {
@@ -650,10 +606,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18B – 1A_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '63',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '63' },
+    ],
     isFinal: false,
   },
   {
@@ -661,10 +616,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18B – 2_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '62',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '62' },
+    ],
     isFinal: false,
   },
   {
@@ -672,10 +626,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-18B – 2A_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '63',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '63' },
+    ],
     isFinal: false,
   },
   {
@@ -683,10 +636,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '64',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '64' },
+    ],
     isFinal: false,
   },
   {
@@ -694,10 +646,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 20_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '65',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '65' },
+    ],
     isFinal: false,
   },
   {
@@ -705,10 +656,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-21_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '66',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '66' },
+    ],
     isFinal: false,
   },
   {
@@ -716,10 +666,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-22_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '67',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '67' },
+    ],
     isFinal: false,
   },
   {
@@ -727,10 +676,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying-23_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '68',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '68' },
+    ],
     isFinal: false,
   },
   {
@@ -738,10 +686,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 24_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '69',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '69' },
+    ],
     isFinal: false,
   },
   {
@@ -749,10 +696,9 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Bullying- 24 – 1_no_buttons.png',
     imageAlt: 'something',
-    choice1: 'Continue',
-    choice2: null,
-    choice1StateId: '70',
-    choice2StateId: null,
+    choices: [
+      { text: 'Continue', toId: '70' },
+    ],
     isFinal: false,
   },
   {
@@ -760,7 +706,8 @@ const states: GameState[] = [
     description: '',
     imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
-    nextGameLink: 'game',
+    nextGameText: 'Home',
+    nextGameLink: 'dashboard',
     isFinal: true,
   },
 ]

@@ -27,9 +27,9 @@ class Dashboard extends React.Component<Props, {}> {
     const {
       logoutUser,
     } = this
-    //const {
+    // const {
     //  currentUser,
-    //} = this.props
+    // } = this.props
 
     return (
       <div className={styles.dashboard}>

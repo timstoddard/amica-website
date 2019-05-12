@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { GameState } from '../shared/types'
+import { Button } from 'reactstrap'
+import { GameState, GameStateChoice } from '../shared/types'
 import states from './game-states'
 
 const styles = require('./scss/Game.scss') // tslint:disable-line no-var-requires
@@ -19,7 +20,7 @@ export default class Game extends React.Component<{}, State> {
     super(props)
 
     this.state = {
-      gameState: states[19],
+      gameState: states[4],
       descriptionToShow: '',
       showButtons: false,
     }
@@ -48,18 +49,22 @@ export default class Game extends React.Component<{}, State> {
       gameState,
     } = this.state
 
-    const words = gameState.description.split(' ')
-    let i = 0
-    this.intervalId = setInterval(() => {
-      const temp = words.slice(0, ++i).join(' ')
-      this.setState({ descriptionToShow: temp })
-      if (i === words.length) {
-        clearInterval(this.intervalId)
-        this.timeoutId = setTimeout(() => {
-          this.setState({ showButtons: true })
-        }, 1000)  as unknown as number
-      }
-    }, 1) as unknown as number // 120
+    if (gameState.description) {
+      const words = gameState.description.split(' ')
+      let i = 0
+      this.intervalId = setInterval(() => {
+        const temp = words.slice(0, ++i).join(' ')
+        this.setState({ descriptionToShow: temp })
+        if (i === words.length) {
+          clearInterval(this.intervalId)
+          this.timeoutId = setTimeout(() => {
+            this.setState({ showButtons: true })
+          }, 1000)  as unknown as number
+        }
+      }, 1) as unknown as number // 120
+    } else {
+      this.setState({ showButtons: true })
+    }
   }
 
   render(): JSX.Element {
@@ -80,40 +85,34 @@ export default class Game extends React.Component<{}, State> {
         <div
           className={styles.game__content}
           style={{
-            background: `url(${gameState.imageSrc}) center no-repeat`,
-            backgroundSize: 'cover',
+            backgroundImage: `url(${gameState.imageSrc})`,
           }}>
-          <p className={styles.game__content__text}>
+          <p className={styles.game__content__devId}>
             game state id: {gameState.id}
           </p>
-          <p className={styles.game__content__text}>
-            {descriptionToShow}
-          </p>
-          {(showButtons && gameState.isFinal === false) && (
-            <>
-              <button
-                onClick={updateGameState(gameState.choice1StateId)}
-                className={`${styles.game__button} ${styles['game__button--left']}`}>
-                {gameState.choice1}
-              </button>
-              <button
-                onClick={updateGameState(gameState.choice2StateId)}
-                className={`${styles.game__button} ${styles['game__button--right']}`}>
-                {gameState.choice2}
-              </button>
-            </>
+          {gameState.description && (
+            <p className={styles.game__content__text}>
+              {descriptionToShow}
+            </p>
           )}
-          {(showButtons && gameState.isFinal) && (
-            <>
-              {gameState.nextGameLink && (
-                <Link
-                  to='game'
-                  className={styles.game__link}>
-                  Go to home
-                </Link>
-              )}
-            </>
-          )}
+          <div className={styles.game__content__buttons}>
+            {(showButtons && gameState.isFinal === false) &&
+              gameState.choices.map(({ text, toId }: GameStateChoice) => (
+                <Button
+                  key={toId}
+                  onClick={updateGameState(toId)}
+                  className={styles.game__button}>
+                  {text}
+                </Button>
+              ))}
+            {(showButtons && gameState.isFinal) && (
+              <Link
+                to={gameState.nextGameLink}
+                className={styles.game__nextGameLink}>
+                Go to {gameState.nextGameText}
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     )

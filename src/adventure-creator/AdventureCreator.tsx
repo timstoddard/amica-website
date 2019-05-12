@@ -1,19 +1,21 @@
 import * as React from 'react'
-import { AbstractControl, FieldControl, FieldGroup, FormBuilder, FormGroup } from 'react-reactive-form'
-import Checkbox from '../shared/components/checkbox/Checkbox'
-import Textbox from '../shared/components/textbox/Textbox'
-import { DevGameState, FieldControlMeta, GameState } from '../shared/types'
-import GameStateCard from './game-state-card/GameStateCard'
-import SelectedState from './selected-state/SelectedState'
+// import { AbstractControl, FieldControl, FieldGroup, FormBuilder, FormGroup } from 'react-reactive-form'
+// import Checkbox from '../shared/components/checkbox/Checkbox'
+// import Textbox from '../shared/components/textbox/Textbox'
+// import { DevGameState, FieldControlMeta, GameState } from '../shared/types'
+// import GameStateCard from './game-state-card/GameStateCard'
+// import SelectedState from './selected-state/SelectedState'
+import { FormBuilder, FormGroup } from 'react-reactive-form'
+import { GameState } from '../shared/types'
 
-const styles = require('./scss/AdventureCreator.scss') // tslint:disable-line no-var-requires
+// const styles = require('./scss/AdventureCreator.scss') // tslint:disable-line no-var-requires
 
 const getSelectedGameState = (gameStates: GameState[], selectedId: string) => {
   const selectedState = gameStates.find((state: GameState) => state.id === selectedId)
   return selectedState || null
 }
 
-const convertToDevGameState = (gameState: GameState, allStates: GameState[]) => {
+/*const convertToDevGameState = (gameState: GameState, allStates: GameState[]): DevGameState => {
   if (!gameState) {
     return null
   }
@@ -46,7 +48,7 @@ const convertToDevGameState = (gameState: GameState, allStates: GameState[]) => 
     base.choice2State = convertToDevGameState(choice2State, allStates)
   }
   return base
-}
+}*/
 
 export type ChildChoiceToAdd = 0 | 1 | 2
 
@@ -77,7 +79,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
 
     this.state = {
       gameStates: [
-        {
+        /*{
           id: '1',
           description: 'This is a sample description.',
           imageSrc: '/media/images/game-2.jpeg',
@@ -164,7 +166,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
           choice2: 'choice 2',
           choice1StateId: null,
           choice2StateId: null,
-        },
+        },*/
       ],
       selectedId: '',
       uniqueId: 100, // 1,
@@ -220,7 +222,7 @@ export default class AdventureCreator extends React.Component<{}, State> {
   submitForm = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
-    const {
+    /*const {
       gameStates,
       selectedId,
       uniqueId,
@@ -273,154 +275,155 @@ export default class AdventureCreator extends React.Component<{}, State> {
     this.setState({
       gameStates: childChoiceToAdd > 0 ? [...updatedStates, data] : [...updatedStates],
       uniqueId: uniqueId + 1,
-    })
+    })*/
   }
 
   render(): JSX.Element {
-    const {
-      form,
-      selectGameState,
-      setChildChoiceToAdd,
-      toggleFullscreen,
-      submitForm,
-    } = this
-    const {
-      gameStates,
-      selectedId,
-      showIsFinalForm,
-      childChoiceToAdd,
-      isFullscreen,
-    } = this.state
+    // const {
+    //   form,
+    //   selectGameState,
+    //   setChildChoiceToAdd,
+    //   toggleFullscreen,
+    //   submitForm,
+    // } = this
+    // const {
+    //   gameStates,
+    //   selectedId,
+    //   showIsFinalForm,
+    //   childChoiceToAdd,
+    //   isFullscreen,
+    // } = this.state
 
-    const devGameState = convertToDevGameState(gameStates[0], gameStates)
-    const selectedState = getSelectedGameState(gameStates, selectedId)
+    // const devGameState = convertToDevGameState(gameStates[0], gameStates)
+    // const selectedState = getSelectedGameState(gameStates, selectedId)
 
-    return (
-      <div className={`${styles.creator} ${isFullscreen && styles['creator--fullscreen']}`}>
-        <h1 className={styles.creator__title}>
-          Game Creator/Editor
-          <button
-            onClick={toggleFullscreen()}
-            className={styles.creator__fullscreenButton}>
-            {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
-          </button>
-        </h1>
-        <div className={styles.creator__formWrapper}>
-          <SelectedState
-            selectedState={selectedState}
-            childChoiceToAdd={childChoiceToAdd}
-            setChildChoiceToAdd={setChildChoiceToAdd} />
-          <FieldGroup
-            control={form}
-            render={({ invalid }: AbstractControl) => (
-              <form
-                onSubmit={submitForm}
-                className={styles.creator__form}>
-                <h2 className={styles.creator__formHeader}>Add/Edit Game State</h2>
-                <FieldControl
-                  name='description'
-                  render={Textbox}
-                  meta={{
-                    label: 'Description',
-                    type: 'description',
-                    errorMessages: {
-                      required: 'Description is required',
-                    },
-                  } as FieldControlMeta} />
-                <FieldControl
-                  name='imageSrc'
-                  render={Textbox}
-                  meta={{
-                    label: 'Image Src',
-                    type: 'imageSrc',
-                    errorMessages: {
-                      required: 'Image Src is required',
-                    },
-                  } as FieldControlMeta} />
-                <FieldControl
-                  name='imageAlt'
-                  render={Textbox}
-                  meta={{
-                    label: 'Image Alt',
-                    type: 'imageAlt',
-                    errorMessages: {
-                      required: 'Image Alt is required',
-                    },
-                  } as FieldControlMeta} />
-                <FieldControl
-                  name='isFinal'
-                  render={Checkbox}
-                  meta={{
-                    label: 'isFinal',
-                    type: 'isFinal',
-                  } as FieldControlMeta} />
-                {!showIsFinalForm && (
-                  <>
-                    <FieldControl
-                      name='choice1'
-                      render={Textbox}
-                      meta={{
-                        label: 'Choice 1',
-                        type: 'choice1',
-                        errorMessages: {
-                          required: 'Choice 1 is required',
-                        },
-                      } as FieldControlMeta} />
-                    <FieldControl
-                      name='choice2'
-                      render={Textbox}
-                      meta={{
-                        label: 'Choice 2',
-                        type: 'choice2',
-                        errorMessages: {
-                          required: 'Choice 2 is required',
-                        },
-                      } as FieldControlMeta} />
-                    <FieldControl
-                      name='choice1StateId'
-                      render={Textbox}
-                      meta={{
-                        label: 'Choice 1 State Id',
-                        type: 'choice1StateId',
-                      } as FieldControlMeta} />
-                    <FieldControl
-                      name='choice2StateId'
-                      render={Textbox}
-                      meta={{
-                        label: 'Choice 2 State Id',
-                        type: 'choice2StateId',
-                      } as FieldControlMeta} />
-                    </>
-                )}
-                {showIsFinalForm && (
-                  <FieldControl
-                    name='nextGameLink'
-                    render={Textbox}
-                    meta={{
-                      label: 'Next Game Link',
-                      type: 'nextGameLink',
-                      errorMessages: {
-                        required: 'Next Game Link is required',
-                      },
-                    } as FieldControlMeta} />
-                )}
-                <button
-                  type='submit'
-                  disabled={invalid}
-                  className={styles.creator__form__submitButton}>
-                  Submit
-                </button>
-              </form>
-            )} />
-          </div>
-          {devGameState && (
-            <div className={styles.creator__preview}>
-              <GameStateCard
-                gameState={devGameState}
-                selectGameState={selectGameState} />
-            </div>
-          )}
-      </div>
-    )
+    // return (
+    //   <div className={`${styles.creator} ${isFullscreen && styles['creator--fullscreen']}`}>
+    //     <h1 className={styles.creator__title}>
+    //       Game Creator/Editor
+    //       <button
+    //         onClick={toggleFullscreen()}
+    //         className={styles.creator__fullscreenButton}>
+    //         {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+    //       </button>
+    //     </h1>
+    //     <div className={styles.creator__formWrapper}>
+    //       <SelectedState
+    //         selectedState={selectedState}
+    //         childChoiceToAdd={childChoiceToAdd}
+    //         setChildChoiceToAdd={setChildChoiceToAdd} />
+    //       <FieldGroup
+    //         control={form}
+    //         render={({ invalid }: AbstractControl) => (
+    //           <form
+    //             onSubmit={submitForm}
+    //             className={styles.creator__form}>
+    //             <h2 className={styles.creator__formHeader}>Add/Edit Game State</h2>
+    //             <FieldControl
+    //               name='description'
+    //               render={Textbox}
+    //               meta={{
+    //                 label: 'Description',
+    //                 type: 'description',
+    //                 errorMessages: {
+    //                   required: 'Description is required',
+    //                 },
+    //               } as FieldControlMeta} />
+    //             <FieldControl
+    //               name='imageSrc'
+    //               render={Textbox}
+    //               meta={{
+    //                 label: 'Image Src',
+    //                 type: 'imageSrc',
+    //                 errorMessages: {
+    //                   required: 'Image Src is required',
+    //                 },
+    //               } as FieldControlMeta} />
+    //             <FieldControl
+    //               name='imageAlt'
+    //               render={Textbox}
+    //               meta={{
+    //                 label: 'Image Alt',
+    //                 type: 'imageAlt',
+    //                 errorMessages: {
+    //                   required: 'Image Alt is required',
+    //                 },
+    //               } as FieldControlMeta} />
+    //             <FieldControl
+    //               name='isFinal'
+    //               render={Checkbox}
+    //               meta={{
+    //                 label: 'isFinal',
+    //                 type: 'isFinal',
+    //               } as FieldControlMeta} />
+    //             {!showIsFinalForm && (
+    //               <>
+    //                 <FieldControl
+    //                   name='choice1'
+    //                   render={Textbox}
+    //                   meta={{
+    //                     label: 'Choice 1',
+    //                     type: 'choice1',
+    //                     errorMessages: {
+    //                       required: 'Choice 1 is required',
+    //                     },
+    //                   } as FieldControlMeta} />
+    //                 <FieldControl
+    //                   name='choice2'
+    //                   render={Textbox}
+    //                   meta={{
+    //                     label: 'Choice 2',
+    //                     type: 'choice2',
+    //                     errorMessages: {
+    //                       required: 'Choice 2 is required',
+    //                     },
+    //                   } as FieldControlMeta} />
+    //                 <FieldControl
+    //                   name='choice1StateId'
+    //                   render={Textbox}
+    //                   meta={{
+    //                     label: 'Choice 1 State Id',
+    //                     type: 'choice1StateId',
+    //                   } as FieldControlMeta} />
+    //                 <FieldControl
+    //                   name='choice2StateId'
+    //                   render={Textbox}
+    //                   meta={{
+    //                     label: 'Choice 2 State Id',
+    //                     type: 'choice2StateId',
+    //                   } as FieldControlMeta} />
+    //                 </>
+    //             )}
+    //             {showIsFinalForm && (
+    //               <FieldControl
+    //                 name='nextGameLink'
+    //                 render={Textbox}
+    //                 meta={{
+    //                   label: 'Next Game Link',
+    //                   type: 'nextGameLink',
+    //                   errorMessages: {
+    //                     required: 'Next Game Link is required',
+    //                   },
+    //                 } as FieldControlMeta} />
+    //             )}
+    //             <button
+    //               type='submit'
+    //               disabled={invalid}
+    //               className={styles.creator__form__submitButton}>
+    //               Submit
+    //             </button>
+    //           </form>
+    //         )} />
+    //       </div>
+    //       {devGameState && (
+    //         <div className={styles.creator__preview}>
+    //           <GameStateCard
+    //             gameState={devGameState}
+    //             selectGameState={selectGameState} />
+    //         </div>
+    //       )}
+    //   </div>
+    // )
+    return null
   }
 }
