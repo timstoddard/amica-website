@@ -84,9 +84,7 @@ export default class Game extends React.Component<{}, State> {
         </h2>
         <div
           className={styles.game__content}
-          style={{
-            backgroundImage: `url(${gameState.imageSrc})`,
-          }}>
+          style={{ backgroundImage: `url(${gameState.imageSrc})` }}>
           <p className={styles.game__content__devId}>
             game state id: {gameState.id}
           </p>
