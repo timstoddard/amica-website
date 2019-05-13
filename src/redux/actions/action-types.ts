@@ -1,4 +1,6 @@
-import { NotificationType, StringMap, User } from '../../shared/types'
+import { StringMap } from '../../shared/types/lang'
+import { NotificationType } from '../../shared/types/notifications'
+import { User } from '../../shared/types/user'
 
 // auth stuff
 interface SetCurrentUserAction {

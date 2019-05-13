@@ -12,7 +12,7 @@ $connectorWidth: .0625em;
   flex-wrap: wrap;
   padding: 0 $nodeGap;
   position: relative;
-  
+
   &:before {
     border-top: $connectorWidth solid black;
     content: '';
@@ -23,7 +23,7 @@ $connectorWidth: .0625em;
     top: calc(#{-$nodeGap} - #{$connectorWidth / 2});
     width: 100%;
   }
-  
+
   &:first-child:before {
     left: calc(50% - #{$connectorWidth / 2});
     max-width: calc(100% - 50% + #{$connectorWidth});
@@ -39,7 +39,7 @@ $connectorWidth: .0625em;
     &:before {
       display: none;
     }
-  
+
     & > &__info:before {
       height: calc(#{$nodeGap} + #{$connectorWidth});
       top: calc(#{-$nodeGap} - #{$connectorWidth});
@@ -58,7 +58,7 @@ $connectorWidth: .0625em;
     padding: 30px 8px 10px;
     position: relative;
     width: 300px;
-  
+
     &:hover {
       border: $borderWidth solid red;
       cursor: pointer;
@@ -74,11 +74,11 @@ $connectorWidth: .0625em;
       position: absolute;
       width: $connectorWidth;
     }
-  
+
     &:before {
       top: calc(#{-$nodeGap} - #{$borderWidth});
     }
-  
+
     &:after {
       top: calc(100% + #{$borderWidth});
     }
@@ -100,7 +100,7 @@ $connectorWidth: .0625em;
       left: 0;
       padding-left: 4px;
     }
-    
+
     &__id {
       border-left: 1px dashed $lightGray;
       padding-right: 4px;

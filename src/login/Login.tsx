@@ -5,7 +5,9 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loginUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
-import { AppState, FieldControlMeta, LoginFormData, User } from '../shared/types'
+import { FieldControlMeta, LoginFormData } from '../shared/types/forms'
+import { AppState } from '../shared/types/lang'
+import { User } from '../shared/types/user'
 
 const styles = require('./scss/Login.scss') // tslint:disable-line no-var-requires
 

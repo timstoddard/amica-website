@@ -1,6 +1,66 @@
+@import 'src/scss/mixins.scss';
+@import 'src/scss/variables.scss';
+
+@mixin infoBlock() {
+  background: white;
+  border-radius: 15px;
+  margin: 0;
+  padding: 10px;
+}
 
 .landingPage {
-  background: url('/media/images/landing.png');
+  background: url(/media/images/Graphic_Landing_Page_cropped.png) center / 100% no-repeat;
+
+  margin-top: $headerHeight;
+  min-height: 100vh;
+  overflow: hidden;
   width: 100%;
-  min-height: 500px;
+
+  &__info {
+    color: $themeBlue;
+    font-family: 'Open Sans', sans-serif;
+    margin: 100px 50px 0;
+    text-align: left;
+    width: 40%;
+
+    &__header {
+      @include infoBlock;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    &__text {
+      @include infoBlock;
+      line-height: 1.9;
+    }
+
+    &__button {
+      @include resetButton;
+      // TODO convert all these to shorthand
+      background: url(/media/images/Get_Demo_Button.png) center / contain no-repeat;
+      width: 200px;
+      height: 100px;
+
+      &:hover {
+        animation: buttonPop 0.25s ease-out;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      background: white;
+      width: 70%;
+    }
+  }
+}
+
+@keyframes buttonPop {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
 }

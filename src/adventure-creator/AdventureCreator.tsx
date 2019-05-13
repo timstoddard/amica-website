@@ -6,7 +6,7 @@ import * as React from 'react'
 // import GameStateCard from './game-state-card/GameStateCard'
 // import SelectedState from './selected-state/SelectedState'
 import { FormBuilder, FormGroup } from 'react-reactive-form'
-import { GameState } from '../shared/types'
+import { GameState } from '../shared/types/game-state'
 
 // const styles = require('./scss/AdventureCreator.scss') // tslint:disable-line no-var-requires
 

@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom'
 import { registerUser } from '../redux/actions/auth-actions'
 import Textbox from '../shared/components/textbox/Textbox'
 import { stringMatch } from '../shared/components/textbox/validators'
-import { AppState, FieldControlMeta, SignUpFormData } from '../shared/types'
+import { FieldControlMeta, SignUpFormData } from '../shared/types/forms'
+import { AppState } from '../shared/types/lang'
 
 const styles = require('./scss/SignUp.scss') // tslint:disable-line no-var-requires
 

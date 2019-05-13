@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Action } from 'redux'
-import { newNotification } from '../redux/actions/types'
-import { AppState, Notification, NotificationType } from '../shared/types'
+import { newNotification } from '../redux/actions/action-types'
+import { AppState } from '../shared/types/lang'
+import { NotificationType } from '../shared/types/notifications'
 import NotificationButton from './notification-button/NotificationButton'
 
 const styles = require('./scss/NotificationButtons.scss') // tslint:disable-line no-var-requires
@@ -36,7 +37,11 @@ const NotificationButtons = ({
     <NotificationButton
       notificationCount={emailNotifications.length}
       className={styles['notificationButtons--email']} />
-    <div style={{border: '1px solid gray'}}>
+    <div style={{
+      border: '1px solid gray',
+      display: 'flex',
+      flexDirection: 'column',
+    }}>
       <div>test panel (remove later)</div>
       <button onClick={newRandomNotification}>
         new random

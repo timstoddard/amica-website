@@ -1,4 +1,4 @@
-import { GameState } from '../shared/types'
+import { GameState } from '../shared/types/game-state'
 
 // GO TO HOME SCREEN WHEN YOU HIT A NOTIFICATION
 // Initial Story: 1 - 4

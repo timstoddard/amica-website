@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { AppState, User } from '../shared/types'
+import { AppState } from '../shared/types/lang'
+import { User } from '../shared/types/user'
 
 const styles = require('./scss/Header.scss') // tslint:disable-line no-var-requires
 
@@ -40,16 +41,17 @@ interface HeaderProps {
   currentUser: User
 }
 
-// TODO: ADD LOGO
-
 const Header = ({ currentUser }: HeaderProps) => {
   const links = currentUser ? loggedInLinks : loggedOutLinks
   return (
     <header className={styles.header}>
       <Link
         to=''
-        className={styles.header__title}>
-        amica
+        className={styles.header__logo}>
+        <img
+          src='/media/images/amica_logo.png'
+          alt='amica'
+          className={styles.header__logo__img} />
       </Link>
       <div className={styles.header__links}>
         {buttons.map(({ toId, text }: HeaderButton) => (

@@ -1,4 +1,5 @@
 @import 'src/scss/mixins.scss';
+@import 'src/scss/variables.scss';
 
 .signUp {
   align-items: center;
@@ -12,7 +13,7 @@
       @include grayBackgroundWhenDisabled;
       background: $green;
       border-radius: 5px;
-      color: #fcfcfc;
+      color: $offWhite;
       font-size: 18px;
       margin: 0 2px;
       padding: 10px 20px;
@@ -20,7 +21,7 @@
 
       &:hover {
         background: $blue;
-        color: #fcfcfc;
+        color: $offWhite;
         cursor: pointer;
       }
     }
