@@ -1,4 +1,8 @@
 .notificationButtons {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+
   &--socialMedia {
     background-image: url('../../../media/buttons/Social_Media_Button.png');
 

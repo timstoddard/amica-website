@@ -1,5 +1,5 @@
-import { NotificationType } from '../../shared/types'
-import { NotificationAction } from '../actions/types'
+import { NotificationType } from '../../shared/types/notifications'
+import { NotificationAction } from '../actions/action-types'
 
 export const socialMediaNotifications = (state: Notification[] = [], action: NotificationAction) => {
   switch (action.type) {

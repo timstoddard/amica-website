@@ -2,9 +2,10 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { Link, Route } from 'react-router-dom'
 import { Action } from 'redux'
-import { logout } from '../redux/actions/types'
-import { createLoadable } from '../routes'
-import { AppState, User } from '../shared/types'
+import NotificationButtons from '../notification-buttons/NotificationButtons'
+import { logout } from '../redux/actions/action-types'
+import { AppState } from '../shared/types/lang'
+import { User } from '../shared/types/user'
 
 const styles = require('./scss/Dashboard.scss') // tslint:disable-line no-var-requires
 
@@ -19,7 +20,7 @@ class Dashboard extends React.Component<Props, {}> {
   }
 
   logoutUser = (): void => {
-    const {doLogout} = this.props
+    const { doLogout } = this.props
     doLogout()
   }
 
@@ -27,14 +28,15 @@ class Dashboard extends React.Component<Props, {}> {
     const {
       logoutUser,
     } = this
-    // const {
-    //  currentUser,
-    // } = this.props
+    /*const {
+     currentUser,
+    } = this.props*/
+    const currentUser = { name: 'Test Name' }
 
     return (
       <div className={styles.dashboard}>
         <h1>Dashboard</h1>
-        {/* <div>Hello, {currentUser.name}!</div> */}
+        <div>Hello, {currentUser.name}!</div>
         <Link to='game'>Open game</Link>
         <button
           onClick={logoutUser}
@@ -43,15 +45,15 @@ class Dashboard extends React.Component<Props, {}> {
         </button>
         {/* TODO make the buttons setup less ratchet? */}
         <Route
-            exact={true}
-            path=''
-            component={createLoadable((): Promise<unknown> => import('../notification-buttons/NotificationButtons'))} />
+          exact={true}
+          path=''
+          component={NotificationButtons} />
       </div>
     )
   }
 }
 
-const mapStateToProps = ({currentUser}: AppState) => ({
+const mapStateToProps = ({ currentUser }: AppState) => ({
   currentUser,
 })
 

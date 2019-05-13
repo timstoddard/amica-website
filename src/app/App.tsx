@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { createLoadable } from '../routes'
 import ProtectedRoute from '../shared/components/ProtectedRoute'
 import Footer from './Footer'
 import Header from './Header'
@@ -9,67 +8,84 @@ const styles = require('./scss/App.scss') // tslint:disable-line no-var-requires
 
 interface LoadableRoute {
   path: string
-  loader: () => Promise<unknown>
+  LazyComponent: React.LazyExoticComponent<any> // tslint:disable-line:no-any
 }
 
 const routes: LoadableRoute[] = [
   {
-    path: '/',
-    loader: (): Promise<unknown> => import('../landing-page/LandingPage'),
-  },
-  {
     path: '/sign-up',
-    loader: (): Promise<unknown> => import('../sign-up/SignUp'),
+    LazyComponent: React.lazy(() => import('../sign-up/SignUp')),
   },
   {
     path: '/login',
-    loader: (): Promise<unknown> => import('../login/Login'),
+    LazyComponent: React.lazy(() => import('../login/Login')),
   },
   {
     path: '/creator',
-    loader: (): Promise<unknown> => import('../adventure-creator/AdventureCreator'),
+    LazyComponent: React.lazy(() => import('../adventure-creator/AdventureCreator')),
   },
 ]
 
 const protectedRoutes: LoadableRoute[] = [
   {
     path: '/dashboard',
-    loader: (): Promise<unknown> => import('../dashboard/Dashboard'),
+    LazyComponent: React.lazy(() => import('../dashboard/Dashboard')),
   },
   {
     path: '/game',
-    loader: (): Promise<unknown> => import('../game/Game'),
+    LazyComponent: React.lazy(() => import('../game/Game')),
   },
   {
     path: '/minigames',
-    loader: (): Promise<unknown> => import('../minigames/Minigames'),
+    LazyComponent: React.lazy(() => import('../minigames/Minigames')),
   },
 ]
+
+const LandingPage = React.lazy(() => import('../landing-page/LandingPage'))
+
+const LoadingComponent = <div>Loading...</div>
 
 const App: React.StatelessComponent<{}> = () => (
   <>
     <Header/>
-    <div className={styles.content}>
       <Switch>
-        {routes.map(({path, loader}: LoadableRoute) => (
-          <Route
-            key={path}
+        {routes.map(({ path, LazyComponent }: LoadableRoute) => (
+          <Route key={path}
             exact={true}
-            path={path}
-            component={createLoadable(loader)}/>
+            path={path}>
+            <React.Suspense fallback={LoadingComponent}>
+              <div
+                key={path}
+                className={styles.content}>
+                <LazyComponent />
+              </div>
+            </React.Suspense>
+          </Route>
         ))}
-        {protectedRoutes.map(({path, loader}: LoadableRoute) => (
-          <ProtectedRoute
-            key={path}
+        {protectedRoutes.map(({ path, LazyComponent }: LoadableRoute) => (
+          <ProtectedRoute key={path}
             exact={true}
-            path={path}
-            component={createLoadable(loader)}/>
+            path={path}>
+            <React.Suspense fallback={LoadingComponent}>
+              <div
+                key={path}
+                className={styles.content}>
+                <LazyComponent />
+              </div>
+            </React.Suspense>
+          </ProtectedRoute>
         ))}
+        <Route
+          exact={true}
+          path=''>
+          <React.Suspense fallback={LoadingComponent}>
+            <LandingPage />
+          </React.Suspense>
+        </Route>
         <Route path='/*'>
           <Redirect to='/'/>
         </Route>
       </Switch>
-    </div>
     <Footer/>
   </>
 )

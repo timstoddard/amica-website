@@ -4,18 +4,18 @@
 .email {
   &__headline {
     padding: 22vh 0;
-  
+
     &__main,
     &__secondary {
       font-weight: bold;
       margin: 0;
     }
-  
+
     &__main {
       @include playfairDisplayFont;
       font-size: 50px;
     }
-  
+
     &__secondary {
       color: $darkGray;
       font-size: 36px;

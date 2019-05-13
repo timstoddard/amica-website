@@ -4,7 +4,7 @@
 .creator {
   background: rgb(222,222,222);
   position: relative;
-  
+
   &--fullscreen {
     bottom: 0;
     left: 0;
@@ -21,7 +21,7 @@
     @include grayBackgroundWhenDisabled;
     background: $green;
     border-radius: 5px;
-    color: #fcfcfc;
+    color: $offWhite;
     font-size: 16px;
     padding: 5px 10px;
     position: absolute;
@@ -31,7 +31,7 @@
 
     &:hover {
       background: $blue;
-      color: #fcfcfc;
+      color: $offWhite;
       cursor: pointer;
     }
   }
@@ -54,7 +54,7 @@
       @include grayBackgroundWhenDisabled;
       background: $green;
       border-radius: 5px;
-      color: #fcfcfc;
+      color: $offWhite;
       font-size: 16px;
       margin: 0 2px;
       padding: 10px 20px;
@@ -62,7 +62,7 @@
 
       &:hover {
         background: $blue;
-        color: #fcfcfc;
+        color: $offWhite;
         cursor: pointer;
       }
     }

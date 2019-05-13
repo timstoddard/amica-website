@@ -1,5 +1,5 @@
-import { User } from '../../shared/types'
-import { AuthAction, AuthenticationActions } from '../actions/types'
+import { User } from '../../shared/types/user'
+import { AuthAction, AuthenticationActions } from '../actions/action-types'
 
 const currentUser = (state: User = null, action: AuthAction) => {
   switch (action.type) {

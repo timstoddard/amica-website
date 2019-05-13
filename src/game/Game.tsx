@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
-import { GameState, GameStateChoice } from '../shared/types'
+import { GameState, GameStateChoice } from '../shared/types/game-state'
 import states from './game-states'
 
 const styles = require('./scss/Game.scss') // tslint:disable-line no-var-requires

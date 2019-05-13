@@ -1,5 +1,5 @@
-import { StringMap } from '../../shared/types'
-import { AuthAction, AuthenticationActions } from '../actions/types'
+import { StringMap } from '../../shared/types/lang'
+import { AuthAction, AuthenticationActions } from '../actions/action-types'
 
 const signUpErrors = (state: StringMap = {}, action: AuthAction) => {
   switch (action.type) {

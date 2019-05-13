@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Route, RouteProps } from 'react-router-dom'
-import { AppState, User } from '../types'
+import { AppState } from '../types/lang'
+import { User } from '../types/user'
 
 interface ProtectedRouteProps extends RouteProps {
   currentUser: User
