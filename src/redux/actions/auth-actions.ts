@@ -13,17 +13,19 @@ export const registerUser = (userData: SignUpFormData, history: History) => (dis
       userData.password,
     )
     .then((res: UserCredential) => {
-      db.collection("users").add({
-        name: userData.name,
-        email: userData.email,
-        dateCreated: new Date().toISOString(),
-        type: "student", // TODO: CHANGE FROM userData
-        progress: {},
-        history: {},
-      }).then((res: any) => {
-        console.log(res)
-        history.push('/login')
-      })
+      const user = auth.currentUser
+      db.collection("users")
+        .doc(user.uid)
+        .set({
+          name: userData.name,
+          email: user.email,
+          dateCreated: new Date().toISOString(),
+          type: "student", // TODO: CHANGE FROM userData
+          progress: {},
+          hist: {},
+        }).then((res: any) => {
+          history.push('/login')
+        })
     })
     .catch((err: StringMap) => dispatch(authErrors(err)))
 }
@@ -35,12 +37,25 @@ export const loginUser = (userData: LoginFormData, history: History) => (dispatc
       userData.password,
     )
     .then((res: UserCredential) => {
-      const loggedUser = {
-        id: res.additionalUserInfo.providerId,
-        name: userData.email,
-      }
-      dispatch(setCurrentUser(loggedUser))
-      history.push('/dashboard')
+      const userId = auth.currentUser.uid
+      const docRef = db.collection("users").doc(userId)
+      docRef.get().then(function(doc) {
+        if (doc.exists) {
+          console.log("Document data:", doc.data())
+          const loggedUser = {
+            name: doc.data().name,
+            email: doc.data().email,
+            dateCreated: doc.data().dataCreated,
+            type: doc.data().type,
+            progress: doc.data().progress,
+            hist: doc.data().hist,
+          }
+          dispatch(setCurrentUser(loggedUser))
+          history.push('/dashboard')
+        } else {
+          console.log("No such document")
+        }
+      })
     })
     .catch((err: StringMap) => dispatch(authErrors(err)))
 }
