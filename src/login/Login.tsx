@@ -27,10 +27,6 @@ class Login extends React.Component<Props, {}> {
     super(props)
   }
 
-  componentDidMount= (): void => {
-    console.log(this.props)
-  }
-
   submitForm = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
@@ -45,7 +41,6 @@ class Login extends React.Component<Props, {}> {
       password,
     }
     console.log('form data:', data)
-    console.log(this.props)
     loginUser(data, history)
   }
 

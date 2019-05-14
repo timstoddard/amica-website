@@ -31,7 +31,6 @@ class Dashboard extends React.Component<Props, {}> {
     const {
      currentUser,
     } = this.props
-    //const currentUser = { name: 'Test Name' }
 
     return (
       <div className={styles.dashboard}>

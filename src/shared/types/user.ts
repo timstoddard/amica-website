@@ -3,6 +3,14 @@ export interface User {
   email: string
   dateCreated: string
   type: string
-  progress: {}
-  hist: {}
+  progress: Progress
+  hist: Hist
+}
+
+interface Progress {
+  // TODO
+}
+
+interface Hist {
+  // TODO
 }
