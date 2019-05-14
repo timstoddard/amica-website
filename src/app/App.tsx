@@ -45,7 +45,11 @@ const LandingPage = React.lazy(() => import('../landing-page/LandingPage'))
 
 const LoadingComponent = <div>Loading...</div>
 
-const App: React.StatelessComponent<{}> = () => (
+interface Props {
+  history: History
+}
+
+const App: React.StatelessComponent<Props> = ({ history }: Props) => (
   <>
     <Header/>
       <Switch>
@@ -57,7 +61,7 @@ const App: React.StatelessComponent<{}> = () => (
               <div
                 key={path}
                 className={styles.content}>
-                <LazyComponent />
+                <LazyComponent history={history} />
               </div>
             </React.Suspense>
           </Route>
@@ -70,7 +74,7 @@ const App: React.StatelessComponent<{}> = () => (
               <div
                 key={path}
                 className={styles.content}>
-                <LazyComponent />
+                <LazyComponent history={history} />
               </div>
             </React.Suspense>
           </ProtectedRoute>
