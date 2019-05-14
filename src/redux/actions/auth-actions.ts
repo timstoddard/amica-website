@@ -1,10 +1,10 @@
-import { History } from 'history'
-import { Dispatch } from 'react'
-import { auth } from '../../shared/firebase'
+import {History} from 'history'
+import {Dispatch} from 'react'
+import {db, auth} from '../../shared/firebase'
 import UserCredential = firebase.auth.UserCredential
-import { LoginFormData, SignUpFormData } from '../../shared/types/forms'
-import { StringMap } from '../../shared/types/lang'
-import { authErrors, setCurrentUser } from './action-types'
+import {LoginFormData, SignUpFormData} from '../../shared/types/forms'
+import {StringMap} from '../../shared/types/lang'
+import {authErrors, setCurrentUser} from './action-types'
 
 export const registerUser = (userData: SignUpFormData, history: History) => (dispatch: Dispatch<unknown>) => {
   auth
@@ -12,11 +12,23 @@ export const registerUser = (userData: SignUpFormData, history: History) => (dis
       userData.email,
       userData.password,
     )
-    .then((res: UserCredential) => history.push('/login'))
+    .then((res: UserCredential) => {
+      db.collection("users").add({
+        name: userData.name,
+        email: userData.email,
+        dateCreated: new Date().toISOString(),
+        type: "student", // TODO: CHANGE FROM userData
+        progress: {},
+        history: {},
+      }).then((res: any) => {
+        console.log(res)
+        history.push('/login')
+      })
+    })
     .catch((err: StringMap) => dispatch(authErrors(err)))
 }
 
-export const loginUser = (userData: LoginFormData) => (dispatch: Dispatch<unknown>) => {
+export const loginUser = (userData: LoginFormData, history: History) => (dispatch: Dispatch<unknown>) => {
   auth
     .signInWithEmailAndPassword(
       userData.email,
@@ -28,6 +40,7 @@ export const loginUser = (userData: LoginFormData) => (dispatch: Dispatch<unknow
         name: userData.email,
       }
       dispatch(setCurrentUser(loggedUser))
+      history.push('/dashboard')
     })
     .catch((err: StringMap) => dispatch(authErrors(err)))
 }

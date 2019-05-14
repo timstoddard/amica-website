@@ -4,7 +4,11 @@ const styles = require('./scss/Footer.scss') // tslint:disable-line no-var-requi
 
 // TODO: user testimonial
 
-const Footer: React.StatelessComponent<{}> = () => (
+interface Props {
+  isOnLandingPage: boolean
+}
+
+const Footer: React.StatelessComponent<Props> = ({ isOnLandingPage }: Props) => (
   <footer className={styles.footer}>
     &copy; Amica 2019
   </footer>

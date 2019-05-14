@@ -13,7 +13,7 @@ const styles = require('./scss/Login.scss') // tslint:disable-line no-var-requir
 
 interface Props {
   currentUser: User
-  loginUser: (data: LoginFormData) => void
+  loginUser: (data: LoginFormData, history: History) => void
   history: History
 }
 
@@ -27,16 +27,14 @@ class Login extends React.Component<Props, {}> {
     super(props)
   }
 
-  componentWillReceiveProps({ currentUser, history }: Props): void {
-    if (currentUser) {
-      history.push('/dashboard')
-    }
+  componentDidMount= (): void => {
+    console.log(this.props)
   }
 
   submitForm = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
-    const { loginUser } = this.props
+    const { loginUser, history} = this.props
     const {
       email,
       password,
@@ -47,7 +45,8 @@ class Login extends React.Component<Props, {}> {
       password,
     }
     console.log('form data:', data)
-    loginUser(data)
+    console.log(this.props)
+    loginUser(data, history)
   }
 
   render(): JSX.Element {

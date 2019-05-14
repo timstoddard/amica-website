@@ -86,7 +86,7 @@ const App: React.StatelessComponent<{}> = () => (
           <Redirect to='/'/>
         </Route>
       </Switch>
-    <Footer/>
+    <Footer isOnLandingPage={true}/>
   </>
 )
 

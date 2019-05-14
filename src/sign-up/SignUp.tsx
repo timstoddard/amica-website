@@ -28,6 +28,10 @@ class SignUp extends React.Component<Props, {}> {
     super(props)
   }
 
+  componentDidMount= (): void => {
+    console.log(this.props)
+  }
+
   submitForm = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
