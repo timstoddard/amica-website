@@ -79,9 +79,9 @@ const states: GameState[] = [
     isFinal: false,
   },
   {
-    id: '8', // TODO: Story 1 Social Media #7-A-2
+    id: '8', // TODO TRANSITION: Story 1 Social Media #7-A-2
     description: '',
-    imageSrc: 'media/bully/Bystander_Screen_no_buttons.png',
+    imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
     choices: [
       { text: 'Continue', toId: '11' },
@@ -99,9 +99,9 @@ const states: GameState[] = [
     isFinal: false,
   },
   {
-    id: '10', // TODO: Story 1 Social Media #7-B-2
+    id: '10', // TODO TRANSITION: Story 1 Social Media #7-B-2
     description: '',
-    imageSrc: 'media/bully/Bully_Screen_no_buttons.png',
+    imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
     choices: [
       { text: 'Continue', toId: '11' },
@@ -140,7 +140,7 @@ const states: GameState[] = [
     isFinal: false,
   },
   {
-    id: '14', // TODO: Story 1 Social Media #9-A-2
+    id: '14', // TODO TRANSITION: Story 1 Social Media #9-A-2
     description: '',
     imageSrc: 'media/bully/Bystander_screen_9_no_buttons.png',
     imageAlt: 'something',
@@ -160,9 +160,9 @@ const states: GameState[] = [
     isFinal: false,
   },
   {
-    id: '16', // TODO: Story 1 Social Media #9-B-2
+    id: '16', // TODO TRANSITION: Story 1 Social Media #9-B-2
     description: '',
-    imageSrc: 'media/bully/Good_Job_No_buttons.png',
+    imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
     choices: [
       { text: 'Continue', toId: '17' },
@@ -170,7 +170,7 @@ const states: GameState[] = [
     isFinal: false,
   },
   {
-    id: '17', // TODO: Story 1 Social Media #10
+    id: '17', // TODO TRANSITION: Story 1 Social Media #10
     description: '',
     imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
@@ -240,9 +240,9 @@ const states: GameState[] = [
     isFinal: false,
   },
   {
-    id: '24', // TODO: Story 2 Messages #13
-    description: 'media/bully/Bullying- 12-A – 2_no_buttons.png',
-    imageSrc: '',
+    id: '24', // TODO TRANSITION: Story 2 Messages #13
+    description: '',
+    imageSrc: 'media/bully/Background_Light.png',
     imageAlt: 'something',
     choices: [
       { text: 'Continue', toId: '33' },

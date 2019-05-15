@@ -20,7 +20,7 @@ export default class Game extends React.Component<{}, State> {
     super(props)
 
     this.state = {
-      gameState: states[4],
+      gameState: states[18],
       descriptionToShow: '',
       showButtons: false,
     }

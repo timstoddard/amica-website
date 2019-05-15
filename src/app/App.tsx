@@ -90,7 +90,7 @@ const App: React.StatelessComponent<Props> = ({ history }: Props) => (
           <Redirect to='/'/>
         </Route>
       </Switch>
-    <Footer/>
+    <Footer isOnLandingPage={true}/>
   </>
 )
 
